@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolRouteImport } from './routes/$tool'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as MeuCepRouteImport } from './routes/meu-cep'
+import { Route as MeuIpRouteImport } from './routes/meu-ip'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as QrRouteImport } from './routes/qr'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
@@ -32,9 +35,24 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeuCepRoute = MeuCepRouteImport.update({
+  id: '/meu-cep',
+  path: '/meu-cep',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeuIpRoute = MeuIpRouteImport.update({
+  id: '/meu-ip',
+  path: '/meu-ip',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QrRoute = QrRouteImport.update({
+  id: '/qr',
+  path: '/qr',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -57,7 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
   '/contato': typeof ContatoRoute
+  '/meu-cep': typeof MeuCepRoute
+  '/meu-ip': typeof MeuIpRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/qr': typeof QrRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -66,7 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
   '/contato': typeof ContatoRoute
+  '/meu-cep': typeof MeuCepRoute
+  '/meu-ip': typeof MeuIpRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/qr': typeof QrRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -76,7 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
   '/contato': typeof ContatoRoute
+  '/meu-cep': typeof MeuCepRoute
+  '/meu-ip': typeof MeuIpRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/qr': typeof QrRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -87,7 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/$tool'
     | '/contato'
+    | '/meu-cep'
+    | '/meu-ip'
     | '/privacidade'
+    | '/qr'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -96,7 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/$tool'
     | '/contato'
+    | '/meu-cep'
+    | '/meu-ip'
     | '/privacidade'
+    | '/qr'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -105,7 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/$tool'
     | '/contato'
+    | '/meu-cep'
+    | '/meu-ip'
     | '/privacidade'
+    | '/qr'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -115,7 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ToolRoute: typeof ToolRoute
   ContatoRoute: typeof ContatoRoute
+  MeuCepRoute: typeof MeuCepRoute
+  MeuIpRoute: typeof MeuIpRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  QrRoute: typeof QrRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
@@ -144,11 +183,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meu-cep': {
+      id: '/meu-cep'
+      path: '/meu-cep'
+      fullPath: '/meu-cep'
+      preLoaderRoute: typeof MeuCepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meu-ip': {
+      id: '/meu-ip'
+      path: '/meu-ip'
+      fullPath: '/meu-ip'
+      preLoaderRoute: typeof MeuIpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidade': {
       id: '/privacidade'
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qr': {
+      id: '/qr'
+      path: '/qr'
+      fullPath: '/qr'
+      preLoaderRoute: typeof QrRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -179,7 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ToolRoute: ToolRoute,
   ContatoRoute: ContatoRoute,
+  MeuCepRoute: MeuCepRoute,
+  MeuIpRoute: MeuIpRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  QrRoute: QrRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,

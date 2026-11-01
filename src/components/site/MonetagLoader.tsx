@@ -8,8 +8,8 @@ export function MonetagLoader() {
     const s = document.createElement("script");
     s.src = MONETAG.scriptSrc;
     s.async = true;
-    s.dataset.zone = MONETAG.zoneId;
-    s.dataset.monetag = "true";
+    s.setAttribute("data-zone", MONETAG.zoneId);
+    s.setAttribute("data-monetag", "true");
     s.setAttribute("data-cfasync", "false");
     document.body.appendChild(s);
   }, []);

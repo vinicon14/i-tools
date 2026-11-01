@@ -15,7 +15,7 @@ const faq = [
   { q: "Por que preciso permitir a localização?", a: "Sem a permissão o navegador não informa onde você está. Você pode negar ou revogar a qualquer momento." },
 ];
 
-type Result = { cep?: string; rua?: string; bairro?: string; cidade?: string; uf?: string };
+type Result = { cep?: string; rua?: string; bairro?: string; cidade?: string; uf?: string | undefined };
 type State = { kind: "idle" } | { kind: "loading" } | { kind: "error"; msg: string } | { kind: "ok"; data: Result };
 
 function CepPage() {
@@ -29,7 +29,7 @@ function CepPage() {
       try {
         const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&accept-language=pt-BR&lat=${coords.latitude}&lon=${coords.longitude}`);
         const a = (await r.json()).address ?? {};
-        const uf = (a["ISO3166-2-lvl4"] as string | undefined)?.split("-")[1];
+        const uf: string | undefined = (a["ISO3166-2-lvl4"] as string | undefined)?.split("-")[1] ?? undefined;
         setState({ kind: "ok", data: { cep: a.postcode, rua: a.road, bairro: a.suburb ?? a.neighbourhood, cidade: a.city ?? a.town ?? a.village, uf } });
       } catch {
         setState({ kind: "error", msg: "Não foi possível consultar o endereço. Tente novamente." });

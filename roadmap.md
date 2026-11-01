@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Downloads de YouTube, TikTok e Instagram — páginas, validação e integração de download
 - [x] Landing do i-Tools
 - [x] Ferramentas no ar: QR Code, Meu IP, Meu CEP
 - [x] SEO por ferramenta (título, descrição, OG, dados estruturados, FAQ)

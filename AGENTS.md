@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Planned tools live in `src/lib/tools.ts` and each gets a page at `/tools/<slug>` on the same domain (no subdomains) — single source for directory, search and tool pages.

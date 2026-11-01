@@ -1,5 +1,8 @@
 # Roadmap
-- [x] Landing do i-Tools (ferramentas do dia a dia, não IA)
-- [x] Planejar ferramentas Meu IP e Meu CEP pela localização
-- [ ] Sitemap.xml — aguardando domínio público definitivo
+- [x] Landing do i-Tools
+- [x] Ferramentas no ar: QR Code, Meu IP, Meu CEP
+- [x] SEO por ferramenta (título, descrição, OG, dados estruturados, FAQ)
+- [x] Estrutura da Monetag pronta
+- [ ] Ativar Monetag — aguardando código da tag (src + zone)
+- [ ] Sitemap.xml — aguardando domínio definitivo
 - [ ] Google Analytics / Search Console — aguardando IDs

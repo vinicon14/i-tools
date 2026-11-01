@@ -52,7 +52,7 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
               <p className="px-4 py-3 text-sm text-muted-foreground">Nenhuma ferramenta encontrada para “{query}”.</p>
             )}
             <p className="border-t border-border bg-muted px-4 py-2 text-xs text-muted-foreground">
-              As ferramentas estão em preparação e serão lançadas uma de cada vez.
+              Ferramentas marcadas "Em breve" ainda estão em preparação.
             </p>
           </div>
         )}

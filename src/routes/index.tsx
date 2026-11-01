@@ -32,7 +32,7 @@ function Index() {
       <section aria-labelledby="hero-title" className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-24">
           <p className="eyebrow flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Primeiras ferramentas em preparação
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Novas ferramentas toda semana
           </p>
           <h1 id="hero-title" className="mt-6 max-w-4xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl">
             Ferramentas inteligentes para <em className="text-primary">simplificar</em> seu dia.

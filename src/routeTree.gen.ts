@@ -10,43 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
+import { Route as ToolRouteImport } from './routes/$tool'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as TermosRouteImport } from './routes/termos'
+import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsSlugRoute = ToolsSlugRouteImport.update({
-  id: '/tools/$slug',
-  path: '/tools/$slug',
+const ToolRoute = ToolRouteImport.update({
+  id: '/$tool',
+  path: '/$tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
+  id: '/categorias/$categoria',
+  path: '/categorias/$categoria',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tools/$slug': typeof ToolsSlugRoute
+  '/$tool': typeof ToolRoute
+  '/contato': typeof ContatoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
+  '/categorias/$categoria': typeof CategoriasCategoriaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tools/$slug': typeof ToolsSlugRoute
+  '/$tool': typeof ToolRoute
+  '/contato': typeof ContatoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
+  '/categorias/$categoria': typeof CategoriasCategoriaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/tools/$slug': typeof ToolsSlugRoute
+  '/$tool': typeof ToolRoute
+  '/contato': typeof ContatoRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
+  '/categorias/$categoria': typeof CategoriasCategoriaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tools/$slug'
+  fullPaths:
+    | '/'
+    | '/$tool'
+    | '/contato'
+    | '/privacidade'
+    | '/sobre'
+    | '/termos'
+    | '/categorias/$categoria'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tools/$slug'
-  id: '__root__' | '/' | '/tools/$slug'
+  to:
+    | '/'
+    | '/$tool'
+    | '/contato'
+    | '/privacidade'
+    | '/sobre'
+    | '/termos'
+    | '/categorias/$categoria'
+  id:
+    | '__root__'
+    | '/'
+    | '/$tool'
+    | '/contato'
+    | '/privacidade'
+    | '/sobre'
+    | '/termos'
+    | '/categorias/$categoria'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ToolsSlugRoute: typeof ToolsSlugRoute
+  ToolRoute: typeof ToolRoute
+  ContatoRoute: typeof ContatoRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  SobreRoute: typeof SobreRoute
+  TermosRoute: typeof TermosRoute
+  CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +130,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools/$slug': {
-      id: '/tools/$slug'
-      path: '/tools/$slug'
-      fullPath: '/tools/$slug'
-      preLoaderRoute: typeof ToolsSlugRouteImport
+    '/$tool': {
+      id: '/$tool'
+      path: '/$tool'
+      fullPath: '/$tool'
+      preLoaderRoute: typeof ToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categorias/$categoria': {
+      id: '/categorias/$categoria'
+      path: '/categorias/$categoria'
+      fullPath: '/categorias/$categoria'
+      preLoaderRoute: typeof CategoriasCategoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ToolsSlugRoute: ToolsSlugRoute,
+  ToolRoute: ToolRoute,
+  ContatoRoute: ContatoRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  SobreRoute: SobreRoute,
+  TermosRoute: TermosRoute,
+  CategoriasCategoriaRoute: CategoriasCategoriaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

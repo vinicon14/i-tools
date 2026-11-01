@@ -14,3 +14,4 @@
 - Tools use short top-level paths `/<slug>` (dynamic `src/routes/$tool.tsx`) on one domain, never subdomains; a live tool gets its own route file, which overrides the dynamic page.
 - Shared site chrome/components live in `src/components/site/`; every page uses `PageShell` and `pageMeta` for consistent layout and SEO.
 - Ad space uses fixed-height `AdSlot` to avoid layout shift.
+- Monetag ads load only through `src/lib/ads.ts` config + `MonetagLoader` after hydration; only non-intrusive formats (no popunder/redirect) to protect UX.

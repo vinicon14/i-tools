@@ -1,6 +1,6 @@
 import {
   Braces, Calculator, FileText, FileType2, Image, ImageDown, KeyRound, ListChecks,
-  Maximize2, Percent, QrCode, Type, Code2, Timer, Palette, Hash,
+  Maximize2, Percent, Wifi, MapPin, QrCode, Type, Code2, Timer, Palette, Hash,
   type LucideIcon,
 } from "lucide-react";
 
@@ -47,12 +47,14 @@ export const categories: Category[] = [
 ];
 
 export const tools: Tool[] = [
-  { slug: "qr", name: "Gerador de QR Code", summary: "Crie QR Codes para links, Wi-Fi e contatos.", category: "produtividade", icon: QrCode, status: "planned", featured: true, keywords: ["qr", "código", "link", "wifi"] },
+  { slug: "qr", name: "Gerador de QR Code", summary: "Transforme qualquer URL em um QR Code pronto para baixar.", category: "produtividade", icon: QrCode, status: "planned", featured: true, keywords: ["qr", "código", "link", "wifi"] },
   { slug: "comprimir-imagem", name: "Compressor de imagens", summary: "Reduza o peso de JPG, PNG e WebP sem perder qualidade visível.", category: "imagens", icon: ImageDown, status: "planned", featured: true, keywords: ["comprimir", "jpg", "png", "webp", "otimizar"] },
   { slug: "pdf", name: "Conversor de PDF", summary: "Converta documentos de e para PDF.", category: "arquivos", icon: FileType2, status: "planned", featured: true, keywords: ["pdf", "word", "converter", "documento"] },
   { slug: "senhas", name: "Gerador de senhas", summary: "Senhas fortes e aleatórias, geradas no seu dispositivo.", category: "desenvolvedores", icon: KeyRound, status: "planned", featured: true, keywords: ["senha", "segurança", "aleatória"] },
-  { slug: "contador-de-palavras", name: "Contador de palavras", summary: "Palavras, caracteres e tempo de leitura de qualquer texto.", category: "texto", icon: Hash, status: "planned", featured: true, keywords: ["palavras", "caracteres", "contar"] },
-  { slug: "json", name: "Formatador JSON", summary: "Valide e formate JSON com legibilidade.", category: "desenvolvedores", icon: Braces, status: "planned", featured: true, keywords: ["json", "formatar", "validar"] },
+  { slug: "contador-de-palavras", name: "Contador de palavras", summary: "Palavras, caracteres e tempo de leitura de qualquer texto.", category: "texto", icon: Hash, status: "planned", keywords: ["palavras", "caracteres", "contar"] },
+  { slug: "json", name: "Formatador JSON", summary: "Valide e formate JSON com legibilidade.", category: "desenvolvedores", icon: Braces, status: "planned", keywords: ["json", "formatar", "validar"] },
+  { slug: "meu-ip", name: "Qual é meu IP", summary: "Veja o endereço IP público da sua conexão.", category: "produtividade", icon: Wifi, status: "planned", featured: true, keywords: ["ip", "internet", "rede", "conexão"] },
+  { slug: "meu-cep", name: "Meu CEP pela localização", summary: "Descubra o CEP de onde você está usando a localização do aparelho.", category: "produtividade", icon: MapPin, status: "planned", featured: true, keywords: ["cep", "endereço", "localização", "gps"] },
   { slug: "redimensionar-imagem", name: "Redimensionador de imagens", summary: "Ajuste largura e altura para redes sociais e sites.", category: "imagens", icon: Maximize2, status: "planned", keywords: ["redimensionar", "tamanho", "imagem"] },
   { slug: "porcentagem", name: "Calculadora de porcentagem", summary: "Descontos, aumentos e variações em segundos.", category: "calculadoras", icon: Percent, status: "planned", keywords: ["porcentagem", "desconto", "calcular"] },
   { slug: "paleta-de-cores", name: "Gerador de paletas", summary: "Combinações de cores com códigos HEX e RGB.", category: "imagens", icon: Palette, status: "planned", keywords: ["cores", "paleta", "hex"] },

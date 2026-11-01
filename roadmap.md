@@ -1,5 +1,6 @@
 # Roadmap
-- [ ] Downloads de YouTube, TikTok e Instagram — páginas, validação e integração de download
+- [x] Páginas de YouTube, TikTok e Instagram com SEO e validação de links
+- [ ] Downloads reais de YouTube, TikTok e Instagram — aguardando serviço externo compatível e credenciais; possíveis custos
 - [x] Landing do i-Tools
 - [x] Ferramentas no ar: QR Code, Meu IP, Meu CEP
 - [x] SEO por ferramenta (título, descrição, OG, dados estruturados, FAQ)

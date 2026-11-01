@@ -9,7 +9,8 @@ export type Faq = { q: string; a: string };
 
 /** Head for a live tool page: metadata + WebApplication structured data. */
 export function toolHead(slug: string, title: string, description: string) {
-  const tool = getTool(slug)!;
+  const tool = getTool(slug);
+  if (!tool) throw new Error(`Unknown tool: ${slug}`);
   return {
     ...pageMeta(title, description, `/${slug}`, "website"),
     scripts: [{
@@ -31,8 +32,10 @@ export function toolHead(slug: string, title: string, description: string) {
 }
 
 export function ToolLayout({ slug, intro, children, faq }: { slug: string; intro: string; children: ReactNode; faq: Faq[] }) {
-  const tool = getTool(slug)!;
-  const category = getCategory(tool.category)!;
+  const tool = getTool(slug);
+  if (!tool) return null;
+  const category = getCategory(tool.category);
+  if (!category) return null;
   const Icon = tool.icon;
   const related = toolsByCategory(category.slug).filter((t) => t.slug !== slug);
   return (

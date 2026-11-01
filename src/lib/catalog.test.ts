@@ -18,4 +18,7 @@ describe("catalog", () => {
   it("QR tool lives at /qr", () => {
     expect(getTool("qr")?.name).toBe("Gerador de QR Code");
   });
+  it("video download tools remain planned until downloads are connected", () => {
+    for (const slug of ["baixar-video-youtube", "baixar-video-tiktok", "baixar-video-instagram"]) expect(getTool(slug)?.status).toBe("planned");
+  });
 });

@@ -1,7 +1,7 @@
 import {
   Braces, Calculator, FileText, FileType2, Image, ImageDown, KeyRound, ListChecks,
   Maximize2, Percent, Wifi, MapPin, QrCode, Type, Code2, Timer, Palette, Hash,
-  type LucideIcon,
+  Youtube, Video, Instagram, type LucideIcon,
 } from "lucide-react";
 
 /**
@@ -47,6 +47,9 @@ export const categories: Category[] = [
 ];
 
 export const tools: Tool[] = [
+  { slug: "baixar-video-youtube", name: "Baixar vídeo do YouTube", summary: "Vídeos e Shorts: download em preparação, aguardando conexão do serviço.", category: "produtividade", icon: Youtube, status: "planned", featured: true, keywords: ["youtube", "baixar", "vídeo", "download", "shorts"] },
+  { slug: "baixar-video-tiktok", name: "Baixar vídeo do TikTok", summary: "Vídeos públicos do TikTok: download em preparação, aguardando conexão do serviço.", category: "produtividade", icon: Video, status: "planned", featured: true, keywords: ["tiktok", "baixar", "vídeo", "download"] },
+  { slug: "baixar-video-instagram", name: "Baixar vídeo do Instagram", summary: "Reels e vídeos: download em preparação, aguardando conexão do serviço.", category: "produtividade", icon: Instagram, status: "planned", featured: true, keywords: ["instagram", "baixar", "vídeo", "download", "reels"] },
   { slug: "qr", name: "Gerador de QR Code", summary: "Transforme qualquer URL em um QR Code pronto para baixar.", category: "produtividade", icon: QrCode, status: "live", featured: true, keywords: ["qr", "código", "link", "wifi"] },
   { slug: "comprimir-imagem", name: "Compressor de imagens", summary: "Reduza o peso de JPG, PNG e WebP sem perder qualidade visível.", category: "imagens", icon: ImageDown, status: "planned", featured: true, keywords: ["comprimir", "jpg", "png", "webp", "otimizar"] },
   { slug: "pdf", name: "Conversor de PDF", summary: "Converta documentos de e para PDF.", category: "arquivos", icon: FileType2, status: "planned", featured: true, keywords: ["pdf", "word", "converter", "documento"] },

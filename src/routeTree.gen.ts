@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolRouteImport } from './routes/$tool'
+import { Route as BaixarVideoInstagramRouteImport } from './routes/baixar-video-instagram'
+import { Route as BaixarVideoTiktokRouteImport } from './routes/baixar-video-tiktok'
+import { Route as BaixarVideoYoutubeRouteImport } from './routes/baixar-video-youtube'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as MeuCepRouteImport } from './routes/meu-cep'
 import { Route as MeuIpRouteImport } from './routes/meu-ip'
@@ -28,6 +31,21 @@ const IndexRoute = IndexRouteImport.update({
 const ToolRoute = ToolRouteImport.update({
   id: '/$tool',
   path: '/$tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaixarVideoInstagramRoute = BaixarVideoInstagramRouteImport.update({
+  id: '/baixar-video-instagram',
+  path: '/baixar-video-instagram',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaixarVideoTiktokRoute = BaixarVideoTiktokRouteImport.update({
+  id: '/baixar-video-tiktok',
+  path: '/baixar-video-tiktok',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaixarVideoYoutubeRoute = BaixarVideoYoutubeRouteImport.update({
+  id: '/baixar-video-youtube',
+  path: '/baixar-video-youtube',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -74,6 +92,9 @@ const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
+  '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
+  '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
+  '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
   '/contato': typeof ContatoRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -86,6 +107,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
+  '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
+  '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
+  '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
   '/contato': typeof ContatoRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -99,6 +123,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$tool': typeof ToolRoute
+  '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
+  '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
+  '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
   '/contato': typeof ContatoRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -113,6 +140,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$tool'
+    | '/baixar-video-instagram'
+    | '/baixar-video-tiktok'
+    | '/baixar-video-youtube'
     | '/contato'
     | '/meu-cep'
     | '/meu-ip'
@@ -125,6 +155,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$tool'
+    | '/baixar-video-instagram'
+    | '/baixar-video-tiktok'
+    | '/baixar-video-youtube'
     | '/contato'
     | '/meu-cep'
     | '/meu-ip'
@@ -137,6 +170,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$tool'
+    | '/baixar-video-instagram'
+    | '/baixar-video-tiktok'
+    | '/baixar-video-youtube'
     | '/contato'
     | '/meu-cep'
     | '/meu-ip'
@@ -150,6 +186,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ToolRoute: typeof ToolRoute
+  BaixarVideoInstagramRoute: typeof BaixarVideoInstagramRoute
+  BaixarVideoTiktokRoute: typeof BaixarVideoTiktokRoute
+  BaixarVideoYoutubeRoute: typeof BaixarVideoYoutubeRoute
   ContatoRoute: typeof ContatoRoute
   MeuCepRoute: typeof MeuCepRoute
   MeuIpRoute: typeof MeuIpRoute
@@ -174,6 +213,27 @@ declare module '@tanstack/react-router' {
       path: '/$tool'
       fullPath: '/$tool'
       preLoaderRoute: typeof ToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/baixar-video-instagram': {
+      id: '/baixar-video-instagram'
+      path: '/baixar-video-instagram'
+      fullPath: '/baixar-video-instagram'
+      preLoaderRoute: typeof BaixarVideoInstagramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/baixar-video-tiktok': {
+      id: '/baixar-video-tiktok'
+      path: '/baixar-video-tiktok'
+      fullPath: '/baixar-video-tiktok'
+      preLoaderRoute: typeof BaixarVideoTiktokRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/baixar-video-youtube': {
+      id: '/baixar-video-youtube'
+      path: '/baixar-video-youtube'
+      fullPath: '/baixar-video-youtube'
+      preLoaderRoute: typeof BaixarVideoYoutubeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -238,6 +298,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ToolRoute: ToolRoute,
+  BaixarVideoInstagramRoute: BaixarVideoInstagramRoute,
+  BaixarVideoTiktokRoute: BaixarVideoTiktokRoute,
+  BaixarVideoYoutubeRoute: BaixarVideoYoutubeRoute,
   ContatoRoute: ContatoRoute,
   MeuCepRoute: MeuCepRoute,
   MeuIpRoute: MeuIpRoute,

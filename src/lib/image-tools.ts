@@ -29,5 +29,5 @@ export async function encodeImage(image: CanvasImageSource, width: number, heigh
   if (blob.type !== format) throw new Error('Este formato não é suportado pelo seu navegador.');
   return blob;
 }
-export const imageExtension = (format: ImageFormat) => format.split('/')[1].replace('jpeg', 'jpg');
+export const imageExtension = (format: ImageFormat) => format === 'image/jpeg' ? 'jpg' : format === 'image/png' ? 'png' : 'webp';
 export const fileSize = (bytes: number) => bytes < 1024 ? `${bytes} B` : bytes < 1048576 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / 1048576).toFixed(2)} MB`;

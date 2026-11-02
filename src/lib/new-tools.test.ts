@@ -6,7 +6,7 @@ import { countdownDuration, elapsedTime, formatTime, pomodoroDuration, remaining
 import { checkPdfInput, createPdf, wrapPdfText } from './pdf-tools';
 describe('image processing rules', () => {
   it('preserves aspect ratio in both axes', () => { expect(imageDimensions(800, 400, 200, 'width')).toEqual({ width: 200, height: 100 }); expect(imageDimensions(800, 400, 100, 'height')).toEqual({ width: 200, height: 100 }); });
-  it('rejects unsafe and fractional canvas dimensions', () => { for (const [w, h] of [[0, 1], [1.5, 2], [12001, 1], [6000, 6000]]) expect(() => validateDimensions(w, h)).toThrow(); });
+  it('rejects unsafe and fractional canvas dimensions', () => { for (const [w, h] of [[0, 1], [1.5, 2], [12001, 1], [6000, 6000]] as const) expect(() => validateDimensions(w, h)).toThrow(); });
   it('accepts supported formats and rejects large or unsupported files', () => { expect(() => checkImage({ size: 100, type: 'image/webp' })).not.toThrow(); expect(() => checkImage({ size: 31 * 1024 * 1024, type: 'image/png' })).toThrow(); expect(() => checkImage({ size: 1, type: 'image/svg+xml' })).toThrow(); });
 });
 describe('palette transformations', () => {
@@ -23,7 +23,7 @@ describe('timer calculations', () => {
 });
 describe('PDF conversion', () => {
   it('wraps long text and preserves blank lines', () => expect(wrapPdfText('abcdef\n\nxy', s => s.length, 3)).toEqual(['abc', 'def', '', 'xy']));
-  it('produces a readable PDF from Portuguese text', async () => { const file = { size: 10, type: 'text/plain', name: 'texto.txt', text: async () => 'Olá, ação e café.' } as File; const blob = await createPdf([file]); const doc = await PDFDocument.load(await blob.arrayBuffer()); expect(doc.getPageCount()).toBe(1); });
+  it('produces a readable PDF from Portuguese text', async () => { const file = { size: 10, type: 'text/plain', name: 'texto.txt', text: async () => 'Olá, ação e café.' } as File; const blob = await createPdf([file]); const bytes = await new Promise<ArrayBuffer>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => reader.result instanceof ArrayBuffer ? resolve(reader.result) : reject(new Error('Invalid PDF')); reader.onerror = reject; reader.readAsArrayBuffer(blob); }); const doc = await PDFDocument.load(new Uint8Array(bytes)); expect(doc.getPageCount()).toBe(1); });
   it('rejects unsupported Word files instead of implying conversion', () => expect(() => checkPdfInput({ size: 10, type: 'application/msword', name: 'arquivo.doc' })).toThrow());
   it('rejects an empty selection', async () => await expect(createPdf([])).rejects.toThrow());
 });

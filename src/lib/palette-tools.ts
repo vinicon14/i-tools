@@ -10,14 +10,14 @@ function hslToHex(h: number, s: number, l: number) {
   return `#${channel(0)}${channel(8)}${channel(4)}`.toUpperCase();
 }
 export function makePalette(hex: string, mode: PaletteMode): string[] {
-  const rgb = hexToRgb(hex); const [r, g, b] = [rgb.r, rgb.g, rgb.b].map(v => v / 255);
+  const rgb = hexToRgb(hex); const r = rgb.r / 255, g = rgb.g / 255, b = rgb.b / 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min, l = (max + min) / 2;
   const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
   const h = d === 0 ? 0 : 60 * (max === r ? ((g - b) / d + (g < b ? 6 : 0)) : max === g ? ((b - r) / d + 2) : ((r - g) / d + 4));
   return [-2, -1, 0, 1, 2].map(i => i === 0 ? hex.toUpperCase() : mode === 'monochrome' ? hslToHex(h, s * 100, Math.max(8, Math.min(92, l * 100 + i * 18))) : hslToHex(h + (mode === 'analogous' ? i * 25 : i < 0 ? i * 15 : 180 + (i - 1) * 20), Math.max(s * 100, 35), Math.max(25, Math.min(75, l * 100 + i * 6))));
 }
 export function contrastRatio(first: string, second: string) {
-  const lum = (hex: string) => { const rgb = hexToRgb(hex); const [r, g, b] = [rgb.r, rgb.g, rgb.b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return r * 0.2126 + g * 0.7152 + b * 0.0722; };
+  const lum = (hex: string) => { const rgb = hexToRgb(hex); const linear = (value: number) => { const v = value / 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return linear(rgb.r) * 0.2126 + linear(rgb.g) * 0.7152 + linear(rgb.b) * 0.0722; };
   const a = lum(first), b = lum(second); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 }
 export function randomColor() { const a = new Uint8Array(3); crypto.getRandomValues(a); return '#' + Array.from(a, v => v.toString(16).padStart(2, '0')).join('').toUpperCase(); }

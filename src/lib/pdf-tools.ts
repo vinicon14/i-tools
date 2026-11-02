@@ -34,7 +34,7 @@ export async function pdfToImages(file: File, progress: (current: number, total:
   const pdfjs = await import('pdfjs-dist');
   const worker = await import('pdfjs-dist/build/pdf.worker.min.mjs?url');
   pdfjs.GlobalWorkerOptions.workerSrc = worker.default;
-  const task = pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false });
+  const task = pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) });
   try {
     const doc = await task.promise;
     if (doc.numPages > 50) throw new Error('Converta PDFs com até 50 páginas.');

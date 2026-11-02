@@ -1,0 +1,157 @@
+---
+import Icon from './Icon.astro';
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav" aria-label="Principal">
+      <a href="/" class="logo" translate="no">
+        <span class="logo-i">i-</span><span class="logo-tools">Tools</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="/#categorias">Categorias</a></li>
+        <li><a href="/sobre">Sobre</a></li>
+      </ul>
+
+      <button
+        type="button"
+        class="search-button"
+        aria-label="Buscar ferramenta (atalho: barra)"
+        data-search-trigger
+      >
+        <Icon name="search" size={20} />
+        <span class="search-button-label">Buscar</span>
+        <kbd class="search-button-kbd">/</kbd>
+      </button>
+
+      <button
+        type="button"
+        class="menu-button"
+        aria-label="Menu"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <Icon name="menu" size={24} />
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-superficie);
+    border-bottom: 1px solid var(--color-divisoria);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    height: 4rem;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-texto);
+    text-decoration: none;
+  }
+
+  .logo-i {
+    color: var(--color-petroleo);
+  }
+
+  .nav-links {
+    display: none;
+    list-style: none;
+    gap: var(--space-6);
+    margin-left: auto;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-links a {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    transition: color var(--duration-fast) var(--easing);
+  }
+
+  .nav-links a:hover {
+    color: var(--color-texto);
+  }
+
+  .search-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-fundo);
+    border: 1px solid var(--color-borda);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--easing);
+  }
+
+  .search-button:hover {
+    background: var(--hover-bg);
+    border-color: var(--color-texto);
+  }
+
+  .search-button-label {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .search-button-label {
+      display: inline;
+    }
+  }
+
+  .search-button-kbd {
+    display: none;
+    padding: 2px 6px;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borda);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-texto);
+    font-size: var(--text-xs);
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .search-button-kbd {
+      display: inline-block;
+    }
+  }
+
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--color-texto);
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .menu-button {
+      display: none;
+    }
+  }
+</style>

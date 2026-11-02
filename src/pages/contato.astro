@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contato — i-Tools"
+  description="Entre em contato com o i-Tools para sugestões, dúvidas ou problemas."
+  canonical="/contato"
+>
+  <article class="page-content">
+    <div class="container">
+      <h1 class="page-title">Contato</h1>
+      
+      <div class="prose">
+        <p class="lead">
+          Tem uma sugestão de ferramenta? Encontrou um problema? Quer conversar sobre o projeto?
+        </p>
+
+        <h2>Como entrar em contato</h2>
+        <p>
+          Envie um e-mail para <strong>contato@itools.app.br</strong>
+        </p>
+        <p>
+          Respondo todos os e-mails pessoalmente. Se você encontrou um bug ou tem uma sugestão de melhoria, descreva com o máximo de detalhes possível — isso ajuda muito.
+        </p>
+
+        <h2>O que esperar</h2>
+        <p>
+          Tento responder em até 48 horas (dias úteis). Se sua mensagem envolve um problema técnico, pode demorar um pouco mais para investigar, mas você receberá um retorno.
+        </p>
+
+        <h2>Sugestões de ferramentas</h2>
+        <p>
+          Se você tem uma ideia de ferramenta que gostaria de ver no i-Tools, conte para mim. Nem todas as sugestões viram ferramentas imediatamente, mas todas são lidas e consideradas.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding-block: var(--space-16);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-12);
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .lead {
+    font-size: var(--text-lg);
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--space-12);
+  }
+
+  .prose h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-2xl);
+  }
+
+  .prose p {
+    margin-bottom: var(--space-6);
+    line-height: var(--leading-relaxed);
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--color-link);
+  }
+</style>

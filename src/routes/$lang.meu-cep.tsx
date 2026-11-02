@@ -169,6 +169,8 @@ export const Route = createFileRoute("/$lang/meu-cep")({
 });
 
 function CepPageLocalized() {
+  useAnalytics('meu-cep');
+  
   const { lang } = Route.useParams();
   const t = getToolTranslations(lang as LanguageCode);
   const labels = t.meuCep.labels;

@@ -17,6 +17,7 @@ export const Route = createFileRoute("/qr")({
       "qr",
       "Gerador de QR Code grátis a partir de link — i-Tools",
       "Crie um QR Code a partir de qualquer URL e baixe em PNG ou SVG. Grátis, sem cadastro e feito no seu navegador.",
+      faq,
     ),
   component: QrPage,
 });

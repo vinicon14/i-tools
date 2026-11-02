@@ -29,7 +29,7 @@ export const Route = createFileRoute("/$tool")({
   notFoundComponent: () => (
     <PageShell>
       <div className="mx-auto max-w-xl px-4 py-24 text-center">
-        <h1 className="text-4xl">Página não encontrada</h1>
+        <p className="text-4xl font-bold">Ferramenta não encontrada</p>
         <Link
           to="/"
           className="mt-6 inline-block font-medium underline decoration-primary underline-offset-4"

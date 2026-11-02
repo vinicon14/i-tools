@@ -100,8 +100,10 @@ export const pageMeta = (title: string, description: string, path: string, type 
     { property: "og:description", content: description },
     { property: "og:type", content: type },
     { property: "og:url", content: pageUrl(path) },
+    { property: "og:image", content: pageUrl("/og-image.png") },
     { property: "og:locale", content: "pt_BR" },
     { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: pageUrl("/og-image.png") },
   ],
   links: [{ rel: "canonical", href: pageUrl(path) }],
 });

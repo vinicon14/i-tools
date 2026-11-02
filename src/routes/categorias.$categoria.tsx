@@ -18,11 +18,26 @@ export const Route = createFileRoute("/categorias/$categoria")({
           { name: "robots", content: "noindex" },
         ],
       };
-    return pageMeta(
-      `${c.name} — ferramentas online grátis | i-Tools`,
-      `${c.description} Ferramentas gratuitas do i-Tools, sem cadastro.`,
-      `/categorias/${c.slug}`,
-    );
+    return {
+      ...pageMeta(
+        `${c.name} — ferramentas online grátis | i-Tools`,
+        `${c.description} Ferramentas gratuitas do i-Tools, sem cadastro.`,
+        `/categorias/${c.slug}`,
+      ),
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Início", item: `https://i-tools.shop/` },
+              { "@type": "ListItem", position: 2, name: c.name, item: `https://i-tools.shop/categorias/${c.slug}` },
+            ],
+          }),
+        },
+      ],
+    };
   },
   component: CategoryPage,
   notFoundComponent: () => (

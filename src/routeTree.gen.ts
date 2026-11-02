@@ -34,6 +34,13 @@ import { Route as TermosRouteImport } from './routes/termos'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangToolRouteImport } from './routes/$lang.$tool'
 import { Route as LangMeuCepRouteImport } from './routes/$lang.meu-cep'
+import { Route as AdmIndexRouteImport } from './routes/adm/index'
+import { Route as AdmCountriesRouteImport } from './routes/adm/countries'
+import { Route as AdmDashboardRouteImport } from './routes/adm/dashboard'
+import { Route as AdmLogoutRouteImport } from './routes/adm/logout'
+import { Route as AdmMonetagRouteImport } from './routes/adm/monetag'
+import { Route as AdmNotConfiguredRouteImport } from './routes/adm/not-configured'
+import { Route as AdmToolsRouteImport } from './routes/adm/tools'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
 import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
 import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
@@ -163,6 +170,41 @@ const LangMeuCepRoute = LangMeuCepRouteImport.update({
   path: '/$lang/meu-cep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdmIndexRoute = AdmIndexRouteImport.update({
+  id: '/adm/',
+  path: '/adm/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmCountriesRoute = AdmCountriesRouteImport.update({
+  id: '/adm/countries',
+  path: '/adm/countries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmDashboardRoute = AdmDashboardRouteImport.update({
+  id: '/adm/dashboard',
+  path: '/adm/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmLogoutRoute = AdmLogoutRouteImport.update({
+  id: '/adm/logout',
+  path: '/adm/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmMonetagRoute = AdmMonetagRouteImport.update({
+  id: '/adm/monetag',
+  path: '/adm/monetag',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmNotConfiguredRoute = AdmNotConfiguredRouteImport.update({
+  id: '/adm/not-configured',
+  path: '/adm/not-configured',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdmToolsRoute = AdmToolsRouteImport.update({
+  id: '/adm/tools',
+  path: '/adm/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   id: '/categorias/$categoria',
   path: '/categorias/$categoria',
@@ -204,8 +246,15 @@ export interface FileRoutesByFullPath {
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
   '/$lang/meu-cep': typeof LangMeuCepRoute
+  '/adm/countries': typeof AdmCountriesRoute
+  '/adm/dashboard': typeof AdmDashboardRoute
+  '/adm/logout': typeof AdmLogoutRoute
+  '/adm/monetag': typeof AdmMonetagRoute
+  '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
+  '/adm/': typeof AdmIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -234,8 +283,15 @@ export interface FileRoutesByTo {
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
   '/$lang/meu-cep': typeof LangMeuCepRoute
+  '/adm/countries': typeof AdmCountriesRoute
+  '/adm/dashboard': typeof AdmDashboardRoute
+  '/adm/logout': typeof AdmLogoutRoute
+  '/adm/monetag': typeof AdmMonetagRoute
+  '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang': typeof LangIndexRoute
+  '/adm': typeof AdmIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -265,8 +321,15 @@ export interface FileRoutesById {
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
   '/$lang/meu-cep': typeof LangMeuCepRoute
+  '/adm/countries': typeof AdmCountriesRoute
+  '/adm/dashboard': typeof AdmDashboardRoute
+  '/adm/logout': typeof AdmLogoutRoute
+  '/adm/monetag': typeof AdmMonetagRoute
+  '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
+  '/adm/': typeof AdmIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -297,8 +360,15 @@ export interface FileRouteTypes {
     | '/termos'
     | '/$lang/$tool'
     | '/$lang/meu-cep'
+    | '/adm/countries'
+    | '/adm/dashboard'
+    | '/adm/logout'
+    | '/adm/monetag'
+    | '/adm/not-configured'
+    | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang/'
+    | '/adm/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesByTo: FileRoutesByTo
@@ -327,8 +397,15 @@ export interface FileRouteTypes {
     | '/termos'
     | '/$lang/$tool'
     | '/$lang/meu-cep'
+    | '/adm/countries'
+    | '/adm/dashboard'
+    | '/adm/logout'
+    | '/adm/monetag'
+    | '/adm/not-configured'
+    | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang'
+    | '/adm'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   id:
@@ -357,8 +434,15 @@ export interface FileRouteTypes {
     | '/termos'
     | '/$lang/$tool'
     | '/$lang/meu-cep'
+    | '/adm/countries'
+    | '/adm/dashboard'
+    | '/adm/logout'
+    | '/adm/monetag'
+    | '/adm/not-configured'
+    | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang/'
+    | '/adm/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesById: FileRoutesById
@@ -388,8 +472,15 @@ export interface RootRouteChildren {
   TermosRoute: typeof TermosRoute
   LangToolRoute: typeof LangToolRoute
   LangMeuCepRoute: typeof LangMeuCepRoute
+  AdmCountriesRoute: typeof AdmCountriesRoute
+  AdmDashboardRoute: typeof AdmDashboardRoute
+  AdmLogoutRoute: typeof AdmLogoutRoute
+  AdmMonetagRoute: typeof AdmMonetagRoute
+  AdmNotConfiguredRoute: typeof AdmNotConfiguredRoute
+  AdmToolsRoute: typeof AdmToolsRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
   LangIndexRoute: typeof LangIndexRoute
+  AdmIndexRoute: typeof AdmIndexRoute
   LangCategoriasCategoriaRoute: typeof LangCategoriasCategoriaRoute
   ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
 }
@@ -571,6 +662,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangMeuCepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/adm/': {
+      id: '/adm/'
+      path: '/adm'
+      fullPath: '/adm/'
+      preLoaderRoute: typeof AdmIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/countries': {
+      id: '/adm/countries'
+      path: '/adm/countries'
+      fullPath: '/adm/countries'
+      preLoaderRoute: typeof AdmCountriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/dashboard': {
+      id: '/adm/dashboard'
+      path: '/adm/dashboard'
+      fullPath: '/adm/dashboard'
+      preLoaderRoute: typeof AdmDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/logout': {
+      id: '/adm/logout'
+      path: '/adm/logout'
+      fullPath: '/adm/logout'
+      preLoaderRoute: typeof AdmLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/monetag': {
+      id: '/adm/monetag'
+      path: '/adm/monetag'
+      fullPath: '/adm/monetag'
+      preLoaderRoute: typeof AdmMonetagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/not-configured': {
+      id: '/adm/not-configured'
+      path: '/adm/not-configured'
+      fullPath: '/adm/not-configured'
+      preLoaderRoute: typeof AdmNotConfiguredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adm/tools': {
+      id: '/adm/tools'
+      path: '/adm/tools'
+      fullPath: '/adm/tools'
+      preLoaderRoute: typeof AdmToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categorias/$categoria': {
       id: '/categorias/$categoria'
       path: '/categorias/$categoria'
@@ -620,8 +760,15 @@ const rootRouteChildren: RootRouteChildren = {
   TermosRoute: TermosRoute,
   LangToolRoute: LangToolRoute,
   LangMeuCepRoute: LangMeuCepRoute,
+  AdmCountriesRoute: AdmCountriesRoute,
+  AdmDashboardRoute: AdmDashboardRoute,
+  AdmLogoutRoute: AdmLogoutRoute,
+  AdmMonetagRoute: AdmMonetagRoute,
+  AdmNotConfiguredRoute: AdmNotConfiguredRoute,
+  AdmToolsRoute: AdmToolsRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
   LangIndexRoute: LangIndexRoute,
+  AdmIndexRoute: AdmIndexRoute,
   LangCategoriasCategoriaRoute: LangCategoriasCategoriaRoute,
   ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
 }

@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Concluir compressor, redimensionador, conversor PDF, paletas e cronômetro/timer com páginas próprias e SEO
+- [x] Concluir compressor, redimensionador, conversor PDF, paletas e cronômetro/timer — downloads reais, timer, 26 testes e SEO verificados; páginas em i-tools.shop prontas para publicação
 - [x] Aplicar logo Editorial no topo, rodapé e ícone da aba — verificados; selo Lovable já oculto
 - [x] Implementar e testar senhas, contador de palavras, JSON e porcentagem
 - [x] Páginas de YouTube, TikTok e Instagram com SEO e validação de links

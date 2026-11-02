@@ -1,6 +1,6 @@
 // Admin layout component with sidebar navigation
 import { Link, useLocation } from '@tanstack/react-router';
-import { LayoutDashboard, Settings, Activity, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Settings, Activity, LogOut, Menu, X, Globe, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -12,6 +12,8 @@ interface AdminLayoutProps {
 const navItems = [
   { to: '/adm/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/adm/tools', label: 'Ferramentas', icon: Settings },
+  { to: '/adm/countries', label: 'Geografia', icon: Globe },
+  { to: '/adm/monetag', label: 'Monetag', icon: DollarSign },
   { to: '/adm/monitoring', label: 'Monitoramento', icon: Activity },
 ];
 

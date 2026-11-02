@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { CheckCircle2, XCircle, Eye, TrendingUp } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
+import { clearToolCache } from '@/lib/tool-middleware.functions';
 
 // Require authentication
 export const requireAuth = createServerFn('GET', async (_, { request }) => {
@@ -139,6 +140,9 @@ function AdminToolsPage() {
     
     try {
       await toggleToolEnabled({ toolSlug, enabled: !currentEnabled });
+      
+      // Clear cache for this tool
+      await clearToolCache(toolSlug);
       
       setTools((prev) =>
         prev.map((tool) =>

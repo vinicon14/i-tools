@@ -24,7 +24,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm animate-fade-in">
       <a
         href="#conteudo"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-foreground focus:px-3 focus:py-2 focus:text-background"

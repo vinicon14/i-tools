@@ -37,7 +37,7 @@ export function SectionHeading({
   id: string;
 }) {
   return (
-    <div className="mb-10 grid gap-3 border-t border-foreground pt-4 md:grid-cols-[180px_1fr]">
+    <div className="mb-10 grid gap-3 border-t border-foreground pt-4 md:grid-cols-[180px_1fr] animate-fade-in">
       <p className="eyebrow">
         {index} — {eyebrow}
       </p>

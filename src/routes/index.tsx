@@ -154,9 +154,15 @@ function Index() {
             </h2>
           </div>
           <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {benefits.map(({ icon: Icon, title, text }) => (
-              <li key={title}>
-                <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} aria-hidden />
+            {benefits.map(({ icon: Icon, title, text }, i) => (
+              <li
+                key={title}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${i * 0.08}s` }}
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-md border border-ink-muted/30 bg-ink-foreground/5 text-primary transition-transform duration-300 hover:scale-110">
+                  <Icon className="h-5 w-5" strokeWidth={1.5} aria-hidden />
+                </span>
                 <h3 className="mt-4 font-semibold">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{text}</p>
               </li>

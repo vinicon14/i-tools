@@ -93,6 +93,7 @@ export function ToolLayout({
   lang,
   toolName,
   categoryName,
+  translations,
 }: {
   slug: string;
   intro: string;
@@ -101,6 +102,11 @@ export function ToolLayout({
   lang?: string;
   toolName?: string;
   categoryName?: string;
+  translations?: {
+    home: string;
+    faq: string;
+    alsoIn: string;
+  };
 }) {
   const tool = getTool(slug);
   if (!tool) return null;
@@ -109,9 +115,11 @@ export function ToolLayout({
   const Icon = tool.icon;
   const related = toolsByCategory(category.slug).filter((t) => t.slug !== slug);
   
-  // Import translations here to avoid circular dependency
-  const { getTranslations } = require("@/lib/translations");
-  const t = getTranslations((lang as any) || "pt");
+  const t = translations || {
+    home: "Início",
+    faq: "Perguntas frequentes",
+    alsoIn: "Também em",
+  };
   
   const displayToolName = toolName || tool.name;
   const displayCategoryName = categoryName || category.name;
@@ -121,7 +129,7 @@ export function ToolLayout({
       <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 md:pt-12">
         <nav aria-label={lang === "pt" || !lang ? "Trilha de navegação" : "Breadcrumb"} className="font-mono text-xs text-muted-foreground">
           <Link to={lang && lang !== "pt" ? `/${lang}` : "/"} className="hover:text-foreground">
-            {t.nav.home}
+            {t.home}
           </Link>{" "}
           /{" "}
           <Link
@@ -146,7 +154,7 @@ export function ToolLayout({
       </div>
       <section data-reveal aria-labelledby="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h2 id="faq" className="text-3xl">
-          {t.common.faq}
+          {t.faq}
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
           {faq.map((f) => (
@@ -160,7 +168,7 @@ export function ToolLayout({
       {related.length > 0 && (
         <section data-reveal aria-labelledby="relacionadas" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
           <h2 id="relacionadas" className="mb-8 text-3xl">
-            {t.common.alsoIn} {displayCategoryName}
+            {t.alsoIn} {displayCategoryName}
           </h2>
           <ToolGrid tools={related} />
         </section>

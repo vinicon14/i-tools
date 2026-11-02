@@ -769,6 +769,11 @@ export function LocalizedVideoDownloader({
       lang={lang}
       toolName={toolTranslation?.name}
       categoryName={categoryTranslation?.name}
+      translations={{
+        home: t.nav.home,
+        faq: t.common.faq,
+        alsoIn: t.common.alsoIn,
+      }}
     >
       <nav
         aria-label={texts.platformsLabel}

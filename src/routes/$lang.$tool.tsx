@@ -88,6 +88,11 @@ function LocalizedToolPage() {
       lang={lang}
       toolName={toolTranslation.name}
       categoryName={categoryTranslation?.name}
+      translations={{
+        home: t.nav.home,
+        faq: t.common.faq,
+        alsoIn: t.common.alsoIn,
+      }}
     >
       <div className="rounded-md border border-border bg-card p-8 text-center">
         <p className="text-lg font-semibold text-foreground mb-2">

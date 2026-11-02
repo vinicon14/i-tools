@@ -12,7 +12,7 @@ describe("passwords", () => {
   it("rejects invalid length or no groups", () => { expect(() => generatePassword(7, ["numbers"])).toThrow(); expect(() => generatePassword(129, ["numbers"])).toThrow(); expect(() => generatePassword(20, [])).toThrow(); });
 });
 describe("text statistics", () => {
-  it("counts words, Unicode characters and paragraphs", () => { expect(textStats("Olá mundo\n\nOi 😀")).toEqual({ words: 4, characters: 15, withoutSpaces: 10, paragraphs: 2, readingMinutes: 1 }); });
+  it("counts words, Unicode characters and paragraphs", () => { expect(textStats("Olá mundo\n\nOi 😀")).toEqual({ words: 4, characters: 15, withoutSpaces: 11, paragraphs: 2, readingMinutes: 1 }); });
   it("counts empty text as zero", () => { expect(textStats("").words).toBe(0); expect(textStats("").readingMinutes).toBe(0); });
   it("estimates reading time at 200 words per minute", () => { expect(textStats(Array(201).fill("palavra").join(" ")).readingMinutes).toBe(2); });
 });

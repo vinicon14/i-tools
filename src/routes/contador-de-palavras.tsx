@@ -13,7 +13,7 @@ export const Route = createFileRoute("/contador-de-palavras")({
 function WordCounterPage() {
   const [text, setText] = useState("");
   const stats = textStats(text);
-  const metrics = [["Palavras", stats.words], ["Caracteres", stats.characters], ["Sem espaços", stats.withoutSpaces], ["Parágrafos", stats.paragraphs], ["Leitura (min)", stats.readingMinutes]];
+  const metrics: [string, number][] = [["Palavras", stats.words], ["Caracteres", stats.characters], ["Sem espaços", stats.withoutSpaces], ["Parágrafos", stats.paragraphs], ["Leitura (min)", stats.readingMinutes]];
   return <ToolLayout slug="contador-de-palavras" intro="As contagens acompanham seu texto, em tempo real." faq={[
     { q: "Como são contadas as palavras?", a: "Cada trecho separado por espaços ou quebras de linha conta como uma palavra. Textos vazios não contam." },
     { q: "Como é estimado o tempo de leitura?", a: "Usamos 200 palavras por minuto, arredondando para o próximo minuto. É uma estimativa, não uma medição individual." },

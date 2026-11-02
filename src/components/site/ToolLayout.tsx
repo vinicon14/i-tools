@@ -1,35 +1,41 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { pageUrl } from "@/lib/seo";
+import { pageUrl, getHrefLangLinks } from "@/lib/seo";
 import { getCategory, getTool, SITE, toolsByCategory } from "@/lib/catalog";
 import { AdSlot, PageShell, pageMeta } from "./Layout";
 import { StatusBadge } from "./StatusBadge";
 import { ToolGrid } from "./ToolCard";
 import { categoryAppearance } from "./tool-appearance";
+import { type LanguageCode } from "@/lib/i18n";
+import { getTranslations } from "@/lib/translations";
 
 export type Faq = { q: string; a: string };
 
 /** Head for a live tool page: metadata + WebApplication structured data. */
-export function toolHead(slug: string, title: string, description: string, faq?: Faq[]) {
+export function toolHead(slug: string, title: string, description: string, faq?: Faq[], lang?: LanguageCode) {
   const tool = getTool(slug);
   if (!tool) throw new Error(`Unknown tool: ${slug}`);
   const category = getCategory(tool.category);
+  const t = lang ? getTranslations(lang) : getTranslations("pt");
+  const path = `/${slug}`;
+  const fullUrl = pageUrl(path, lang);
+  
   const breadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Início", item: pageUrl("/") },
+      { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", lang) },
       ...(category
         ? [
             {
               "@type": "ListItem",
               position: 2,
               name: category.name,
-              item: pageUrl(`/categorias/${category.slug}`),
+              item: pageUrl(`/categorias/${category.slug}`, lang),
             },
           ]
         : []),
-      { "@type": "ListItem", position: category ? 3 : 2, name: tool.name, item: pageUrl(`/${slug}`) },
+      { "@type": "ListItem", position: category ? 3 : 2, name: tool.name, item: fullUrl },
     ],
   };
   const faqSchema = faq && faq.length > 0 ? {
@@ -44,8 +50,12 @@ export function toolHead(slug: string, title: string, description: string, faq?:
       },
     })),
   } : null;
+  
+  const hrefLangLinks = getHrefLangLinks(path);
+  
   return {
-    ...pageMeta(title, description, `/${slug}`, "website"),
+    ...pageMeta(title, description, path, "website", lang),
+    links: hrefLangLinks,
     scripts: [
       {
         type: "application/ld+json",
@@ -53,11 +63,11 @@ export function toolHead(slug: string, title: string, description: string, faq?:
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: tool.name,
-          url: pageUrl(`/${slug}`),
+          url: fullUrl,
           description,
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",
-          inLanguage: "pt-BR",
+          inLanguage: lang === "pt" ? "pt-BR" : lang || "pt-BR",
           isAccessibleForFree: true,
           offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
           publisher: { "@type": "Organization", name: SITE.name },

@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { pageUrl } from "@/lib/seo";
+import { type LanguageCode } from "@/lib/i18n";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { BackgroundEffects } from "./BackgroundEffects";
@@ -91,19 +92,25 @@ export function ProsePage({
   );
 }
 
-export const pageMeta = (title: string, description: string, path: string, type = "website") => ({
-  meta: [
-    { title },
-    { name: "description", content: description },
-    { name: "robots", content: "index, follow" },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:type", content: type },
-    { property: "og:url", content: pageUrl(path) },
-    { property: "og:image", content: pageUrl("/og-image.png") },
-    { property: "og:locale", content: "pt_BR" },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:image", content: pageUrl("/og-image.png") },
-  ],
-  links: [{ rel: "canonical", href: pageUrl(path) }],
-});
+export const pageMeta = (title: string, description: string, path: string, type = "website", lang?: LanguageCode) => {
+  const currentLang = lang || "pt";
+  const locale = currentLang === "pt" ? "pt_BR" : currentLang === "en" ? "en_US" : `${currentLang}_${currentLang.toUpperCase()}`;
+  const canonicalUrl = pageUrl(path, currentLang);
+  
+  return {
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: type },
+      { property: "og:url", content: canonicalUrl },
+      { property: "og:image", content: pageUrl("/og-image.png") },
+      { property: "og:locale", content: locale },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: pageUrl("/og-image.png") },
+    ],
+    links: [{ rel: "canonical", href: canonicalUrl }],
+  };
+};

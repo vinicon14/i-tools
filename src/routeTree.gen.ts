@@ -31,7 +31,11 @@ import { Route as SenhasRouteImport } from './routes/senhas'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangToolRouteImport } from './routes/$lang.$tool'
+import { Route as LangMeuCepRouteImport } from './routes/$lang.meu-cep'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
+import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
 import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
 
 const IndexRoute = IndexRouteImport.update({
@@ -144,9 +148,29 @@ const TermosRoute = TermosRouteImport.update({
   path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/$lang/',
+  path: '/$lang/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangToolRoute = LangToolRouteImport.update({
+  id: '/$lang/$tool',
+  path: '/$lang/$tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangMeuCepRoute = LangMeuCepRouteImport.update({
+  id: '/$lang/meu-cep',
+  path: '/$lang/meu-cep',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   id: '/categorias/$categoria',
   path: '/categorias/$categoria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangCategoriasCategoriaRoute = LangCategoriasCategoriaRouteImport.update({
+  id: '/$lang/categorias/$categoria',
+  path: '/$lang/categorias/$categoria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicVideoFileRoute = ApiPublicVideoFileRouteImport.update({
@@ -178,7 +202,11 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
+  '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesByTo {
@@ -204,7 +232,11 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
+  '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/$lang': typeof LangIndexRoute
+  '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesById {
@@ -231,7 +263,11 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
+  '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRouteTypes {
@@ -259,7 +295,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
+    | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
+    | '/$lang/'
+    | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -285,7 +325,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
+    | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
+    | '/$lang'
+    | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   id:
     | '__root__'
@@ -311,7 +355,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
+    | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
+    | '/$lang/'
+    | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesById: FileRoutesById
 }
@@ -338,7 +386,11 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
+  LangToolRoute: typeof LangToolRoute
+  LangMeuCepRoute: typeof LangMeuCepRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
+  LangIndexRoute: typeof LangIndexRoute
+  LangCategoriasCategoriaRoute: typeof LangCategoriasCategoriaRoute
   ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
 }
 
@@ -498,11 +550,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/$lang'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/$tool': {
+      id: '/$lang/$tool'
+      path: '/$lang/$tool'
+      fullPath: '/$lang/$tool'
+      preLoaderRoute: typeof LangToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/meu-cep': {
+      id: '/$lang/meu-cep'
+      path: '/$lang/meu-cep'
+      fullPath: '/$lang/meu-cep'
+      preLoaderRoute: typeof LangMeuCepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categorias/$categoria': {
       id: '/categorias/$categoria'
       path: '/categorias/$categoria'
       fullPath: '/categorias/$categoria'
       preLoaderRoute: typeof CategoriasCategoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/categorias/$categoria': {
+      id: '/$lang/categorias/$categoria'
+      path: '/$lang/categorias/$categoria'
+      fullPath: '/$lang/categorias/$categoria'
+      preLoaderRoute: typeof LangCategoriasCategoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/video-file': {
@@ -538,7 +618,11 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
+  LangToolRoute: LangToolRoute,
+  LangMeuCepRoute: LangMeuCepRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
+  LangIndexRoute: LangIndexRoute,
+  LangCategoriasCategoriaRoute: LangCategoriasCategoriaRoute,
   ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
 }
 export const routeTree = rootRouteImport

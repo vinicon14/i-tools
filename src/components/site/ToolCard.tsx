@@ -3,9 +3,19 @@ import { ArrowUpRight } from "lucide-react";
 import { getCategory, type Tool } from "@/lib/catalog";
 import { StatusBadge } from "./StatusBadge";
 import { categoryAppearance } from "./tool-appearance";
+import { useI18n } from "@/lib/use-i18n";
 
 export function ToolCard({ tool, index = 0 }: { tool: Tool; index?: number }) {
   const Icon = tool.icon;
+  const { t } = useI18n();
+  
+  const toolTranslation = t.tools[tool.slug as keyof typeof t.tools];
+  const categoryTranslation = t.categories[tool.category as keyof typeof t.categories];
+  
+  const toolName = toolTranslation?.name || tool.name;
+  const toolSummary = toolTranslation?.summary || tool.summary;
+  const categoryName = categoryTranslation?.name || getCategory(tool.category)?.name;
+  
   return (
     <li
       data-reveal
@@ -20,16 +30,16 @@ export function ToolCard({ tool, index = 0 }: { tool: Tool; index?: number }) {
       </div>
       <h3 className="mt-5 text-base font-semibold leading-snug">
         <Link
-          to="/$tool"
-          params={{ tool: tool.slug }}
+          to={t.lang === "pt" ? "/$tool" : "/$lang/$tool"}
+          params={t.lang === "pt" ? { tool: tool.slug } : { lang: t.lang, tool: tool.slug }}
           className="after:absolute after:inset-0 focus-visible:outline-none"
         >
-          {tool.name}
+          {toolName}
         </Link>
       </h3>
-      <p className="mt-2 min-h-10 flex-1 text-sm leading-relaxed text-muted-foreground">{tool.summary}</p>
+      <p className="mt-2 min-h-10 flex-1 text-sm leading-relaxed text-muted-foreground">{toolSummary}</p>
       <div className="mt-5 flex items-center justify-between gap-3 border-t border-border/70 pt-4 text-xs text-muted-foreground">
-        <span>{getCategory(tool.category)?.name}</span>
+        <span>{categoryName}</span>
         <ArrowUpRight
           className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
           aria-hidden

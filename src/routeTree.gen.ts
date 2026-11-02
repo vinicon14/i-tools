@@ -33,6 +33,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangToolRouteImport } from './routes/$lang.$tool'
+import { Route as LangMeuCepRouteImport } from './routes/$lang.meu-cep'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
 import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
 import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
@@ -157,6 +158,11 @@ const LangToolRoute = LangToolRouteImport.update({
   path: '/$lang/$tool',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangMeuCepRoute = LangMeuCepRouteImport.update({
+  id: '/$lang/meu-cep',
+  path: '/$lang/meu-cep',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   id: '/categorias/$categoria',
   path: '/categorias/$categoria',
@@ -197,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
@@ -226,6 +233,7 @@ export interface FileRoutesByTo {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
@@ -256,6 +264,7 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/$lang/$tool': typeof LangToolRoute
+  '/$lang/meu-cep': typeof LangMeuCepRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
@@ -287,6 +296,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
     | '/$lang/'
     | '/$lang/categorias/$categoria'
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
     | '/$lang'
     | '/$lang/categorias/$categoria'
@@ -345,6 +356,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/$lang/$tool'
+    | '/$lang/meu-cep'
     | '/categorias/$categoria'
     | '/$lang/'
     | '/$lang/categorias/$categoria'
@@ -375,6 +387,7 @@ export interface RootRouteChildren {
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   LangToolRoute: typeof LangToolRoute
+  LangMeuCepRoute: typeof LangMeuCepRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
   LangIndexRoute: typeof LangIndexRoute
   LangCategoriasCategoriaRoute: typeof LangCategoriasCategoriaRoute
@@ -551,6 +564,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangToolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/meu-cep': {
+      id: '/$lang/meu-cep'
+      path: '/$lang/meu-cep'
+      fullPath: '/$lang/meu-cep'
+      preLoaderRoute: typeof LangMeuCepRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categorias/$categoria': {
       id: '/categorias/$categoria'
       path: '/categorias/$categoria'
@@ -599,6 +619,7 @@ const rootRouteChildren: RootRouteChildren = {
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   LangToolRoute: LangToolRoute,
+  LangMeuCepRoute: LangMeuCepRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
   LangIndexRoute: LangIndexRoute,
   LangCategoriasCategoriaRoute: LangCategoriasCategoriaRoute,

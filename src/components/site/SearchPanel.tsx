@@ -19,9 +19,9 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
           Buscar ferramentas
         </label>
         <div
-          className={`flex items-center gap-3 rounded-md border border-input bg-card px-4 shadow-sm transition-colors focus-within:border-foreground ${size === "lg" ? "h-14" : "h-12"}`}
+          className={`search-field flex items-center gap-3 rounded-lg border border-input bg-card px-4 transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/15 ${size === "lg" ? "h-16 sm:px-5" : "h-12"}`}
         >
-          <Search className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
+          <Search className="h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />
           <input
             id={id}
             type="search"
@@ -29,7 +29,7 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
             autoComplete="off"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar: QR Code, PDF, comprimir imagem…"
+            placeholder="Qual ferramenta você precisa?"
             className="w-full bg-transparent text-base outline-none placeholder:text-muted-foreground"
           />
         </div>
@@ -63,9 +63,6 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
                 Nenhuma ferramenta encontrada para “{query}”.
               </p>
             )}
-            <p className="border-t border-border bg-muted px-4 py-2 text-xs text-muted-foreground">
-              Ferramentas marcadas "Em breve" ainda estão em preparação.
-            </p>
           </div>
         )}
       </div>

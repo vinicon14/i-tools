@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Globe, MousePointerClick, PackageOpen, Wallet } from "lucide-react";
+import { ArrowRight, Check, Globe, MousePointerClick, PackageOpen, Wallet } from "lucide-react";
 import { AdSlot, PageShell, SectionHeading, pageMeta } from "@/components/site/Layout";
 import { SearchPanel } from "@/components/site/SearchPanel";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog";
+import { categoryAppearance } from "@/components/site/tool-appearance";
 
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
@@ -55,43 +56,42 @@ function Index() {
     <PageShell>
       {/* Hero */}
       <section aria-labelledby="hero-title" className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-24">
+        <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 sm:px-6 md:pb-12 md:pt-14">
           <p className="eyebrow flex items-center gap-2 animate-fade-in-up">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" aria-hidden />{" "}
-            Ferramentas disponíveis
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />{" "}
+            Seu dia a dia, mais simples
           </p>
           <h1
             id="hero-title"
-            className="mt-6 max-w-4xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl animate-fade-in-up"
+            className="mt-5 max-w-4xl text-5xl leading-[1.08] sm:text-6xl md:text-7xl animate-fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Ferramentas inteligentes para <em className="text-gradient">simplificar</em> seu dia.
+            i-Tools. <span className="block">Pequenas ferramentas.<br className="hidden sm:block" /> <em className="text-primary">Grandes soluções.</em></span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Um só endereço para converter arquivos, ajustar imagens, trabalhar textos e fazer
             cálculos — gratuito e direto no navegador.
           </p>
-          <div className="mt-10 max-w-xl">
+          <div className="mt-7 max-w-2xl animate-fade-in-up">
             <SearchPanel size="lg" />
           </div>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
-            <li>✓ Grátis</li>
-            <li>✓ Sem cadastro</li>
-            <li>✓ No navegador</li>
+          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            {["Grátis", "Sem cadastro", "No navegador"].map((label) => (
+              <li key={label} className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-accent" strokeWidth={1.5} aria-hidden />{label}</li>
+            ))}
           </ul>
         </div>
       </section>
 
       {/* Featured */}
-      <section aria-labelledby="destaques" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section aria-labelledby="destaques" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
         <SectionHeading
           index="01"
           eyebrow="Destaques"
           id="destaques"
           title={
             <>
-              Prontas para o seu dia.{" "}
-              <span className="text-muted-foreground">Escolha o que precisa.</span>
+              O que vamos resolver hoje?
             </>
           }
         />
@@ -101,36 +101,36 @@ function Index() {
       <AdSlot />
 
       {/* Categories */}
-      <section aria-labelledby="categorias" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section aria-labelledby="categorias" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
         <SectionHeading
           index="02"
           eyebrow="Categorias"
           id="categorias"
-          title="Organizado pelo que você precisa fazer."
+          title="Cada tarefa, no seu lugar."
         />
         <ol className="border-b border-border">
           {categories.map((c, i) => {
             const Icon = c.icon;
             const count = toolsByCategory(c.slug).length;
             return (
-              <li key={c.slug} className="border-t border-border">
+              <li data-reveal key={c.slug} className="border-t border-border">
                 <Link
                   to="/categorias/$categoria"
                   params={{ categoria: c.slug }}
-                  className="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 py-5 transition-colors hover:bg-card sm:grid-cols-[3rem_2.5rem_1fr_1fr_auto] sm:px-2"
+                  className="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 py-5 transition-colors hover:bg-card sm:grid-cols-[3rem_2.5rem_1fr_1fr_auto] sm:gap-4 sm:px-2"
                 >
-                  <span className="font-mono text-sm text-muted-foreground">0{i + 1}</span>
+                  <span className={`grid h-10 w-10 place-items-center rounded-md sm:bg-transparent sm:text-muted-foreground ${categoryAppearance[c.slug]}`}><c.icon className="h-5 w-5 sm:hidden" strokeWidth={1.5} aria-hidden /><span className="hidden font-mono text-sm sm:block">0{i + 1}</span></span>
                   <Icon
                     className="hidden h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary sm:block"
                     strokeWidth={1.5}
                     aria-hidden
                   />
-                  <span className="text-lg font-medium sm:text-xl">{c.name}</span>
+                   <span className="text-base font-medium sm:text-lg">{c.name}<span className="mt-1 block text-xs font-normal text-muted-foreground sm:hidden">{count} ferramenta{count !== 1 && "s"}</span></span>
                   <span className="hidden text-sm text-muted-foreground sm:block">
                     {c.description}
                   </span>
                   <span className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
-                    {count} ferramenta{count !== 1 && "s"}
+                    <span className="hidden sm:inline">{count} ferramenta{count !== 1 && "s"}</span>
                     <ArrowRight
                       className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-primary"
                       aria-hidden
@@ -145,9 +145,9 @@ function Index() {
 
       {/* Benefits */}
       <section aria-labelledby="beneficios" className="bg-ink text-ink-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="mb-12 grid gap-3 border-t border-ink-muted/40 pt-4 md:grid-cols-[180px_1fr]">
-            <p className="font-mono text-xs uppercase tracking-wider text-ink-muted">
+        <div data-reveal className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <div className="mb-12 grid gap-3 md:grid-cols-[180px_1fr]">
+            <p className="font-mono text-xs uppercase text-ink-muted">
               03 — Por que i-Tools
             </p>
             <h2 id="beneficios" className="text-3xl leading-tight sm:text-4xl">
@@ -158,10 +158,11 @@ function Index() {
             {benefits.map(({ icon: Icon, title, text }, i) => (
               <li
                 key={title}
+                data-reveal
                 className="animate-fade-in-up"
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <span className="grid h-10 w-10 place-items-center rounded-md border border-ink-muted/30 bg-ink-foreground/5 text-primary transition-transform duration-300 hover:scale-110">
+                <span className="grid h-10 w-10 place-items-center text-primary transition-transform duration-300 hover:-translate-y-1">
                   <Icon className="h-5 w-5" strokeWidth={1.5} aria-hidden />
                 </span>
                 <h3 className="mt-4 font-semibold">{title}</h3>
@@ -173,7 +174,7 @@ function Index() {
       </section>
 
       {/* Model note */}
-      <section aria-labelledby="modelo" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section data-reveal aria-labelledby="modelo" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-6 md:grid-cols-[180px_1fr]">
           <p className="eyebrow">04 — Como funciona</p>
           <div className="max-w-2xl">

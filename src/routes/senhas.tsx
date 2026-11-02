@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,8 @@ const options: { key: PasswordGroup; label: string }[] = [
   { key: "symbols", label: "Símbolos (!@#)" },
 ];
 function PasswordPage() {
+  useAnalytics('senhas');
+
   const [length, setLength] = useState(20);
   const [groups, setGroups] = useState<PasswordGroup[]>(options.map((o) => o.key));
   const [password, setPassword] = useState("");

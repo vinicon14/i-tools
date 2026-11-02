@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Copy, MapPin, Search, Map as MapIcon, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -175,6 +176,8 @@ async function searchCEPByAddress(
 }
 
 function CepPage() {
+  useAnalytics('meu-cep');
+  
   const [locationState, setLocationState] = useState<State>({ kind: "idle" });
   const [cepSearchState, setCepSearchState] = useState<State>({ kind: "idle" });
   const [addressSearchState, setAddressSearchState] = useState<{

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { Download, ExternalLink, Link2, LoaderCircle, X } from "lucide-react";
 import { useId, useRef, useState, type FormEvent } from "react";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Button } from "@/components/ui/button";
 import { validateVideoLink, videoPlatforms, type VideoPlatform } from "@/lib/video-links";
 import { prepareVideo } from "@/lib/video-download.functions";
@@ -772,10 +773,12 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
 export function LocalizedVideoDownloader({ 
   platform, 
   lang = "pt" 
-}: { 
+}: {
   platform: VideoPlatform;
   lang?: LanguageCode;
 }) {
+  useAnalytics(`baixar-video-${platform}`);
+  
   const info = videoPlatforms[platform];
   const t = getTranslations(lang);
   const texts = getVideoTexts(lang, platform);

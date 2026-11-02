@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { useEffect, useRef, useState } from "react";
 import { Flag, Pause, Play, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,8 @@ export const Route = createFileRoute("/cronometro")({
   component: TimerPage,
 });
 function TimerPage() {
+  useAnalytics('cronometro');
+
   const [mode, setMode] = useState<TimerMode>("stopwatch");
   const [minutes, setMinutes] = useState(5);
   const [seconds, setSeconds] = useState(0);

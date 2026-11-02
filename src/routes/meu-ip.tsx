@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Copy, RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { btnSecondary, panel, ToolLayout, toolHead } from "@/components/site/ToolLayout";
@@ -40,6 +41,8 @@ async function fetchIp(url: string) {
 }
 
 function IpPage() {
+  useAnalytics('meu-ip');
+
   const [v4, setV4] = useState<string | null | undefined>(undefined);
   const [v6, setV6] = useState<string | null | undefined>(undefined);
   const [copied, setCopied] = useState("");

@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Copy, MapPin, Search, Map as MapIcon, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -168,6 +169,8 @@ export const Route = createFileRoute("/$lang/meu-cep")({
 });
 
 function CepPageLocalized() {
+  useAnalytics('meu-cep');
+  
   const { lang } = Route.useParams();
   const t = getToolTranslations(lang as LanguageCode);
   const labels = t.meuCep.labels;

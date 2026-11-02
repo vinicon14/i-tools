@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { useState } from "react";
 import { Download, LockKeyhole, Shuffle, UnlockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/paleta-de-cores")({
   component: PalettePage,
 });
 function PalettePage() {
+  useAnalytics('paleta-de-cores');
+
   const [base, setBase] = useState("#FF5A1F");
   const [mode, setMode] = useState<PaletteMode>("analogous");
   const [colors, setColors] = useState(() => makePalette("#FF5A1F", "analogous"));

@@ -1,4 +1,4 @@
-export const SITE_ORIGIN = "https://jeito-facil-ferramentas-livres.lovable.app";
+export const SITE_ORIGIN = "https://i-tools.shop";
 
 /** Always identify the current public page, never a preview or another origin. */
 export function pageUrl(path: string): string {

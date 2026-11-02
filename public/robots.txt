@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://jeito-facil-ferramentas-livres.lovable.app/sitemap.xml
+Sitemap: https://i-tools.shop/sitemap.xml

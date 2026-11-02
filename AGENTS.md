@@ -17,6 +17,7 @@
 - Monetag ads load only through `src/lib/ads.ts` config + `MonetagLoader` after hydration; only non-intrusive formats (no popunder/redirect) to protect UX.
 - Video download pages share `VideoDownloader` and validated public links; FastSaver calls use a server function through its connector, and signed expiring tickets stream only allowlisted media through the same-origin download route. Mark each platform live only after its actual file download is verified.
 - Local everyday tools keep calculation and transformation logic in a browser-safe, tested module; process text and passwords only in the browser to avoid transmitting user input.
+- Image tools share a browser-only editor with bounded canvas dimensions; PDF conversions dynamically import the renderer and worker during user actions to keep SSR safe and files local.
 - Public page URLs are centralized in `src/lib/seo.ts`; canonical, Open Graph and sitemap addresses share that origin to prevent conflicting search identities.
 - Every route declares `staticData.sitemap`; the router-derived sitemap includes public static pages and all catalog tool/category URLs without duplicate entries or fabricated modification dates.
 - The shared `Logo` renders the approved logo asset in all site headers and footers; the root favicon is derived from that same asset so browser identity stays consistent.

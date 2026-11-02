@@ -4,9 +4,9 @@ import { Logo } from "./Logo";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-border bg-card animate-fade-in">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[2fr_1fr_1fr]">
-        <div>
+    <footer className="mt-auto border-t border-border bg-card">
+      <div data-reveal className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 sm:px-6 md:grid-cols-[2fr_1fr_1fr]">
+        <div className="col-span-2 md:col-span-1">
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
             Ferramentas online gratuitas, direto no navegador. Sem cadastro, sem assinatura —

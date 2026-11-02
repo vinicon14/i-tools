@@ -16,3 +16,4 @@
 - Ad space uses fixed-height `AdSlot` to avoid layout shift.
 - Monetag ads load only through `src/lib/ads.ts` config + `MonetagLoader` after hydration; only non-intrusive formats (no popunder/redirect) to protect UX.
 - Video download pages share `VideoDownloader` and browser-safe link validation; keep catalog status planned until a documented provider is connected and actual downloads are verified, so readiness is never misrepresented.
+- Local everyday tools keep calculation and transformation logic in a browser-safe, tested module; process text and passwords only in the browser to avoid transmitting user input.

@@ -8,10 +8,10 @@ describe("catalog", () => {
   it("every tool belongs to an existing category", () => {
     for (const t of tools) expect(categories.some((c) => c.slug === t.category)).toBe(true);
   });
-  it("only QR, IP and CEP are live", () => {
-    expect(tools.filter((t) => t.status === "live").map((t) => t.slug).sort()).toEqual(["meu-cep", "meu-ip", "qr"]);
+  it("marks the seven implemented tools live", () => {
+    expect(tools.filter((t) => t.status === "live").map((t) => t.slug).sort()).toEqual(["contador-de-palavras", "json", "meu-cep", "meu-ip", "porcentagem", "qr", "senhas"]);
   });
-  it("search ignores accents and returns planned tools only", () => {
+  it("search ignores accents and returns matching tools", () => {
     expect(searchTools("codigo").map((t) => t.slug)).toContain("qr");
     expect(searchTools("xyz-inexistente")).toHaveLength(0);
   });

@@ -14,11 +14,15 @@ import { Route as ToolRouteImport } from './routes/$tool'
 import { Route as BaixarVideoInstagramRouteImport } from './routes/baixar-video-instagram'
 import { Route as BaixarVideoTiktokRouteImport } from './routes/baixar-video-tiktok'
 import { Route as BaixarVideoYoutubeRouteImport } from './routes/baixar-video-youtube'
+import { Route as ContadorDePalavrasRouteImport } from './routes/contador-de-palavras'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as JsonRouteImport } from './routes/json'
 import { Route as MeuCepRouteImport } from './routes/meu-cep'
 import { Route as MeuIpRouteImport } from './routes/meu-ip'
+import { Route as PorcentagemRouteImport } from './routes/porcentagem'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as QrRouteImport } from './routes/qr'
+import { Route as SenhasRouteImport } from './routes/senhas'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
@@ -48,9 +52,19 @@ const BaixarVideoYoutubeRoute = BaixarVideoYoutubeRouteImport.update({
   path: '/baixar-video-youtube',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContadorDePalavrasRoute = ContadorDePalavrasRouteImport.update({
+  id: '/contador-de-palavras',
+  path: '/contador-de-palavras',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JsonRoute = JsonRouteImport.update({
+  id: '/json',
+  path: '/json',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeuCepRoute = MeuCepRouteImport.update({
@@ -63,6 +77,11 @@ const MeuIpRoute = MeuIpRouteImport.update({
   path: '/meu-ip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PorcentagemRoute = PorcentagemRouteImport.update({
+  id: '/porcentagem',
+  path: '/porcentagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
@@ -71,6 +90,11 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
 const QrRoute = QrRouteImport.update({
   id: '/qr',
   path: '/qr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SenhasRoute = SenhasRouteImport.update({
+  id: '/senhas',
+  path: '/senhas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -95,11 +119,15 @@ export interface FileRoutesByFullPath {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/senhas': typeof SenhasRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -110,11 +138,15 @@ export interface FileRoutesByTo {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/senhas': typeof SenhasRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -126,11 +158,15 @@ export interface FileRoutesById {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/senhas': typeof SenhasRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -143,11 +179,15 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/senhas'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -158,11 +198,15 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/senhas'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -173,11 +217,15 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/senhas'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -189,11 +237,15 @@ export interface RootRouteChildren {
   BaixarVideoInstagramRoute: typeof BaixarVideoInstagramRoute
   BaixarVideoTiktokRoute: typeof BaixarVideoTiktokRoute
   BaixarVideoYoutubeRoute: typeof BaixarVideoYoutubeRoute
+  ContadorDePalavrasRoute: typeof ContadorDePalavrasRoute
   ContatoRoute: typeof ContatoRoute
+  JsonRoute: typeof JsonRoute
   MeuCepRoute: typeof MeuCepRoute
   MeuIpRoute: typeof MeuIpRoute
+  PorcentagemRoute: typeof PorcentagemRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   QrRoute: typeof QrRoute
+  SenhasRoute: typeof SenhasRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
@@ -236,11 +288,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BaixarVideoYoutubeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contador-de-palavras': {
+      id: '/contador-de-palavras'
+      path: '/contador-de-palavras'
+      fullPath: '/contador-de-palavras'
+      preLoaderRoute: typeof ContadorDePalavrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contato': {
       id: '/contato'
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/json': {
+      id: '/json'
+      path: '/json'
+      fullPath: '/json'
+      preLoaderRoute: typeof JsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meu-cep': {
@@ -257,6 +323,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeuIpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/porcentagem': {
+      id: '/porcentagem'
+      path: '/porcentagem'
+      fullPath: '/porcentagem'
+      preLoaderRoute: typeof PorcentagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidade': {
       id: '/privacidade'
       path: '/privacidade'
@@ -269,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/qr'
       fullPath: '/qr'
       preLoaderRoute: typeof QrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/senhas': {
+      id: '/senhas'
+      path: '/senhas'
+      fullPath: '/senhas'
+      preLoaderRoute: typeof SenhasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -301,11 +381,15 @@ const rootRouteChildren: RootRouteChildren = {
   BaixarVideoInstagramRoute: BaixarVideoInstagramRoute,
   BaixarVideoTiktokRoute: BaixarVideoTiktokRoute,
   BaixarVideoYoutubeRoute: BaixarVideoYoutubeRoute,
+  ContadorDePalavrasRoute: ContadorDePalavrasRoute,
   ContatoRoute: ContatoRoute,
+  JsonRoute: JsonRoute,
   MeuCepRoute: MeuCepRoute,
   MeuIpRoute: MeuIpRoute,
+  PorcentagemRoute: PorcentagemRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   QrRoute: QrRoute,
+  SenhasRoute: SenhasRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,

@@ -2,7 +2,8 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import { getSessionFromCookie } from '@/lib/admin-session.server';
-import { getMonetagData, getMonetagSummary, testMonetagAPI, fetchMonetagAPI, importMonetagCSV } from '@/lib/monetag-integration.functions';
+import { getMonetagData } from '@/lib/admin-analytics.functions';
+import { getMonetagSummary, testMonetagAPI, fetchMonetagAPI, importMonetagCSV } from '@/lib/monetag-integration.functions';
 import { exportMonetagCSV } from '@/lib/admin-export.functions';
 import { type GlobalFilters } from '@/lib/admin-filters';
 import { useState, useRef } from 'react';

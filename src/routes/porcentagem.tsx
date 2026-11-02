@@ -6,6 +6,7 @@ import { ToolLayout, toolHead, panel } from "@/components/site/ToolLayout";
 import { calculatePercentage, type PercentageMode } from "@/lib/everyday-tools";
 
 export const Route = createFileRoute("/porcentagem")({
+  staticData: { sitemap: true },
   head: () => toolHead("porcentagem", "Calculadora de porcentagem, descontos e aumentos — i-Tools", "Calcule porcentagens, preço com desconto, aumentos e variação percentual. Grátis, sem cadastro e direto no navegador."),
   component: PercentagePage,
 });

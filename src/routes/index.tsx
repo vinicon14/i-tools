@@ -8,6 +8,7 @@ import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog"
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     ...pageMeta(title, SITE.description, "/"),
     scripts: [{

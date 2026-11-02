@@ -6,6 +6,7 @@ import { ToolGrid } from "@/components/site/ToolCard";
 import { getCategory, getTool, toolsByCategory } from "@/lib/catalog";
 
 export const Route = createFileRoute("/$tool")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const tool = getTool(params.tool);
     if (!tool) throw notFound();

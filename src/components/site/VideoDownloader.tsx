@@ -169,10 +169,18 @@ export function VideoDownloader({ platform }: { platform: VideoPlatform }) {
               }}
               className="mt-1 h-4 w-4 shrink-0 accent-primary"
             />
-            Este vídeo é meu ou tenho autorização para baixá-lo.
+            <span>
+              Este vídeo é meu ou tenho autorização para baixá-lo.{" "}
+              <span className="font-semibold text-destructive">(obrigatório)</span>
+            </span>
           </label>
+          {!authorized && url.trim() && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              ⚠️ Confirme a autorização acima para ativar o botão de download
+            </p>
+          )}
           <div className="mt-5 flex flex-wrap gap-3">
-            <Button type="submit" size="lg" disabled={busy || !url.trim()}>
+            <Button type="submit" size="lg" disabled={busy || !url.trim() || !authorized}>
               {busy ? (
                 <LoaderCircle className="animate-spin motion-reduce:animate-none" aria-hidden />
               ) : (

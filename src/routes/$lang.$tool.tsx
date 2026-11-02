@@ -3,7 +3,7 @@ import { getTool, getCategory } from "@/lib/catalog";
 import { isValidLanguage, type LanguageCode } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
 import { toolHead, ToolLayout } from "@/components/site/ToolLayout";
-import { VideoDownloader } from "@/components/site/VideoDownloader";
+import { LocalizedVideoDownloader } from "@/components/site/LocalizedVideoDownloader";
 import { PageShell } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/$lang/$tool")({
@@ -75,18 +75,7 @@ function LocalizedToolPage() {
   // Video downloaders
   if (toolSlug === "baixar-video-youtube" || toolSlug === "baixar-video-tiktok" || toolSlug === "baixar-video-instagram") {
     const platform = toolSlug === "baixar-video-youtube" ? "youtube" : toolSlug === "baixar-video-tiktok" ? "tiktok" : "instagram";
-    return (
-      <ToolLayout
-        slug={toolSlug}
-        intro={toolTranslation.summary}
-        faq={[]}
-        lang={lang}
-        toolName={toolTranslation.name}
-        categoryName={categoryTranslation?.name}
-      >
-        <VideoDownloader platform={platform} />
-      </ToolLayout>
-    );
+    return <LocalizedVideoDownloader platform={platform} lang={lang as LanguageCode} />;
   }
   
   // For all other tools, show the actual tool interface

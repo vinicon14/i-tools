@@ -2,12 +2,14 @@ import type { ReactNode } from "react";
 import { pageUrl } from "@/lib/seo";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
+import { BackgroundEffects } from "./BackgroundEffects";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
+      <BackgroundEffects />
       <SiteHeader />
-      <main id="conteudo" className="flex-1">
+      <main id="conteudo" className="relative z-10 flex-1">
         {children}
       </main>
       <SiteFooter />

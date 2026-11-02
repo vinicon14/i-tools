@@ -90,11 +90,17 @@ export function ToolLayout({
   intro,
   children,
   faq,
+  lang,
+  toolName,
+  categoryName,
 }: {
   slug: string;
   intro: string;
   children: ReactNode;
   faq: Faq[];
+  lang?: string;
+  toolName?: string;
+  categoryName?: string;
 }) {
   const tool = getTool(slug);
   if (!tool) return null;
@@ -102,20 +108,27 @@ export function ToolLayout({
   if (!category) return null;
   const Icon = tool.icon;
   const related = toolsByCategory(category.slug).filter((t) => t.slug !== slug);
+  
+  // Import translations here to avoid circular dependency
+  const { getTranslations } = require("@/lib/translations");
+  const t = getTranslations((lang as any) || "pt");
+  
+  const displayToolName = toolName || tool.name;
+  const displayCategoryName = categoryName || category.name;
+  
   return (
     <PageShell>
       <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 md:pt-12">
-        <nav aria-label="Trilha de navegação" className="font-mono text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-foreground">
-            Início
+        <nav aria-label={lang === "pt" || !lang ? "Trilha de navegação" : "Breadcrumb"} className="font-mono text-xs text-muted-foreground">
+          <Link to={lang && lang !== "pt" ? `/${lang}` : "/"} className="hover:text-foreground">
+            {t.nav.home}
           </Link>{" "}
           /{" "}
           <Link
-            to="/categorias/$categoria"
-            params={{ categoria: category.slug }}
+            to={lang && lang !== "pt" ? `/${lang}/categorias/${category.slug}` : `/categorias/${category.slug}`}
             className="hover:text-foreground"
           >
-            {category.name}
+            {displayCategoryName}
           </Link>
         </nav>
         <div className="mt-8 flex items-center gap-3 animate-fade-in-up">
@@ -124,7 +137,7 @@ export function ToolLayout({
           </span>
           <StatusBadge status={tool.status} />
         </div>
-        <h1 className="mt-5 text-4xl leading-tight sm:text-5xl animate-fade-in-up">{tool.name}</h1>
+        <h1 className="mt-5 text-4xl leading-tight sm:text-5xl animate-fade-in-up">{displayToolName}</h1>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{intro}</p>
         <div className="mt-8 animate-fade-in-up">{children}</div>
       </section>
@@ -133,7 +146,7 @@ export function ToolLayout({
       </div>
       <section data-reveal aria-labelledby="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h2 id="faq" className="text-3xl">
-          Perguntas frequentes
+          {t.common.faq}
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
           {faq.map((f) => (
@@ -147,7 +160,7 @@ export function ToolLayout({
       {related.length > 0 && (
         <section data-reveal aria-labelledby="relacionadas" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
           <h2 id="relacionadas" className="mb-8 text-3xl">
-            Também em {category.name}
+            {t.common.alsoIn} {displayCategoryName}
           </h2>
           <ToolGrid tools={related} />
         </section>

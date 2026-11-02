@@ -156,6 +156,65 @@ CREATE TABLE IF NOT EXISTS tool_config (
   updated_by UUID REFERENCES admin_users(id)
 );
 
+-- Tool metadata overrides (for editing tool name/description)
+CREATE TABLE IF NOT EXISTS tool_metadata (
+  tool_slug TEXT PRIMARY KEY,
+  custom_name TEXT, -- Override display name
+  custom_summary TEXT, -- Override description/summary
+  custom_keywords TEXT[], -- Override keywords
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_by UUID REFERENCES admin_users(id)
+);
+
+CREATE INDEX idx_tool_metadata_updated_at ON tool_metadata(updated_at DESC);
+
+-- Performance monitoring (response times)
+CREATE TABLE IF NOT EXISTS performance_metrics (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  metric_type TEXT NOT NULL, -- 'server_function', 'api_call', 'integration'
+  function_name TEXT, -- Name of the function/endpoint
+  duration_ms INTEGER NOT NULL, -- Duration in milliseconds
+  status TEXT, -- 'success', 'error', 'timeout'
+  error_message TEXT,
+  occurred_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_performance_metrics_occurred_at ON performance_metrics(occurred_at DESC);
+CREATE INDEX idx_performance_metrics_type ON performance_metrics(metric_type);
+CREATE INDEX idx_performance_metrics_function ON performance_metrics(function_name);
+
+-- Uptime monitoring (availability checks)
+CREATE TABLE IF NOT EXISTS uptime_checks (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  check_type TEXT NOT NULL, -- 'heartbeat', 'health_endpoint', 'integration'
+  endpoint TEXT, -- URL or identifier
+  status TEXT NOT NULL, -- 'up', 'down', 'degraded'
+  response_time_ms INTEGER,
+  error_message TEXT,
+  checked_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_uptime_checks_checked_at ON uptime_checks(checked_at DESC);
+CREATE INDEX idx_uptime_checks_type ON uptime_checks(check_type);
+CREATE INDEX idx_uptime_checks_status ON uptime_checks(status);
+
+-- Admin alerts (for error spikes, integration failures)
+CREATE TABLE IF NOT EXISTS admin_alerts (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  alert_type TEXT NOT NULL, -- 'error_spike', 'integration_failure', 'uptime_down', 'performance_degradation'
+  severity TEXT NOT NULL CHECK (severity IN ('low', 'medium', 'high', 'critical')),
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  metadata JSONB, -- Additional context
+  is_resolved BOOLEAN DEFAULT false,
+  resolved_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_admin_alerts_created_at ON admin_alerts(created_at DESC);
+CREATE INDEX idx_admin_alerts_severity ON admin_alerts(severity);
+CREATE INDEX idx_admin_alerts_is_resolved ON admin_alerts(is_resolved);
+
 -- Functions for data aggregation
 
 -- Function to clean up old online users (older than 5 minutes)
@@ -201,6 +260,10 @@ ALTER TABLE monetag_revenue ENABLE ROW LEVEL SECURITY;
 ALTER TABLE error_logs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admin_logs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tool_config ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tool_metadata ENABLE ROW LEVEL SECURITY;
+ALTER TABLE performance_metrics ENABLE ROW LEVEL SECURITY;
+ALTER TABLE uptime_checks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE admin_alerts ENABLE ROW LEVEL SECURITY;
 
 -- Grant permissions to service role (used by supabaseAdmin)
 GRANT ALL ON ALL TABLES IN SCHEMA public TO service_role;
@@ -213,3 +276,4 @@ COMMENT ON TABLE online_users IS 'Real-time online user tracking via heartbeat';
 COMMENT ON TABLE monetag_revenue IS 'Daily Monetag advertising revenue data';
 COMMENT ON TABLE error_logs IS 'Error tracking for monitoring and debugging';
 COMMENT ON TABLE tool_config IS 'Per-tool configuration and enable/disable flags';
+COMMENT ON TABLE tool_metadata IS 'Custom tool metadata overrides (name, description, keywords)';

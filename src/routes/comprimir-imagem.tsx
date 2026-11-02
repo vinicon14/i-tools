@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { ToolLayout, toolHead } from "@/components/site/ToolLayout";
 import { ImageEditor } from "@/components/site/ImageEditor";
 export const Route = createFileRoute("/comprimir-imagem")({
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/comprimir-imagem")({
   component: CompressPage,
 });
 function CompressPage() {
+  useAnalytics('comprimir-imagem');
+
   return (
     <ToolLayout
       slug="comprimir-imagem"

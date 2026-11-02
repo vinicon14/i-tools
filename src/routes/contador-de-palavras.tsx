@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/contador-de-palavras")({
   component: WordCounterPage,
 });
 function WordCounterPage() {
+  useAnalytics('contador-de-palavras');
+
   const [text, setText] = useState("");
   const stats = textStats(text);
   const metrics: [string, number][] = [

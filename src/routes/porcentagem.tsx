@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Calculator } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,8 @@ const modes: { value: PercentageMode; label: string }[] = [
   { value: "change", label: "Variação percentual" },
 ];
 function PercentagePage() {
+  useAnalytics('porcentagem');
+
   const [mode, setMode] = useState<PercentageMode>("portion");
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");

@@ -23,18 +23,43 @@ export const requireAuth = createServerFn('GET', async (_, { request }) => {
   return { username: session.username };
 });
 
-// Update tool metadata (future enhancement - would need catalog persistence)
+// Update tool metadata (now persists to database)
 export const updateToolMetadata = createServerFn('POST', async (data: { toolSlug: string; name: string; description: string }, { request }) => {
   await requireAuth({}, { request });
   
-  // Note: This would require persisting tool metadata to database
-  // For now, tools are defined in catalog.ts
-  // Implementation would need a tool_metadata table in Supabase
+  const cookieHeader = request.headers.get('cookie');
+  const session = getSessionFromCookie(cookieHeader);
   
-  return {
-    success: false,
-    message: 'Edição de metadados requer persistência em banco (futuro)',
-  };
+  if (!session) {
+    return { success: false, message: 'Não autenticado' };
+  }
+
+  try {
+    const { error } = await supabaseAdmin
+      .from('tool_metadata')
+      .upsert({
+        tool_slug: data.toolSlug,
+        custom_name: data.name,
+        custom_summary: data.description,
+        updated_at: new Date().toISOString(),
+      });
+
+    if (error) {
+      console.error('[Tool Metadata] Error saving:', error);
+      return { success: false, message: 'Erro ao salvar no banco de dados' };
+    }
+
+    return {
+      success: true,
+      message: 'Metadados salvos com sucesso',
+    };
+  } catch (error) {
+    console.error('[Tool Metadata] Error:', error);
+    return {
+      success: false,
+      message: 'Erro ao salvar metadados',
+    };
+  }
 });
 
 export const Route = createFileRoute('/adm/tools/$toolSlug')({
@@ -176,9 +201,6 @@ function ToolDetailPage() {
                     <Save className="w-4 h-4 mr-2" />
                     Salvar Alterações
                   </Button>
-                  <p className="text-xs text-slate-500">
-                    Nota: Edição de metadados requer implementação de persistência
-                  </p>
                 </>
               ) : (
                 <>

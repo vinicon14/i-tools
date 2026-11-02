@@ -8,6 +8,7 @@ import { type GlobalFilters } from '@/lib/admin-filters';
 import { useState } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { FilterBar } from '@/components/admin/FilterBar';
+import { WorldMap } from '@/components/admin/WorldMap';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
@@ -134,25 +135,32 @@ function AdminCountriesPage() {
             </Card>
           </div>
 
-          {/* World Map Placeholder */}
+          {/* World Map */}
           <Card className="border-slate-700 bg-slate-800/50">
             <CardHeader>
               <CardTitle className="text-white">Mapa Mundial</CardTitle>
               <CardDescription className="text-slate-400">
-                Distribuição de visitantes por país
+                Distribuição de visitantes por país (clique para ver cidades)
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-96 rounded-lg border border-slate-700 bg-slate-900/50 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                  <p className="text-slate-400">
-                    Mapa interativo (integração com biblioteca de mapas necessária)
-                  </p>
-                  <p className="text-xs text-slate-500 mt-2">
-                    Sugestões: react-simple-maps, @react-google-maps/api, ou mapbox
-                  </p>
+              <div className="h-96 rounded-lg border border-slate-700 bg-slate-900/50">
+                <WorldMap data={geoData} onCountryClick={setSelectedCountry} />
+              </div>
+              <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
+                <span>Menos visitas</span>
+                <div className="flex gap-1">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-3 rounded"
+                      style={{
+                        background: `rgb(${51 + (59 - 51) * (i / 4)}, ${65 + (130 - 65) * (i / 4)}, ${99 + (246 - 99) * (i / 4)})`,
+                      }}
+                    />
+                  ))}
                 </div>
+                <span>Mais visitas</span>
               </div>
             </CardContent>
           </Card>

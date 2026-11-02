@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { Copy, MapPin } from "lucide-react";
 import { useState } from "react";
 import {
@@ -50,6 +51,8 @@ type State =
   | { kind: "ok"; data: Result };
 
 function CepPage() {
+  useAnalytics('meu-cep');
+
   const [state, setState] = useState<State>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
 

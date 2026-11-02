@@ -17,3 +17,5 @@
 - Monetag ads load only through `src/lib/ads.ts` config + `MonetagLoader` after hydration; only non-intrusive formats (no popunder/redirect) to protect UX.
 - Video download pages share `VideoDownloader` and browser-safe link validation; keep catalog status planned until a documented provider is connected and actual downloads are verified, so readiness is never misrepresented.
 - Local everyday tools keep calculation and transformation logic in a browser-safe, tested module; process text and passwords only in the browser to avoid transmitting user input.
+- Public page URLs are centralized in `src/lib/seo.ts`; canonical, Open Graph and sitemap addresses share that origin to prevent conflicting search identities.
+- Every route declares `staticData.sitemap`; the router-derived sitemap includes public static pages and all catalog tool/category URLs without duplicate entries or fabricated modification dates.

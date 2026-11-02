@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { pageUrl } from "@/lib/seo";
 import { type LanguageCode } from "@/lib/i18n";
+import { useI18n } from "@/lib/use-i18n";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { BackgroundEffects } from "./BackgroundEffects";
@@ -37,11 +38,14 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 /** Reserved ad space with fixed height to avoid layout shift. Empty until an ad network is connected. */
-export function AdSlot({ label = "Publicidade" }: { label?: string }) {
+export function AdSlot({ label }: { label?: string } = {}) {
+  const { t } = useI18n();
+  const adLabel = label || t.common.advertisement;
+  
   return (
-    <aside aria-label={label} className="mx-auto max-w-6xl px-4 sm:px-6">
+    <aside aria-label={adLabel} className="mx-auto max-w-6xl px-4 sm:px-6">
       <div className="flex h-24 items-center justify-center border-y border-border bg-muted/40 font-mono text-[10px] uppercase text-muted-foreground">
-        {label}
+        {adLabel}
       </div>
     </aside>
   );

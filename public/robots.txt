@@ -12,6 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
-Disallow: /adm
 
 Sitemap: https://i-tools.shop/sitemap.xml

@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Download } from "lucide-react";
 import QRCode from "qrcode";
 import { useEffect, useId, useState } from "react";
-import { useAnalytics } from "@/hooks/use-analytics";
 import {
   btnPrimary,
   btnSecondary,
@@ -39,8 +38,6 @@ const faq = [
 ];
 
 function QrPage() {
-  useAnalytics('qr');
-  
   const id = useId();
   const [url, setUrl] = useState("https://");
   const [dataUrl, setDataUrl] = useState("");

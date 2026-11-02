@@ -1,4 +1,4 @@
-// Admin layout with dark theme
+// Admin layout with dark theme (discreet blue/purple accents)
 import { Link } from '@tanstack/react-router';
 import { LayoutDashboard, BarChart3, Globe, DollarSign, Settings, LogOut } from 'lucide-react';
 
@@ -13,7 +13,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-8">
-              <Link to="/adm" className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <Link to="/adm" className="text-lg font-bold text-blue-400">
                 i-Tools Admin
               </Link>
               <div className="hidden md:flex items-center gap-6">
@@ -33,7 +33,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 </Link>
                 <Link 
                   to="/adm/monetag" 
-                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 transition-colors"
                 >
                   <DollarSign className="w-4 h-4" />
                   Monetag

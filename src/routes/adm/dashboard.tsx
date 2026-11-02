@@ -1,8 +1,8 @@
-// Admin dashboard - lazy load server functions
+// Admin dashboard - with CSV export
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { BarChart3, Users, Eye } from 'lucide-react';
+import { BarChart3, Users, Eye, Download } from 'lucide-react';
 
 export const Route = createFileRoute('/adm/dashboard')({
   beforeLoad: async () => {
@@ -17,6 +17,7 @@ export const Route = createFileRoute('/adm/dashboard')({
 export default function AdminDashboard() {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [exporting, setExporting] = useState(false);
   const [dateRange] = useState({
     startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
     endDate: new Date().toISOString()
@@ -36,6 +37,26 @@ export default function AdminDashboard() {
       console.error('Failed to load stats:', err);
     }
     setLoading(false);
+  };
+
+  const exportCSV = async () => {
+    setExporting(true);
+    try {
+      const { exportAnalyticsCSV } = await import('@/lib/admin-analytics.functions');
+      const csv = await exportAnalyticsCSV(dateRange);
+      if (csv) {
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `analytics-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    } catch (err) {
+      console.error('Failed to export CSV:', err);
+    }
+    setExporting(false);
   };
 
   if (loading) {
@@ -59,9 +80,19 @@ export default function AdminDashboard() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold text-white mb-1">Dashboard</h1>
-          <p className="text-gray-400 text-sm">Last 30 days overview</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-white mb-1">Dashboard</h1>
+            <p className="text-gray-400 text-sm">Last 30 days overview</p>
+          </div>
+          <button
+            onClick={exportCSV}
+            disabled={exporting || !stats?.enabled}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            {exporting ? 'Exporting...' : 'Export CSV'}
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

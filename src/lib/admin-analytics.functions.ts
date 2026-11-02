@@ -141,3 +141,26 @@ export const exportAnalyticsCSV = createServerFn({ method: 'POST' }).handler(asy
 
   return csv;
 });
+
+export const getToolsConfig = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return { enabled: false, tools: [] };
+
+  const { data } = await supabase
+    .from('tools_config')
+    .select('*')
+    .order('slug');
+
+  return { enabled: true, tools: data || [] };
+});
+
+export const updateToolConfig = createServerFn({ method: 'POST' }).handler(async ({ data }: { data: { slug: string; enabled: boolean } }) => {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return { success: false };
+
+  const { error } = await supabase
+    .from('tools_config')
+    .upsert({ slug: data.slug, enabled: data.enabled, updated_at: new Date().toISOString() });
+
+  return { success: !error };
+});

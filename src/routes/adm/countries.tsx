@@ -74,7 +74,7 @@ export default function AdminCountries() {
                   <span className="text-sm text-gray-400">{country.visits.toLocaleString()} visits</span>
                   <div className="w-24 bg-gray-800 rounded-full h-2">
                     <div 
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
+                      className="bg-blue-500 h-2 rounded-full"
                       style={{ 
                         width: `${Math.min(100, (country.visits / (stats.countries[0]?.visits || 1)) * 100)}%` 
                       }}

@@ -38,7 +38,9 @@ export const prepareVideo = createServerFn({ method: "POST" })
           ? "O serviço atingiu seu limite de créditos. Tente novamente mais tarde."
           : response.status === 429
             ? "Muitas solicitações no momento. Aguarde um pouco e tente novamente."
-            : "Não foi possível obter este vídeo. Confira se ele é público e tente outro link.";
+            : data.platform === "instagram"
+              ? "Não foi possível baixar este vídeo do Instagram. Algumas publicações não estão disponíveis para download (conteúdo privado, protegido ou removido). Tente outro Reel ou publicação pública."
+              : "Não foi possível obter este vídeo. Confira se ele é público e tente outro link.";
         return { ok: false, error };
       }
       const media = mediaFiles(body);

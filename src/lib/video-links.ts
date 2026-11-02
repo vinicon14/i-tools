@@ -59,5 +59,6 @@ export function validateVideoLink(input: string, platform: VideoPlatform): Video
       error: `Use um link de vídeo do ${videoPlatforms[platform].name}, não um perfil ou outra página.`,
     };
   url.hash = "";
+  url.search = "";
   return { valid: true, url: url.toString() };
 }

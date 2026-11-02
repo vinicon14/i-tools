@@ -55,15 +55,16 @@ function Index() {
       {/* Hero */}
       <section aria-labelledby="hero-title" className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-24">
-          <p className="eyebrow flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Primeiras
-            ferramentas já no ar
+          <p className="eyebrow flex items-center gap-2 animate-fade-in-up">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" aria-hidden />{" "}
+            Primeiras ferramentas já no ar
           </p>
           <h1
             id="hero-title"
-            className="mt-6 max-w-4xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl"
+            className="mt-6 max-w-4xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl animate-fade-in-up"
+            style={{ animationDelay: "0.1s" }}
           >
-            Ferramentas inteligentes para <em className="text-primary">simplificar</em> seu dia.
+            Ferramentas inteligentes para <em className="text-gradient">simplificar</em> seu dia.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Um só endereço para converter arquivos, ajustar imagens, trabalhar textos e fazer

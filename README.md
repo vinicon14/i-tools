@@ -25,13 +25,13 @@
 
 ## 🛠️ Ferramentas
 
-| Ferramenta | Status | Rota |
-|---|---|---|
-| QR Code | ✅ No ar | `/qr` |
-| Meu IP | ✅ No ar | `/meu-ip` |
-| Meu CEP | ✅ No ar | `/meu-cep` |
-| Baixar vídeo do YouTube | 🟡 Planejado | `/baixar-video-youtube` |
-| Baixar vídeo do TikTok | 🟡 Planejado | `/baixar-video-tiktok` |
+| Ferramenta                | Status       | Rota                      |
+| ------------------------- | ------------ | ------------------------- |
+| QR Code                   | ✅ No ar     | `/qr`                     |
+| Meu IP                    | ✅ No ar     | `/meu-ip`                 |
+| Meu CEP                   | ✅ No ar     | `/meu-cep`                |
+| Baixar vídeo do YouTube   | 🟡 Planejado | `/baixar-video-youtube`   |
+| Baixar vídeo do TikTok    | 🟡 Planejado | `/baixar-video-tiktok`    |
 | Baixar vídeo do Instagram | 🟡 Planejado | `/baixar-video-instagram` |
 
 > Ferramentas de download de vídeo permanecem **planejadas** até que um provedor documentado seja conectado e downloads reais sejam verificados — para nunca misrepresented readiness.
@@ -82,6 +82,7 @@ i-tools/
 ## 🚀 Como rodar
 
 ### Pré-requisitos
+
 - Node.js 20+ (ou Bun)
 - npm / bun
 

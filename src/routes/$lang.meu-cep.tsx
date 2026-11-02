@@ -20,6 +20,7 @@ import {
 } from "@/components/site/ToolLayout";
 import { isValidLanguage, type LanguageCode } from "@/lib/i18n";
 import { getToolTranslations } from "@/lib/tool-translations";
+import { getTranslations } from "@/lib/translations";
 
 const ESTADOS = [
   { uf: "AC", nome: "Acre" },
@@ -316,11 +317,23 @@ function CepPageLocalized() {
     );
   };
 
+  const translations = getTranslations(lang as LanguageCode);
+  const toolTranslation = translations.tools["meu-cep" as keyof typeof translations.tools];
+  const categoryTranslation = translations.categories.produtividade;
+  
   return (
     <ToolLayout
       slug="meu-cep"
       intro={t.meuCep.intro}
       faq={t.meuCep.faq}
+      lang={lang}
+      toolName={toolTranslation?.name}
+      categoryName={categoryTranslation?.name}
+      translations={{
+        home: translations.nav.home,
+        faq: translations.common.faq,
+        alsoIn: translations.common.alsoIn,
+      }}
     >
       <Tabs defaultValue="location" className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-6">

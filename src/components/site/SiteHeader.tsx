@@ -37,20 +37,24 @@ export function SiteHeader() {
       </a>
       <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-8 px-4 sm:px-6">
         <Logo />
-        <nav aria-label="Categorias" className="hidden flex-1 lg:block">
+        <nav aria-label={t.nav.categories} className="hidden flex-1 lg:block">
           <ul className="flex items-center gap-1">
-            {categories.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  to="/categorias/$categoria"
-                  params={{ categoria: c.slug }}
-                  className="rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  activeProps={{ className: "text-foreground" }}
-                >
-                  {c.name.split(" ")[0]}
-                </Link>
-              </li>
-            ))}
+            {categories.map((c) => {
+              const categoryTranslation = t.categories[c.slug as keyof typeof t.categories];
+              const categoryName = categoryTranslation?.name || c.name;
+              return (
+                <li key={c.slug}>
+                  <Link
+                    to={t.lang === "pt" ? "/categorias/$categoria" : "/$lang/categorias/$categoria"}
+                    params={t.lang === "pt" ? { categoria: c.slug } : { lang: t.lang, categoria: c.slug }}
+                    className="rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    activeProps={{ className: "text-foreground" }}
+                  >
+                    {categoryName.split(" ")[0]}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <div className="ml-auto flex items-center gap-2">
@@ -84,24 +88,28 @@ export function SiteHeader() {
               <SheetTitle className="eyebrow">{t.nav.categories}</SheetTitle>
               <nav aria-label="Menu principal" className="mt-6">
                 <ul className="divide-y divide-border border-y border-border">
-                  {categories.map((c, i) => (
-                    <li key={c.slug}>
-                      <Link
-                        to="/categorias/$categoria"
-                        params={{ categoria: c.slug }}
-                        onClick={() => setMenuOpen(false)}
-                        className="flex items-baseline gap-3 py-3 text-foreground hover:text-primary"
-                      >
-                        <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
-                        {c.name}
-                      </Link>
-                    </li>
-                  ))}
+                  {categories.map((c, i) => {
+                    const categoryTranslation = t.categories[c.slug as keyof typeof t.categories];
+                    const categoryName = categoryTranslation?.name || c.name;
+                    return (
+                      <li key={c.slug}>
+                        <Link
+                          to={t.lang === "pt" ? "/categorias/$categoria" : "/$lang/categorias/$categoria"}
+                          params={t.lang === "pt" ? { categoria: c.slug } : { lang: t.lang, categoria: c.slug }}
+                          onClick={() => setMenuOpen(false)}
+                          className="flex items-baseline gap-3 py-3 text-foreground hover:text-primary"
+                        >
+                          <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
+                          {categoryName}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
                   <li>
                     <Link
-                      to="/sobre"
+                      to={t.lang === "pt" ? "/sobre" : `/${t.lang}/sobre`}
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >
@@ -110,7 +118,7 @@ export function SiteHeader() {
                   </li>
                   <li>
                     <Link
-                      to="/contato"
+                      to={t.lang === "pt" ? "/contato" : `/${t.lang}/contato`}
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >

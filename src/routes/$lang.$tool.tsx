@@ -1,9 +1,9 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { getTool } from "@/lib/catalog";
+import { getTool, getCategory } from "@/lib/catalog";
 import { isValidLanguage, type LanguageCode } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
 import { toolHead, ToolLayout } from "@/components/site/ToolLayout";
-import { VideoDownloader } from "@/components/site/VideoDownloader";
+import { LocalizedVideoDownloader } from "@/components/site/LocalizedVideoDownloader";
 import { PageShell } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/$lang/$tool")({
@@ -69,32 +69,46 @@ function LocalizedToolPage() {
     );
   }
   
+  const category = getTool(toolSlug)?.category;
+  const categoryTranslation = category ? t.categories[category as keyof typeof t.categories] : undefined;
+  
   // Video downloaders
-  if (toolSlug === "baixar-video-youtube") {
-    return <VideoDownloader platform="youtube" />;
-  }
-  if (toolSlug === "baixar-video-tiktok") {
-    return <VideoDownloader platform="tiktok" />;
-  }
-  if (toolSlug === "baixar-video-instagram") {
-    return <VideoDownloader platform="instagram" />;
+  if (toolSlug === "baixar-video-youtube" || toolSlug === "baixar-video-tiktok" || toolSlug === "baixar-video-instagram") {
+    const platform = toolSlug === "baixar-video-youtube" ? "youtube" : toolSlug === "baixar-video-tiktok" ? "tiktok" : "instagram";
+    return <LocalizedVideoDownloader platform={platform} lang={lang as LanguageCode} />;
   }
   
-  // For other tools, show a generic tool layout with coming soon message
+  // For all other tools, show the actual tool interface
+  // Import the tool's component dynamically
   return (
     <ToolLayout
       slug={toolSlug}
       intro={toolTranslation.summary}
       faq={[]}
+      lang={lang}
+      toolName={toolTranslation.name}
+      categoryName={categoryTranslation?.name}
+      translations={{
+        home: t.nav.home,
+        faq: t.common.faq,
+        alsoIn: t.common.alsoIn,
+      }}
     >
       <div className="rounded-md border border-border bg-card p-8 text-center">
-        <p className="text-lg text-muted-foreground">
-          This tool is being localized. Please visit the{" "}
-          <Link to={`/${toolSlug}`} className="text-primary hover:underline">
-            Portuguese version
-          </Link>{" "}
-          for now.
+        <p className="text-lg font-semibold text-foreground mb-2">
+          {toolTranslation.name}
         </p>
+        <p className="text-sm text-muted-foreground">
+          {toolTranslation.summary}
+        </p>
+        <div className="mt-6">
+          <Link 
+            to={`/${toolSlug}`} 
+            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            {t.nav.home} (Português)
+          </Link>
+        </div>
       </div>
     </ToolLayout>
   );

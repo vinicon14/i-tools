@@ -87,8 +87,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Baixe vídeos e Shorts públicos autorizados, com escolha de qualidade.",
       },
       "baixar-video-tiktok": {
-        name: "Baixar vídeo do TikTok",
-        summary: "Baixe vídeos públicos do TikTok que sejam seus ou autorizados.",
+        name: "Baixar vídeo do TikTok sem marca d'água",
+        summary: "Baixe vídeos públicos do TikTok sem marca d'água que sejam seus ou autorizados.",
       },
       "baixar-video-instagram": {
         name: "Baixar vídeo do Instagram",
@@ -208,8 +208,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Download authorized public videos and Shorts, with quality options.",
       },
       "baixar-video-tiktok": {
-        name: "TikTok Video Downloader",
-        summary: "Download public TikTok videos that are yours or authorized.",
+        name: "TikTok Video Downloader Without Watermark",
+        summary: "Download public TikTok videos without watermark that are yours or authorized.",
       },
       "baixar-video-instagram": {
         name: "Instagram Video Downloader",
@@ -329,8 +329,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Descarga videos y Shorts públicos autorizados, con opciones de calidad.",
       },
       "baixar-video-tiktok": {
-        name: "Descargar Video de TikTok",
-        summary: "Descarga videos públicos de TikTok que sean tuyos o autorizados.",
+        name: "Descargar Video de TikTok sin Marca de Agua",
+        summary: "Descarga videos públicos de TikTok sin marca de agua que sean tuyos o autorizados.",
       },
       "baixar-video-instagram": {
         name: "Descargar Video de Instagram",
@@ -450,8 +450,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Téléchargez des vidéos et Shorts publics autorisés, avec choix de qualité.",
       },
       "baixar-video-tiktok": {
-        name: "Télécharger Vidéo TikTok",
-        summary: "Téléchargez des vidéos TikTok publiques qui sont les vôtres ou autorisées.",
+        name: "Télécharger Vidéo TikTok sans Filigrane",
+        summary: "Téléchargez des vidéos TikTok publiques sans filigrane qui sont les vôtres ou autorisées.",
       },
       "baixar-video-instagram": {
         name: "Télécharger Vidéo Instagram",
@@ -571,8 +571,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Laden Sie autorisierte öffentliche Videos und Shorts mit Qualitätsoptionen herunter.",
       },
       "baixar-video-tiktok": {
-        name: "TikTok Video Downloader",
-        summary: "Laden Sie öffentliche TikTok-Videos herunter, die Ihnen gehören oder autorisiert sind.",
+        name: "TikTok Video Downloader ohne Wasserzeichen",
+        summary: "Laden Sie öffentliche TikTok-Videos ohne Wasserzeichen herunter, die Ihnen gehören oder autorisiert sind.",
       },
       "baixar-video-instagram": {
         name: "Instagram Video Downloader",
@@ -692,8 +692,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Scarica video e Shorts pubblici autorizzati, con opzioni di qualità.",
       },
       "baixar-video-tiktok": {
-        name: "Scarica Video TikTok",
-        summary: "Scarica video TikTok pubblici che sono tuoi o autorizzati.",
+        name: "Scarica Video TikTok senza Filigrana",
+        summary: "Scarica video TikTok pubblici senza filigrana che sono tuoi o autorizzati.",
       },
       "baixar-video-instagram": {
         name: "Scarica Video Instagram",
@@ -813,8 +813,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Download geautoriseerde openbare video's en Shorts, met kwaliteitsopties.",
       },
       "baixar-video-tiktok": {
-        name: "TikTok Video Downloader",
-        summary: "Download openbare TikTok-video's die van jou zijn of geautoriseerd.",
+        name: "TikTok Video Downloader zonder Watermerk",
+        summary: "Download openbare TikTok-video's zonder watermerk die van jou zijn of geautoriseerd.",
       },
       "baixar-video-instagram": {
         name: "Instagram Video Downloader",
@@ -934,8 +934,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Pobieraj autoryzowane publiczne filmy i Shorts, z opcjami jakości.",
       },
       "baixar-video-tiktok": {
-        name: "Pobieranie Wideo z TikTok",
-        summary: "Pobieraj publiczne filmy TikTok, które są Twoje lub autoryzowane.",
+        name: "Pobieranie Wideo z TikTok bez Znaku Wodnego",
+        summary: "Pobieraj publiczne filmy TikTok bez znaku wodnego, które są Twoje lub autoryzowane.",
       },
       "baixar-video-instagram": {
         name: "Pobieranie Wideo z Instagram",
@@ -1055,8 +1055,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Загружайте авторизованные публичные видео и Shorts с выбором качества.",
       },
       "baixar-video-tiktok": {
-        name: "Загрузчик Видео с TikTok",
-        summary: "Загружайте публичные видео TikTok, которые являются вашими или авторизованными.",
+        name: "Загрузчик Видео с TikTok без Водяного Знака",
+        summary: "Загружайте публичные видео TikTok без водяного знака, которые являются вашими или авторизованными.",
       },
       "baixar-video-instagram": {
         name: "Загрузчик Видео с Instagram",
@@ -1176,8 +1176,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Завантажуйте авторизовані публічні відео та Shorts з вибором якості.",
       },
       "baixar-video-tiktok": {
-        name: "Завантажувач Відео з TikTok",
-        summary: "Завантажуйте публічні відео TikTok, які є вашими або авторизованими.",
+        name: "Завантажувач Відео з TikTok без Водяного Знаку",
+        summary: "Завантажуйте публічні відео TikTok без водяного знаку, які є вашими або авторизованими.",
       },
       "baixar-video-instagram": {
         name: "Завантажувач Відео з Instagram",
@@ -1297,8 +1297,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Kalite seçenekleriyle yetkili genel videoları ve Shorts'ları indirin.",
       },
       "baixar-video-tiktok": {
-        name: "TikTok Video İndirici",
-        summary: "Size ait veya yetkili genel TikTok videolarını indirin.",
+        name: "TikTok Video İndirici Filigransız",
+        summary: "Size ait veya yetkili genel TikTok videolarını filigransız indirin.",
       },
       "baixar-video-instagram": {
         name: "Instagram Video İndirici",
@@ -1418,8 +1418,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "قم بتنزيل مقاطع الفيديو والـ Shorts العامة المصرح بها، مع خيارات الجودة.",
       },
       "baixar-video-tiktok": {
-        name: "تنزيل فيديو TikTok",
-        summary: "قم بتنزيل مقاطع فيديو TikTok العامة التي تخصك أو المصرح بها.",
+        name: "تنزيل فيديو TikTok بدون علامة مائية",
+        summary: "قم بتنزيل مقاطع فيديو TikTok العامة بدون علامة مائية التي تخصك أو المصرح بها.",
       },
       "baixar-video-instagram": {
         name: "تنزيل فيديو Instagram",
@@ -1539,8 +1539,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "गुणवत्ता विकल्पों के साथ अधिकृत सार्वजनिक वीडियो और Shorts डाउनलोड करें।",
       },
       "baixar-video-tiktok": {
-        name: "TikTok वीडियो डाउनलोडर",
-        summary: "सार्वजनिक TikTok वीडियो डाउनलोड करें जो आपके हैं या अधिकृत हैं।",
+        name: "TikTok वीडियो डाउनलोडर वॉटरमार्क के बिना",
+        summary: "सार्वजनिक TikTok वीडियो वॉटरमार्क के बिना डाउनलोड करें जो आपके हैं या अधिकृत हैं।",
       },
       "baixar-video-instagram": {
         name: "Instagram वीडियो डाउनलोडर",
@@ -1660,8 +1660,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Unduh video dan Shorts publik yang diotorisasi, dengan pilihan kualitas.",
       },
       "baixar-video-tiktok": {
-        name: "Pengunduh Video TikTok",
-        summary: "Unduh video TikTok publik yang milik Anda atau diotorisasi.",
+        name: "Pengunduh Video TikTok Tanpa Watermark",
+        summary: "Unduh video TikTok publik tanpa watermark yang milik Anda atau diotorisasi.",
       },
       "baixar-video-instagram": {
         name: "Pengunduh Video Instagram",
@@ -1781,8 +1781,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "品質オプション付きで承認された公開動画とShortsをダウンロードします。",
       },
       "baixar-video-tiktok": {
-        name: "TikTok動画ダウンローダー",
-        summary: "あなたのものまたは承認された公開TikTok動画をダウンロードします。",
+        name: "TikTok動画ダウンローダー ウォーターマークなし",
+        summary: "あなたのものまたは承認された公開TikTok動画をウォーターマークなしでダウンロードします。",
       },
       "baixar-video-instagram": {
         name: "Instagram動画ダウンローダー",
@@ -1902,8 +1902,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "품질 옵션과 함께 승인된 공개 동영상 및 Shorts를 다운로드합니다.",
       },
       "baixar-video-tiktok": {
-        name: "TikTok 동영상 다운로더",
-        summary: "귀하의 것이거나 승인된 공개 TikTok 동영상을 다운로드합니다.",
+        name: "TikTok 동영상 다운로더 워터마크 없음",
+        summary: "귀하의 것이거나 승인된 공개 TikTok 동영상을 워터마크 없이 다운로드합니다.",
       },
       "baixar-video-instagram": {
         name: "Instagram 동영상 다운로더",
@@ -2023,8 +2023,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "下载已授权的公开视频和Shorts，具有质量选项。",
       },
       "baixar-video-tiktok": {
-        name: "TikTok视频下载器",
-        summary: "下载您的或已授权的公开TikTok视频。",
+        name: "TikTok视频下载器 无水印",
+        summary: "下载您的或已授权的公开TikTok视频无水印。",
       },
       "baixar-video-instagram": {
         name: "Instagram视频下载器",
@@ -2144,8 +2144,8 @@ export const translations: Record<LanguageCode, Translations> = {
         summary: "Tải xuống video và Shorts công khai được ủy quyền, với tùy chọn chất lượng.",
       },
       "baixar-video-tiktok": {
-        name: "Trình Tải Video TikTok",
-        summary: "Tải xuống video TikTok công khai của bạn hoặc được ủy quyền.",
+        name: "Trình Tải Video TikTok Không Có Watermark",
+        summary: "Tải xuống video TikTok công khai không có watermark của bạn hoặc được ủy quyền.",
       },
       "baixar-video-instagram": {
         name: "Trình Tải Video Instagram",

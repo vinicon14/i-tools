@@ -50,26 +50,34 @@ export function mediaFiles(body: unknown): { source: string; filename: string }[
       ok: z.literal(true),
       type: z.string().optional(),
       download_url: z.string().optional(),
+      download_url_watermarkfree: z.string().optional(),
+      hdplay: z.string().optional(),
       filename: z.string().optional(),
-      items: z.array(z.object({ type: z.string(), download_url: z.string() })).optional(),
+      items: z.array(z.object({ type: z.string(), download_url: z.string(), download_url_watermarkfree: z.string().optional(), hdplay: z.string().optional() })).optional(),
     })
     .parse(body);
   const items =
     record.type === "album"
       ? (record.items ?? []).filter((item) => item.type === "video")
       : record.type === undefined || record.type === "video"
-        ? [{ download_url: record.download_url }]
+        ? [{
+            download_url: record.download_url,
+            download_url_watermarkfree: record.download_url_watermarkfree,
+            hdplay: record.hdplay,
+          }]
         : [];
   return items
-    .flatMap((item, index) =>
-      item.download_url && allowedMediaUrl(item.download_url)
+    .flatMap((item, index) => {
+      // For TikTok: prefer watermark-free URLs (hdplay or download_url_watermarkfree)
+      const preferredUrl = item.hdplay || item.download_url_watermarkfree || item.download_url;
+      return preferredUrl && allowedMediaUrl(preferredUrl)
         ? [
             {
-              source: item.download_url,
+              source: preferredUrl,
               filename: safeFilename(record.filename, `video-${index + 1}.mp4`),
             },
           ]
-        : [],
-    )
+        : [];
+    })
     .slice(0, 20);
 }

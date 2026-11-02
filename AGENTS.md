@@ -24,3 +24,4 @@
 - Public page URLs are centralized in `src/lib/seo.ts`; canonical, Open Graph and sitemap addresses share that origin to prevent conflicting search identities.
 - Every route declares `staticData.sitemap`; the router-derived sitemap includes public static pages and all catalog tool/category URLs without duplicate entries or fabricated modification dates.
 - The shared `Logo` renders the approved logo asset in all site headers and footers; the root favicon is derived from that same asset so browser identity stays consistent.
+- Category accents are shared semantic tokens via `site/tool-appearance.ts`; reveal motion is managed by PageShell and always respects reduced-motion preferences.

@@ -32,9 +32,74 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
   const t = getTranslations(lang);
   const info = videoPlatforms[platform];
   
+  const formats: Record<VideoPlatform, Record<LanguageCode, string>> = {
+    youtube: {
+      pt: "Vídeos e Shorts",
+      en: "Videos and Shorts",
+      es: "Videos y Shorts",
+      fr: "Vidéos et Shorts",
+      de: "Videos und Shorts",
+      it: "Video e Shorts",
+      nl: "Video's en Shorts",
+      pl: "Filmy i Shorts",
+      ru: "Видео и Shorts",
+      uk: "Відео та Shorts",
+      tr: "Videolar ve Shorts",
+      ar: "مقاطع الفيديو والشورتات",
+      hi: "वीडियो और शॉर्ट्स",
+      id: "Video dan Shorts",
+      ja: "動画とShorts",
+      ko: "동영상 및 Shorts",
+      zh: "视频和Shorts",
+      vi: "Video và Shorts",
+    },
+    tiktok: {
+      pt: "Vídeos públicos",
+      en: "Public videos",
+      es: "Videos públicos",
+      fr: "Vidéos publiques",
+      de: "Öffentliche Videos",
+      it: "Video pubblici",
+      nl: "Openbare video's",
+      pl: "Publiczne filmy",
+      ru: "Публичные видео",
+      uk: "Публічні відео",
+      tr: "Herkese açık videolar",
+      ar: "مقاطع الفيديو العامة",
+      hi: "सार्वजनिक वीडियो",
+      id: "Video publik",
+      ja: "公開動画",
+      ko: "공개 동영상",
+      zh: "公开视频",
+      vi: "Video công khai",
+    },
+    instagram: {
+      pt: "Reels e publicações com vídeo",
+      en: "Reels and video posts",
+      es: "Reels y publicaciones con video",
+      fr: "Reels et publications vidéo",
+      de: "Reels und Videobeiträge",
+      it: "Reels e post video",
+      nl: "Reels en videoberichten",
+      pl: "Reels i posty wideo",
+      ru: "Reels и видео-посты",
+      uk: "Reels та відео-пости",
+      tr: "Reels ve video gönderileri",
+      ar: "ريلز ومنشورات الفيديو",
+      hi: "रील्स और वीडियो पोस्ट",
+      id: "Reels dan postingan video",
+      ja: "リールと動画投稿",
+      ko: "릴스 및 동영상 게시물",
+      zh: "Reels和视频帖子",
+      vi: "Reels và bài đăng video",
+    },
+  };
+  
+  const platformFormats = formats[platform][lang] || formats[platform].pt;
+  
   const texts: Record<LanguageCode, VideoDownloaderTexts> = {
     pt: {
-      intro: `${info.formats}. Cole o link de um vídeo seu ou autorizado para preparar o arquivo.`,
+      intro: `${platformFormats}. Cole o link de um vídeo seu ou autorizado para preparar o arquivo.`,
       placeholder: "Cole o link do vídeo aqui",
       qualityLabel: "Qualidade",
       authCheckbox: "Confirmo que o vídeo é meu ou tenho autorização para baixá-lo",
@@ -71,7 +136,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     en: {
-      intro: `${info.formats}. Paste the link to your video or one you're authorized to download to prepare the file.`,
+      intro: `${platformFormats}. Paste the link to your video or one you're authorized to download to prepare the file.`,
       placeholder: "Paste video link here",
       qualityLabel: "Quality",
       authCheckbox: "I confirm this video is mine or I have permission to download it",
@@ -108,7 +173,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     es: {
-      intro: `${info.formats}. Pega el enlace de tu video o uno que estés autorizado a descargar para preparar el archivo.`,
+      intro: `${platformFormats}. Pega el enlace de tu video o uno que estés autorizado a descargar para preparar el archivo.`,
       placeholder: "Pega el enlace del video aquí",
       qualityLabel: "Calidad",
       authCheckbox: "Confirmo que este video es mío o tengo permiso para descargarlo",
@@ -145,7 +210,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     fr: {
-      intro: `${info.formats}. Collez le lien de votre vidéo ou d'une vidéo que vous êtes autorisé à télécharger pour préparer le fichier.`,
+      intro: `${platformFormats}. Collez le lien de votre vidéo ou d'une vidéo que vous êtes autorisé à télécharger pour préparer le fichier.`,
       placeholder: "Collez le lien de la vidéo ici",
       qualityLabel: "Qualité",
       authCheckbox: "Je confirme que cette vidéo est la mienne ou que j'ai la permission de la télécharger",
@@ -182,7 +247,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     de: {
-      intro: `${info.formats}. Fügen Sie den Link zu Ihrem Video oder einem Video ein, das Sie herunterladen dürfen, um die Datei vorzubereiten.`,
+      intro: `${platformFormats}. Fügen Sie den Link zu Ihrem Video oder einem Video ein, das Sie herunterladen dürfen, um die Datei vorzubereiten.`,
       placeholder: "Videolink hier einfügen",
       qualityLabel: "Qualität",
       authCheckbox: "Ich bestätige, dass dieses Video mir gehört oder ich die Erlaubnis habe, es herunterzuladen",
@@ -219,7 +284,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     it: {
-      intro: `${info.formats}. Incolla il link del tuo video o di uno che sei autorizzato a scaricare per preparare il file.`,
+      intro: `${platformFormats}. Incolla il link del tuo video o di uno che sei autorizzato a scaricare per preparare il file.`,
       placeholder: "Incolla il link del video qui",
       qualityLabel: "Qualità",
       authCheckbox: "Confermo che questo video è mio o ho il permesso di scaricarlo",
@@ -256,7 +321,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     nl: {
-      intro: `${info.formats}. Plak de link naar uw video of een video die u mag downloaden om het bestand voor te bereiden.`,
+      intro: `${platformFormats}. Plak de link naar uw video of een video die u mag downloaden om het bestand voor te bereiden.`,
       placeholder: "Plak videolink hier",
       qualityLabel: "Kwaliteit",
       authCheckbox: "Ik bevestig dat deze video van mij is of dat ik toestemming heb om hem te downloaden",
@@ -293,7 +358,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     pl: {
-      intro: `${info.formats}. Wklej link do swojego filmu lub filmu, który masz pozwolenie pobrać, aby przygotować plik.`,
+      intro: `${platformFormats}. Wklej link do swojego filmu lub filmu, który masz pozwolenie pobrać, aby przygotować plik.`,
       placeholder: "Wklej link do filmu tutaj",
       qualityLabel: "Jakość",
       authCheckbox: "Potwierdzam, że ten film jest mój lub mam pozwolenie na jego pobranie",
@@ -330,7 +395,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     ru: {
-      intro: `${info.formats}. Вставьте ссылку на ваше видео или видео, которое вы имеете право скачать, чтобы подготовить файл.`,
+      intro: `${platformFormats}. Вставьте ссылку на ваше видео или видео, которое вы имеете право скачать, чтобы подготовить файл.`,
       placeholder: "Вставьте ссылку на видео здесь",
       qualityLabel: "Качество",
       authCheckbox: "Я подтверждаю, что это видео принадлежит мне или у меня есть разрешение на его загрузку",
@@ -367,7 +432,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     uk: {
-      intro: `${info.formats}. Вставте посилання на ваше відео або відео, яке ви маєте право завантажити, щоб підготувати файл.`,
+      intro: `${platformFormats}. Вставте посилання на ваше відео або відео, яке ви маєте право завантажити, щоб підготувати файл.`,
       placeholder: "Вставте посилання на відео тут",
       qualityLabel: "Якість",
       authCheckbox: "Я підтверджую, що це відео належить мені або я маю дозвіл на його завантаження",
@@ -404,7 +469,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     tr: {
-      intro: `${info.formats}. Dosyayı hazırlamak için videonuzun veya indirme yetkisine sahip olduğunuz bir videonun bağlantısını yapıştırın.`,
+      intro: `${platformFormats}. Dosyayı hazırlamak için videonuzun veya indirme yetkisine sahip olduğunuz bir videonun bağlantısını yapıştırın.`,
       placeholder: "Video bağlantısını buraya yapıştırın",
       qualityLabel: "Kalite",
       authCheckbox: "Bu videonun bana ait olduğunu veya indirme iznim olduğunu onaylıyorum",
@@ -441,7 +506,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     ar: {
-      intro: `${info.formats}. الصق رابط الفيديو الخاص بك أو الفيديو المصرح لك بتنزيله لإعداد الملف.`,
+      intro: `${platformFormats}. الصق رابط الفيديو الخاص بك أو الفيديو المصرح لك بتنزيله لإعداد الملف.`,
       placeholder: "الصق رابط الفيديو هنا",
       qualityLabel: "الجودة",
       authCheckbox: "أؤكد أن هذا الفيديو ملكي أو لدي إذن بتنزيله",
@@ -478,7 +543,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     hi: {
-      intro: `${info.formats}. फ़ाइल तैयार करने के लिए अपने वीडियो या जिसे डाउनलोड करने की अनुमति है उसका लिंक पेस्ट करें।`,
+      intro: `${platformFormats}. फ़ाइल तैयार करने के लिए अपने वीडियो या जिसे डाउनलोड करने की अनुमति है उसका लिंक पेस्ट करें।`,
       placeholder: "वीडियो लिंक यहाँ पेस्ट करें",
       qualityLabel: "गुणवत्ता",
       authCheckbox: "मैं पुष्टि करता/करती हूँ कि यह वीडियो मेरा है या मुझे इसे डाउनलोड करने की अनुमति है",
@@ -515,7 +580,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     id: {
-      intro: `${info.formats}. Tempel tautan ke video Anda atau video yang Anda izinkan untuk diunduh untuk menyiapkan file.`,
+      intro: `${platformFormats}. Tempel tautan ke video Anda atau video yang Anda izinkan untuk diunduh untuk menyiapkan file.`,
       placeholder: "Tempel tautan video di sini",
       qualityLabel: "Kualitas",
       authCheckbox: "Saya mengonfirmasi bahwa video ini milik saya atau saya memiliki izin untuk mengunduhnya",
@@ -552,7 +617,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     ja: {
-      intro: `${info.formats}。ファイルを準備するために、あなたの動画またはダウンロードが許可されている動画のリンクを貼り付けてください。`,
+      intro: `${platformFormats}。ファイルを準備するために、あなたの動画またはダウンロードが許可されている動画のリンクを貼り付けてください。`,
       placeholder: "動画リンクをここに貼り付け",
       qualityLabel: "品質",
       authCheckbox: "この動画が自分のものであるか、ダウンロードする許可があることを確認します",
@@ -589,7 +654,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     ko: {
-      intro: `${info.formats}. 파일을 준비하기 위해 본인의 비디오 또는 다운로드 권한이 있는 비디오 링크를 붙여넣으세요.`,
+      intro: `${platformFormats}. 파일을 준비하기 위해 본인의 비디오 또는 다운로드 권한이 있는 비디오 링크를 붙여넣으세요.`,
       placeholder: "비디오 링크를 여기에 붙여넣기",
       qualityLabel: "품질",
       authCheckbox: "이 비디오가 내 것이거나 다운로드할 권한이 있음을 확인합니다",
@@ -626,7 +691,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     zh: {
-      intro: `${info.formats}。粘贴您的视频或您有权下载的视频的链接以准备文件。`,
+      intro: `${platformFormats}。粘贴您的视频或您有权下载的视频的链接以准备文件。`,
       placeholder: "在此粘贴视频链接",
       qualityLabel: "质量",
       authCheckbox: "我确认此视频是我的或我有权下载它",
@@ -663,7 +728,7 @@ function getVideoTexts(lang: LanguageCode, platform: VideoPlatform): VideoDownlo
       ],
     },
     vi: {
-      intro: `${info.formats}. Dán liên kết đến video của bạn hoặc video bạn được phép tải xuống để chuẩn bị tệp.`,
+      intro: `${platformFormats}. Dán liên kết đến video của bạn hoặc video bạn được phép tải xuống để chuẩn bị tệp.`,
       placeholder: "Dán liên kết video vào đây",
       qualityLabel: "Chất lượng",
       authCheckbox: "Tôi xác nhận video này là của tôi hoặc tôi có quyền tải xuống",

@@ -8,6 +8,7 @@ import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog"
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     ...pageMeta(title, SITE.description, "/"),
     scripts: [
@@ -57,7 +58,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-24">
           <p className="eyebrow flex items-center gap-2 animate-fade-in-up">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" aria-hidden />{" "}
-            Primeiras ferramentas já no ar
+            Ferramentas disponíveis
           </p>
           <h1
             id="hero-title"
@@ -89,8 +90,8 @@ function Index() {
           id="destaques"
           title={
             <>
-              As primeiras da fila.{" "}
-              <span className="text-muted-foreground">Lançadas uma de cada vez.</span>
+              Prontas para o seu dia.{" "}
+              <span className="text-muted-foreground">Escolha o que precisa.</span>
             </>
           }
         />
@@ -129,7 +130,7 @@ function Index() {
                     {c.description}
                   </span>
                   <span className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
-                    {count} planejada{count !== 1 && "s"}
+                    {count} ferramenta{count !== 1 && "s"}
                     <ArrowRight
                       className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-primary"
                       aria-hidden

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ProsePage, pageMeta } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/termos")({
+  staticData: { sitemap: true },
   head: () =>
     pageMeta(
       "Termos de uso — i-Tools",

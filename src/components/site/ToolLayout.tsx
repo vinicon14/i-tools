@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { pageUrl } from "@/lib/seo";
 import { getCategory, getTool, SITE, toolsByCategory } from "@/lib/catalog";
 import { AdSlot, PageShell, pageMeta } from "./Layout";
 import { StatusBadge } from "./StatusBadge";
@@ -20,6 +21,7 @@ export function toolHead(slug: string, title: string, description: string) {
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: tool.name,
+          url: pageUrl(`/${slug}`),
           description,
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",

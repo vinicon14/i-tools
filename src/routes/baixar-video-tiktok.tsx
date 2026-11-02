@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { pageMeta } from "@/components/site/Layout";
+import { toolHead } from "@/components/site/ToolLayout";
 import { VideoDownloader } from "@/components/site/VideoDownloader";
 
 export const Route = createFileRoute("/baixar-video-tiktok")({
+  staticData: { sitemap: true },
   head: () =>
-    pageMeta(
-      "Baixar vídeo do TikTok — em preparação | i-Tools",
-      "Ferramenta de download de vídeos públicos do TikTok em preparação. Verifique o formato do link; downloads ainda não disponíveis.",
-      "/baixar-video-tiktok",
+    toolHead(
+      "baixar-video-tiktok",
+      "Baixar vídeo do TikTok grátis — i-Tools",
+      "Baixe vídeos públicos do TikTok que sejam seus ou autorizados. Grátis, sem cadastro e com download direto do arquivo.",
     ),
   component: () => <VideoDownloader platform="tiktok" />,
 });

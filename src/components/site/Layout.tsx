@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { pageUrl } from "@/lib/seo";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 
@@ -74,12 +75,13 @@ export const pageMeta = (title: string, description: string, path: string, type 
   meta: [
     { title },
     { name: "description", content: description },
+    { name: "robots", content: "index, follow" },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: type },
-    { property: "og:url", content: path },
+    { property: "og:url", content: pageUrl(path) },
     { property: "og:locale", content: "pt_BR" },
     { name: "twitter:card", content: "summary_large_image" },
   ],
-  links: [{ rel: "canonical", href: path }],
+  links: [{ rel: "canonical", href: pageUrl(path) }],
 });

@@ -14,14 +14,25 @@ import { Route as ToolRouteImport } from './routes/$tool'
 import { Route as BaixarVideoInstagramRouteImport } from './routes/baixar-video-instagram'
 import { Route as BaixarVideoTiktokRouteImport } from './routes/baixar-video-tiktok'
 import { Route as BaixarVideoYoutubeRouteImport } from './routes/baixar-video-youtube'
+import { Route as ComprimirImagemRouteImport } from './routes/comprimir-imagem'
+import { Route as ContadorDePalavrasRouteImport } from './routes/contador-de-palavras'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CronometroRouteImport } from './routes/cronometro'
+import { Route as JsonRouteImport } from './routes/json'
 import { Route as MeuCepRouteImport } from './routes/meu-cep'
 import { Route as MeuIpRouteImport } from './routes/meu-ip'
+import { Route as PaletaDeCoresRouteImport } from './routes/paleta-de-cores'
+import { Route as PdfRouteImport } from './routes/pdf'
+import { Route as PorcentagemRouteImport } from './routes/porcentagem'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as QrRouteImport } from './routes/qr'
+import { Route as RedimensionarImagemRouteImport } from './routes/redimensionar-imagem'
+import { Route as SenhasRouteImport } from './routes/senhas'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
+import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,9 +59,29 @@ const BaixarVideoYoutubeRoute = BaixarVideoYoutubeRouteImport.update({
   path: '/baixar-video-youtube',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComprimirImagemRoute = ComprimirImagemRouteImport.update({
+  id: '/comprimir-imagem',
+  path: '/comprimir-imagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContadorDePalavrasRoute = ContadorDePalavrasRouteImport.update({
+  id: '/contador-de-palavras',
+  path: '/contador-de-palavras',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CronometroRoute = CronometroRouteImport.update({
+  id: '/cronometro',
+  path: '/cronometro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JsonRoute = JsonRouteImport.update({
+  id: '/json',
+  path: '/json',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeuCepRoute = MeuCepRouteImport.update({
@@ -63,6 +94,21 @@ const MeuIpRoute = MeuIpRouteImport.update({
   path: '/meu-ip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaletaDeCoresRoute = PaletaDeCoresRouteImport.update({
+  id: '/paleta-de-cores',
+  path: '/paleta-de-cores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PdfRoute = PdfRouteImport.update({
+  id: '/pdf',
+  path: '/pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PorcentagemRoute = PorcentagemRouteImport.update({
+  id: '/porcentagem',
+  path: '/porcentagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
@@ -71,6 +117,21 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
 const QrRoute = QrRouteImport.update({
   id: '/qr',
   path: '/qr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RedimensionarImagemRoute = RedimensionarImagemRouteImport.update({
+  id: '/redimensionar-imagem',
+  path: '/redimensionar-imagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SenhasRoute = SenhasRouteImport.update({
+  id: '/senhas',
+  path: '/senhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -88,6 +149,11 @@ const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   path: '/categorias/$categoria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicVideoFileRoute = ApiPublicVideoFileRouteImport.update({
+  id: '/api/public/video-file',
+  path: '/api/public/video-file',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,14 +161,25 @@ export interface FileRoutesByFullPath {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/comprimir-imagem': typeof ComprimirImagemRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/paleta-de-cores': typeof PaletaDeCoresRoute
+  '/pdf': typeof PdfRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/redimensionar-imagem': typeof RedimensionarImagemRoute
+  '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,14 +187,25 @@ export interface FileRoutesByTo {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/comprimir-imagem': typeof ComprimirImagemRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/paleta-de-cores': typeof PaletaDeCoresRoute
+  '/pdf': typeof PdfRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/redimensionar-imagem': typeof RedimensionarImagemRoute
+  '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -126,14 +214,25 @@ export interface FileRoutesById {
   '/baixar-video-instagram': typeof BaixarVideoInstagramRoute
   '/baixar-video-tiktok': typeof BaixarVideoTiktokRoute
   '/baixar-video-youtube': typeof BaixarVideoYoutubeRoute
+  '/comprimir-imagem': typeof ComprimirImagemRoute
+  '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
+  '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
+  '/paleta-de-cores': typeof PaletaDeCoresRoute
+  '/pdf': typeof PdfRoute
+  '/porcentagem': typeof PorcentagemRoute
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
+  '/redimensionar-imagem': typeof RedimensionarImagemRoute
+  '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -143,14 +242,25 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/comprimir-imagem'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/paleta-de-cores'
+    | '/pdf'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/redimensionar-imagem'
+    | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -158,14 +268,25 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/comprimir-imagem'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/paleta-de-cores'
+    | '/pdf'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/redimensionar-imagem'
+    | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   id:
     | '__root__'
     | '/'
@@ -173,14 +294,25 @@ export interface FileRouteTypes {
     | '/baixar-video-instagram'
     | '/baixar-video-tiktok'
     | '/baixar-video-youtube'
+    | '/comprimir-imagem'
+    | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
+    | '/json'
     | '/meu-cep'
     | '/meu-ip'
+    | '/paleta-de-cores'
+    | '/pdf'
+    | '/porcentagem'
     | '/privacidade'
     | '/qr'
+    | '/redimensionar-imagem'
+    | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -189,14 +321,25 @@ export interface RootRouteChildren {
   BaixarVideoInstagramRoute: typeof BaixarVideoInstagramRoute
   BaixarVideoTiktokRoute: typeof BaixarVideoTiktokRoute
   BaixarVideoYoutubeRoute: typeof BaixarVideoYoutubeRoute
+  ComprimirImagemRoute: typeof ComprimirImagemRoute
+  ContadorDePalavrasRoute: typeof ContadorDePalavrasRoute
   ContatoRoute: typeof ContatoRoute
+  CronometroRoute: typeof CronometroRoute
+  JsonRoute: typeof JsonRoute
   MeuCepRoute: typeof MeuCepRoute
   MeuIpRoute: typeof MeuIpRoute
+  PaletaDeCoresRoute: typeof PaletaDeCoresRoute
+  PdfRoute: typeof PdfRoute
+  PorcentagemRoute: typeof PorcentagemRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   QrRoute: typeof QrRoute
+  RedimensionarImagemRoute: typeof RedimensionarImagemRoute
+  SenhasRoute: typeof SenhasRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
+  ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -236,11 +379,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BaixarVideoYoutubeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/comprimir-imagem': {
+      id: '/comprimir-imagem'
+      path: '/comprimir-imagem'
+      fullPath: '/comprimir-imagem'
+      preLoaderRoute: typeof ComprimirImagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contador-de-palavras': {
+      id: '/contador-de-palavras'
+      path: '/contador-de-palavras'
+      fullPath: '/contador-de-palavras'
+      preLoaderRoute: typeof ContadorDePalavrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contato': {
       id: '/contato'
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cronometro': {
+      id: '/cronometro'
+      path: '/cronometro'
+      fullPath: '/cronometro'
+      preLoaderRoute: typeof CronometroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/json': {
+      id: '/json'
+      path: '/json'
+      fullPath: '/json'
+      preLoaderRoute: typeof JsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meu-cep': {
@@ -257,6 +428,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeuIpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/paleta-de-cores': {
+      id: '/paleta-de-cores'
+      path: '/paleta-de-cores'
+      fullPath: '/paleta-de-cores'
+      preLoaderRoute: typeof PaletaDeCoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pdf': {
+      id: '/pdf'
+      path: '/pdf'
+      fullPath: '/pdf'
+      preLoaderRoute: typeof PdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/porcentagem': {
+      id: '/porcentagem'
+      path: '/porcentagem'
+      fullPath: '/porcentagem'
+      preLoaderRoute: typeof PorcentagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacidade': {
       id: '/privacidade'
       path: '/privacidade'
@@ -269,6 +461,27 @@ declare module '@tanstack/react-router' {
       path: '/qr'
       fullPath: '/qr'
       preLoaderRoute: typeof QrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/redimensionar-imagem': {
+      id: '/redimensionar-imagem'
+      path: '/redimensionar-imagem'
+      fullPath: '/redimensionar-imagem'
+      preLoaderRoute: typeof RedimensionarImagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/senhas': {
+      id: '/senhas'
+      path: '/senhas'
+      fullPath: '/senhas'
+      preLoaderRoute: typeof SenhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -292,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriasCategoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/video-file': {
+      id: '/api/public/video-file'
+      path: '/api/public/video-file'
+      fullPath: '/api/public/video-file'
+      preLoaderRoute: typeof ApiPublicVideoFileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -301,14 +521,25 @@ const rootRouteChildren: RootRouteChildren = {
   BaixarVideoInstagramRoute: BaixarVideoInstagramRoute,
   BaixarVideoTiktokRoute: BaixarVideoTiktokRoute,
   BaixarVideoYoutubeRoute: BaixarVideoYoutubeRoute,
+  ComprimirImagemRoute: ComprimirImagemRoute,
+  ContadorDePalavrasRoute: ContadorDePalavrasRoute,
   ContatoRoute: ContatoRoute,
+  CronometroRoute: CronometroRoute,
+  JsonRoute: JsonRoute,
   MeuCepRoute: MeuCepRoute,
   MeuIpRoute: MeuIpRoute,
+  PaletaDeCoresRoute: PaletaDeCoresRoute,
+  PdfRoute: PdfRoute,
+  PorcentagemRoute: PorcentagemRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   QrRoute: QrRoute,
+  RedimensionarImagemRoute: RedimensionarImagemRoute,
+  SenhasRoute: SenhasRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
+  ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

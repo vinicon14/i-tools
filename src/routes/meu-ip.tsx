@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { btnSecondary, panel, ToolLayout, toolHead } from "@/components/site/ToolLayout";
 
 export const Route = createFileRoute("/meu-ip")({
+  staticData: { sitemap: true },
   head: () =>
     toolHead(
       "meu-ip",

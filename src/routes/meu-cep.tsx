@@ -10,6 +10,7 @@ import {
 } from "@/components/site/ToolLayout";
 
 export const Route = createFileRoute("/meu-cep")({
+  staticData: { sitemap: true },
   head: () =>
     toolHead(
       "meu-cep",

@@ -11,6 +11,7 @@ import {
 } from "@/components/site/ToolLayout";
 
 export const Route = createFileRoute("/qr")({
+  staticData: { sitemap: true },
   head: () =>
     toolHead(
       "qr",

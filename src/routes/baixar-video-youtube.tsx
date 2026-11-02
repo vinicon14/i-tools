@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { pageMeta } from "@/components/site/Layout";
+import { toolHead } from "@/components/site/ToolLayout";
 import { VideoDownloader } from "@/components/site/VideoDownloader";
 
 export const Route = createFileRoute("/baixar-video-youtube")({
+  staticData: { sitemap: true },
   head: () =>
-    pageMeta(
-      "Baixar vídeo do YouTube e Shorts — em preparação | i-Tools",
-      "Ferramenta de download de vídeos do YouTube e Shorts em preparação. Verifique o formato do link; downloads ainda não disponíveis.",
-      "/baixar-video-youtube",
+    toolHead(
+      "baixar-video-youtube",
+      "Baixar vídeo do YouTube e Shorts grátis — i-Tools",
+      "Baixe vídeos públicos autorizados do YouTube e Shorts. Escolha a qualidade desejada e baixe o arquivo gratuitamente, sem cadastro.",
     ),
   component: () => <VideoDownloader platform="youtube" />,
 });

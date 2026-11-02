@@ -1,17 +1,14 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/itools-logo.png";
 
 export function Logo() {
   return (
     <Link
       to="/"
-      className="flex items-baseline gap-0.5 text-foreground"
+      className="inline-flex h-10 w-28 shrink-0 items-center"
       aria-label="i-Tools — página inicial"
     >
-      <span className="font-display text-2xl italic leading-none">i</span>
-      <span className="text-primary text-2xl leading-none" aria-hidden>
-        ·
-      </span>
-      <span className="text-lg font-semibold tracking-tight leading-none">Tools</span>
+      <img src={logo} alt="i-Tools" width={660} height={200} className="block h-auto w-full" />
     </Link>
   );
 }

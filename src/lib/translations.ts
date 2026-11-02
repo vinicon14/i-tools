@@ -46,6 +46,7 @@ export type Translations = {
     notFound: string;
     notFoundDescription: string;
     backToHome: string;
+    advertisement: string;
   };
 };
 
@@ -169,6 +170,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Página não encontrada",
       notFoundDescription: "Esta página não existe ou foi movida.",
       backToHome: "Voltar ao início",
+      advertisement: "Publicidade",
     },
   },
   en: {
@@ -290,6 +292,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Page not found",
       notFoundDescription: "This page doesn't exist or has been moved.",
       backToHome: "Back to home",
+      advertisement: "Advertisement",
     },
   },
   es: {
@@ -411,6 +414,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Página no encontrada",
       notFoundDescription: "Esta página no existe o ha sido movida.",
       backToHome: "Volver al inicio",
+      advertisement: "Publicidad",
     },
   },
   fr: {
@@ -532,6 +536,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Page non trouvée",
       notFoundDescription: "Cette page n'existe pas ou a été déplacée.",
       backToHome: "Retour à l'accueil",
+      advertisement: "Publicité",
     },
   },
   de: {
@@ -653,6 +658,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Seite nicht gefunden",
       notFoundDescription: "Diese Seite existiert nicht oder wurde verschoben.",
       backToHome: "Zurück zur Startseite",
+      advertisement: "Werbung",
     },
   },
   it: {
@@ -774,6 +780,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Pagina non trovata",
       notFoundDescription: "Questa pagina non esiste o è stata spostata.",
       backToHome: "Torna alla home",
+      advertisement: "Pubblicità",
     },
   },
   nl: {
@@ -895,6 +902,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Pagina niet gevonden",
       notFoundDescription: "Deze pagina bestaat niet of is verplaatst.",
       backToHome: "Terug naar home",
+      advertisement: "Advertentie",
     },
   },
   pl: {
@@ -1016,6 +1024,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Strona nie znaleziona",
       notFoundDescription: "Ta strona nie istnieje lub została przeniesiona.",
       backToHome: "Powrót do strony głównej",
+      advertisement: "Reklama",
     },
   },
   ru: {
@@ -1137,6 +1146,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Страница не найдена",
       notFoundDescription: "Эта страница не существует или была перемещена.",
       backToHome: "Вернуться на главную",
+      advertisement: "Реклама",
     },
   },
   uk: {
@@ -1258,6 +1268,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Сторінка не знайдена",
       notFoundDescription: "Ця сторінка не існує або була переміщена.",
       backToHome: "Повернутися на головну",
+      advertisement: "Реклама",
     },
   },
   tr: {
@@ -1379,6 +1390,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Sayfa bulunamadı",
       notFoundDescription: "Bu sayfa mevcut değil veya taşındı.",
       backToHome: "Ana sayfaya dön",
+      advertisement: "Reklam",
     },
   },
   ar: {
@@ -1500,6 +1512,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "الصفحة غير موجودة",
       notFoundDescription: "هذه الصفحة غير موجودة أو تم نقلها.",
       backToHome: "العودة إلى الصفحة الرئيسية",
+      advertisement: "إعلان",
     },
   },
   hi: {
@@ -1621,6 +1634,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "पृष्ठ नहीं मिला",
       notFoundDescription: "यह पृष्ठ मौजूद नहीं है या स्थानांतरित किया गया है।",
       backToHome: "होम पर वापस जाएं",
+      advertisement: "विज्ञापन",
     },
   },
   id: {
@@ -1742,6 +1756,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Halaman tidak ditemukan",
       notFoundDescription: "Halaman ini tidak ada atau telah dipindahkan.",
       backToHome: "Kembali ke beranda",
+      advertisement: "Iklan",
     },
   },
   ja: {
@@ -1863,6 +1878,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "ページが見つかりません",
       notFoundDescription: "このページは存在しないか、移動されました。",
       backToHome: "ホームに戻る",
+      advertisement: "広告",
     },
   },
   ko: {
@@ -1984,6 +2000,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "페이지를 찾을 수 없음",
       notFoundDescription: "이 페이지는 존재하지 않거나 이동되었습니다.",
       backToHome: "홈으로 돌아가기",
+      advertisement: "광고",
     },
   },
   zh: {
@@ -2105,6 +2122,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "未找到页面",
       notFoundDescription: "此页面不存在或已移动。",
       backToHome: "返回首页",
+      advertisement: "广告",
     },
   },
   vi: {
@@ -2226,6 +2244,7 @@ export const translations: Record<LanguageCode, Translations> = {
       notFound: "Không tìm thấy trang",
       notFoundDescription: "Trang này không tồn tại hoặc đã được di chuyển.",
       backToHome: "Quay lại trang chủ",
+      advertisement: "Quảng cáo",
     },
   },
 };

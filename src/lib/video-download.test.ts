@@ -17,6 +17,7 @@ describe("video downloads", () => {
   });
   it("accepts a provider-signed youtube tunnel", () => {
     expect(mediaFiles({ ok: true, download_url: "https://api.fastsaver.io/v1/tunnel?id=example" })).toHaveLength(1);
+    expect(mediaFiles({ ok: true, download_url: "https://drogon.fastsaver.io/dl?id=example" })).toHaveLength(1);
   });
   it("requires a valid signature and rejects tampering", async () => {
     const token = await createTicket("https://a.cdninstagram.com/video", "video.mp4", "test-only-signing-value");

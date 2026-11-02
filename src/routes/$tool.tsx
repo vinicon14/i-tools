@@ -4,12 +4,18 @@ import { AdSlot, PageShell, pageMeta } from "@/components/site/Layout";
 import { StatusBadge } from "@/components/site/StatusBadge";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { getCategory, getTool, toolsByCategory } from "@/lib/catalog";
+import { isToolEnabled } from "@/lib/tool-middleware.functions";
 
 export const Route = createFileRoute("/$tool")({
   staticData: { sitemap: true },
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const tool = getTool(params.tool);
     if (!tool) throw notFound();
+    
+    // Check if tool is enabled (admin can disable tools)
+    const enabled = await isToolEnabled(params.tool);
+    if (!enabled) throw notFound();
+    
     return { slug: tool.slug };
   },
   head: ({ loaderData }) => {

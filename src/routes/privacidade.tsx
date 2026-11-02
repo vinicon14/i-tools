@@ -28,6 +28,13 @@ export const Route = createFileRoute("/privacidade")({
         O site poderá utilizar cookies de medição de audiência e de redes de anúncios. Detalhes
         sobre cada parceiro serão listados aqui, em conformidade com a LGPD.
       </p>
+      <h2>Analytics e estatísticas</h2>
+      <p>
+        Para melhorar nossos serviços, coletamos estatísticas de uso de forma anônima, incluindo
+        informações sobre páginas visitadas, ferramentas utilizadas e localização aproximada
+        (país/cidade). Seu endereço IP nunca é armazenado de forma identificável e todos os dados
+        são agregados e anonimizados em conformidade com a LGPD.
+      </p>
     </ProsePage>
   ),
 });

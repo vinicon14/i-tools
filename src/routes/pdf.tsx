@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useAnalytics } from "@/hooks/use-analytics";
 import { useState } from "react";
 import { ArrowDown, ArrowUp, Download, FilePlus, LoaderCircle, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,8 +16,6 @@ export const Route = createFileRoute("/pdf")({
   component: PdfPage,
 });
 function PdfPage() {
-  useAnalytics('pdf');
-
   const [mode, setMode] = useState<"create" | "images">("create");
   const [files, setFiles] = useState<File[]>([]);
   const [busy, setBusy] = useState(false);

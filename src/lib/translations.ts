@@ -1,6 +1,7 @@
 import type { LanguageCode } from "./i18n";
 
 export type Translations = {
+  lang: LanguageCode;
   site: {
     name: string;
     tagline: string;
@@ -2230,5 +2231,6 @@ export const translations: Record<LanguageCode, Translations> = {
 };
 
 export function getTranslations(lang: LanguageCode): Translations {
-  return translations[lang] ?? translations.pt;
+  const t = translations[lang] ?? translations.pt;
+  return { ...t, lang };
 }

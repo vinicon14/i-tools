@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Aplicar logo escolhida e substituir identidade Lovable visível — verificar topo, rodapé e ícone da aba
+- [x] Aplicar logo Editorial no topo, rodapé e ícone da aba — verificados; selo Lovable já oculto
 - [x] Implementar e testar senhas, contador de palavras, JSON e porcentagem
 - [x] Páginas de YouTube, TikTok e Instagram com SEO e validação de links
 - [x] Downloads reais de YouTube, TikTok e Instagram — FastSaver conectado; três arquivos MP4 baixados e verificados

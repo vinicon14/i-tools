@@ -20,6 +20,11 @@ export function toolHead(slug: string, title: string, description: string, faq?:
   const path = `/${slug}`;
   const fullUrl = pageUrl(path, lang);
   
+  const categoryTranslation = category ? t.categories[category.slug as keyof typeof t.categories] : undefined;
+  const categoryName = categoryTranslation?.name || category?.name;
+  const toolTranslation = t.tools[slug as keyof typeof t.tools];
+  const toolName = toolTranslation?.name || tool.name;
+  
   const breadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -30,12 +35,12 @@ export function toolHead(slug: string, title: string, description: string, faq?:
             {
               "@type": "ListItem",
               position: 2,
-              name: category.name,
+              name: categoryName,
               item: pageUrl(`/categorias/${category.slug}`, lang),
             },
           ]
         : []),
-      { "@type": "ListItem", position: category ? 3 : 2, name: tool.name, item: fullUrl },
+      { "@type": "ListItem", position: category ? 3 : 2, name: toolName, item: fullUrl },
     ],
   };
   const faqSchema = faq && faq.length > 0 ? {
@@ -62,7 +67,7 @@ export function toolHead(slug: string, title: string, description: string, faq?:
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: tool.name,
+          name: toolName,
           url: fullUrl,
           description,
           applicationCategory: "UtilitiesApplication",

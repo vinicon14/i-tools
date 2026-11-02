@@ -9,6 +9,7 @@ import type { VideoDownloadResult } from "@/lib/video-download";
 import { panel, ToolLayout } from "./ToolLayout";
 import type { LanguageCode } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
+import { getTool } from "@/lib/catalog";
 
 type VideoDownloaderTexts = {
   intro: string;
@@ -758,7 +759,8 @@ export function LocalizedVideoDownloader({
   }
 
   const toolTranslation = t.tools[info.slug as keyof typeof t.tools];
-  const category = info.category;
+  const tool = getTool(info.slug);
+  const category = tool?.category;
   const categoryTranslation = category ? t.categories[category as keyof typeof t.categories] : undefined;
 
   return (

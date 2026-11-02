@@ -10,9 +10,40 @@ import { categoryAppearance } from "./tool-appearance";
 export type Faq = { q: string; a: string };
 
 /** Head for a live tool page: metadata + WebApplication structured data. */
-export function toolHead(slug: string, title: string, description: string) {
+export function toolHead(slug: string, title: string, description: string, faq?: Faq[]) {
   const tool = getTool(slug);
   if (!tool) throw new Error(`Unknown tool: ${slug}`);
+  const category = getCategory(tool.category);
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: pageUrl("/") },
+      ...(category
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: category.name,
+              item: pageUrl(`/categorias/${category.slug}`),
+            },
+          ]
+        : []),
+      { "@type": "ListItem", position: category ? 3 : 2, name: tool.name, item: pageUrl(`/${slug}`) },
+    ],
+  };
+  const faqSchema = faq && faq.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  } : null;
   return {
     ...pageMeta(title, description, `/${slug}`, "website"),
     scripts: [
@@ -32,6 +63,14 @@ export function toolHead(slug: string, title: string, description: string) {
           publisher: { "@type": "Organization", name: SITE.name },
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(breadcrumbs),
+      },
+      ...(faqSchema ? [{
+        type: "application/ld+json",
+        children: JSON.stringify(faqSchema),
+      }] : []),
     ],
   };
 }

@@ -9,17 +9,6 @@ import {
   toolHead,
 } from "@/components/site/ToolLayout";
 
-export const Route = createFileRoute("/meu-cep")({
-  staticData: { sitemap: true },
-  head: () =>
-    toolHead(
-      "meu-cep",
-      "Qual é meu CEP? Descubra pela localização — i-Tools",
-      "Descubra o CEP e o endereço aproximado de onde você está usando a localização do celular ou computador. Grátis e sem cadastro.",
-    ),
-  component: CepPage,
-});
-
 const faq = [
   {
     q: "O CEP é exato?",
@@ -34,6 +23,18 @@ const faq = [
     a: "Sem a permissão o navegador não informa onde você está. Você pode negar ou revogar a qualquer momento.",
   },
 ];
+
+export const Route = createFileRoute("/meu-cep")({
+  staticData: { sitemap: true },
+  head: () =>
+    toolHead(
+      "meu-cep",
+      "Qual é meu CEP? Descubra pela localização — i-Tools",
+      "Descubra o CEP e o endereço aproximado de onde você está usando a localização do celular ou computador. Grátis e sem cadastro.",
+      faq,
+    ),
+  component: CepPage,
+});
 
 type Result = {
   cep?: string;

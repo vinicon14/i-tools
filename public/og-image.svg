@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#f8f9fa"/>
+  <text x="600" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="600" text-anchor="middle" fill="#1a1a1a">
+    <tspan fill="#f97316">i</tspan>-Tools
+  </text>
+  <text x="600" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="28" text-anchor="middle" fill="#6b7280">
+    Ferramentas online gratuitas
+  </text>
+</svg>

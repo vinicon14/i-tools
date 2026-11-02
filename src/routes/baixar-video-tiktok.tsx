@@ -7,8 +7,8 @@ export const Route = createFileRoute("/baixar-video-tiktok")({
   head: () =>
     toolHead(
       "baixar-video-tiktok",
-      "Baixar vídeo do TikTok grátis — i-Tools",
-      "Baixe vídeos públicos do TikTok que sejam seus ou autorizados. Grátis, sem cadastro e com download direto do arquivo.",
+      "Baixar vídeo do TikTok sem marca d'água grátis — i-Tools",
+      "Baixe vídeos públicos do TikTok sem marca d'água que sejam seus ou autorizados. Grátis, sem cadastro e com download direto do arquivo.",
     ),
   component: () => <VideoDownloader platform="tiktok" />,
 });

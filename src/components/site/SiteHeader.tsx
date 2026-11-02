@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { categories } from "@/lib/catalog";
 import { SearchPanel } from "./SearchPanel";
 import { Logo } from "./Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useI18n } from "@/lib/use-i18n";
 
 export function SiteHeader() {
+  const { t } = useI18n();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -30,36 +33,41 @@ export function SiteHeader() {
         href="#conteudo"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-foreground focus:px-3 focus:py-2 focus:text-background"
       >
-        Pular para o conteúdo
+        {t.nav.skipToContent}
       </a>
       <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-8 px-4 sm:px-6">
         <Logo />
-        <nav aria-label="Categorias" className="hidden flex-1 lg:block">
+        <nav aria-label={t.nav.categories} className="hidden flex-1 lg:block">
           <ul className="flex items-center gap-1">
-            {categories.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  to="/categorias/$categoria"
-                  params={{ categoria: c.slug }}
-                  className="rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  activeProps={{ className: "text-foreground" }}
-                >
-                  {c.name.split(" ")[0]}
-                </Link>
-              </li>
-            ))}
+            {categories.map((c) => {
+              const categoryTranslation = t.categories[c.slug as keyof typeof t.categories];
+              const categoryName = categoryTranslation?.name || c.name;
+              return (
+                <li key={c.slug}>
+                  <Link
+                    to={t.lang === "pt" ? "/categorias/$categoria" : "/$lang/categorias/$categoria"}
+                    params={t.lang === "pt" ? { categoria: c.slug } : { lang: t.lang, categoria: c.slug }}
+                    className="rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    activeProps={{ className: "text-foreground" }}
+                  >
+                    {categoryName.split(" ")[0]}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <LanguageSwitcher />
           <Button
             variant="ghost"
             type="button"
             onClick={() => setSearchOpen(true)}
             className="h-10 gap-2 px-3 text-muted-foreground hover:bg-muted hover:text-foreground"
-            aria-label="Buscar ferramentas"
+            aria-label={t.nav.search}
           >
             <Search className="h-4 w-4" aria-hidden />
-            <span className="hidden sm:inline">Buscar</span>
+            <span className="hidden sm:inline">{t.nav.search}</span>
             <kbd className="hidden rounded border border-border px-1.5 font-mono text-[11px] sm:inline">
               /
             </kbd>
@@ -71,46 +79,50 @@ export function SiteHeader() {
                 size="icon"
                 type="button"
                 className="h-10 w-10 hover:bg-muted hover:text-foreground lg:hidden"
-                aria-label="Abrir menu"
+                aria-label={t.nav.openMenu}
               >
                 <Menu className="h-4 w-4" aria-hidden />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80 bg-background">
-              <SheetTitle className="eyebrow">Categorias</SheetTitle>
+              <SheetTitle className="eyebrow">{t.nav.categories}</SheetTitle>
               <nav aria-label="Menu principal" className="mt-6">
                 <ul className="divide-y divide-border border-y border-border">
-                  {categories.map((c, i) => (
-                    <li key={c.slug}>
-                      <Link
-                        to="/categorias/$categoria"
-                        params={{ categoria: c.slug }}
-                        onClick={() => setMenuOpen(false)}
-                        className="flex items-baseline gap-3 py-3 text-foreground hover:text-primary"
-                      >
-                        <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
-                        {c.name}
-                      </Link>
-                    </li>
-                  ))}
+                  {categories.map((c, i) => {
+                    const categoryTranslation = t.categories[c.slug as keyof typeof t.categories];
+                    const categoryName = categoryTranslation?.name || c.name;
+                    return (
+                      <li key={c.slug}>
+                        <Link
+                          to={t.lang === "pt" ? "/categorias/$categoria" : "/$lang/categorias/$categoria"}
+                          params={t.lang === "pt" ? { categoria: c.slug } : { lang: t.lang, categoria: c.slug }}
+                          onClick={() => setMenuOpen(false)}
+                          className="flex items-baseline gap-3 py-3 text-foreground hover:text-primary"
+                        >
+                          <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
+                          {categoryName}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
                   <li>
                     <Link
-                      to="/sobre"
+                      to={t.lang === "pt" ? "/sobre" : `/${t.lang}/sobre`}
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >
-                      Sobre o i-Tools
+                      {t.nav.about}
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to="/contato"
+                      to={t.lang === "pt" ? "/contato" : `/${t.lang}/contato`}
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >
-                      Contato
+                      {t.nav.contact}
                     </Link>
                   </li>
                 </ul>
@@ -121,9 +133,9 @@ export function SiteHeader() {
       </div>
       <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
         <DialogContent className="top-[15%] translate-y-0 border-border bg-background p-4 sm:max-w-xl">
-          <DialogTitle className="sr-only">Buscar ferramentas</DialogTitle>
+          <DialogTitle className="sr-only">{t.nav.search}</DialogTitle>
           <DialogDescription className="sr-only">
-            Encontre uma ferramenta do i-Tools.
+            {t.site.description}
           </DialogDescription>
           <SearchPanel autoFocus onNavigate={() => setSearchOpen(false)} />
         </DialogContent>

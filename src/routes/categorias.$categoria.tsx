@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { getCategory, toolsByCategory } from "@/lib/catalog";
+import { getHrefLangLinks, pageUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/categorias/$categoria")({
   staticData: { sitemap: true },
@@ -18,12 +19,19 @@ export const Route = createFileRoute("/categorias/$categoria")({
           { name: "robots", content: "noindex" },
         ],
       };
+    
+    const path = `/categorias/${c.slug}`;
+    const hrefLangLinks = getHrefLangLinks(path);
+    
     return {
       ...pageMeta(
         `${c.name} — ferramentas online grátis | i-Tools`,
         `${c.description} Ferramentas gratuitas do i-Tools, sem cadastro.`,
-        `/categorias/${c.slug}`,
+        path,
+        "website",
+        "pt",
       ),
+      links: hrefLangLinks,
       scripts: [
         {
           type: "application/ld+json",
@@ -31,8 +39,8 @@ export const Route = createFileRoute("/categorias/$categoria")({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Início", item: `https://i-tools.shop/` },
-              { "@type": "ListItem", position: 2, name: c.name, item: `https://i-tools.shop/categorias/${c.slug}` },
+              { "@type": "ListItem", position: 1, name: "Início", item: pageUrl("/") },
+              { "@type": "ListItem", position: 2, name: c.name, item: pageUrl(path) },
             ],
           }),
         },

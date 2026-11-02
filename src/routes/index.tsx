@@ -5,26 +5,31 @@ import { SearchPanel } from "@/components/site/SearchPanel";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog";
 import { categoryAppearance } from "@/components/site/tool-appearance";
+import { getHrefLangLinks } from "@/lib/seo";
 
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
-  head: () => ({
-    ...pageMeta(title, SITE.description, "/"),
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: SITE.name,
-          inLanguage: "pt-BR",
-          description: SITE.description,
-        }),
-      },
-    ],
-  }),
+  head: () => {
+    const hrefLangLinks = getHrefLangLinks("/");
+    return {
+      ...pageMeta(title, SITE.description, "/", "website", "pt"),
+      links: hrefLangLinks,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: SITE.name,
+            inLanguage: "pt-BR",
+            description: SITE.description,
+          }),
+        },
+      ],
+    };
+  },
   component: Index,
 });
 

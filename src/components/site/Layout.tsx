@@ -1,5 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { pageUrl } from "@/lib/seo";
+import { type LanguageCode } from "@/lib/i18n";
+import { useI18n } from "@/lib/use-i18n";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { BackgroundEffects } from "./BackgroundEffects";
@@ -36,11 +38,14 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 /** Reserved ad space with fixed height to avoid layout shift. Empty until an ad network is connected. */
-export function AdSlot({ label = "Publicidade" }: { label?: string }) {
+export function AdSlot({ label }: { label?: string } = {}) {
+  const { t } = useI18n();
+  const adLabel = label || t.common.advertisement;
+  
   return (
-    <aside aria-label={label} className="mx-auto max-w-6xl px-4 sm:px-6">
+    <aside aria-label={adLabel} className="mx-auto max-w-6xl px-4 sm:px-6">
       <div className="flex h-24 items-center justify-center border-y border-border bg-muted/40 font-mono text-[10px] uppercase text-muted-foreground">
-        {label}
+        {adLabel}
       </div>
     </aside>
   );
@@ -91,19 +96,25 @@ export function ProsePage({
   );
 }
 
-export const pageMeta = (title: string, description: string, path: string, type = "website") => ({
-  meta: [
-    { title },
-    { name: "description", content: description },
-    { name: "robots", content: "index, follow" },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:type", content: type },
-    { property: "og:url", content: pageUrl(path) },
-    { property: "og:image", content: pageUrl("/og-image.png") },
-    { property: "og:locale", content: "pt_BR" },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:image", content: pageUrl("/og-image.png") },
-  ],
-  links: [{ rel: "canonical", href: pageUrl(path) }],
-});
+export const pageMeta = (title: string, description: string, path: string, type = "website", lang?: LanguageCode) => {
+  const currentLang = lang || "pt";
+  const locale = currentLang === "pt" ? "pt_BR" : currentLang === "en" ? "en_US" : `${currentLang}_${currentLang.toUpperCase()}`;
+  const canonicalUrl = pageUrl(path, currentLang);
+  
+  return {
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: type },
+      { property: "og:url", content: canonicalUrl },
+      { property: "og:image", content: pageUrl("/og-image.png") },
+      { property: "og:locale", content: locale },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: pageUrl("/og-image.png") },
+    ],
+    links: [{ rel: "canonical", href: canonicalUrl }],
+  };
+};

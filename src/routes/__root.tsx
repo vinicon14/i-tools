@@ -103,8 +103,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const location = router.state.location;
+  
+  const getLangAndDir = () => {
+    const match = location.pathname.match(/^\/([a-z]{2})(\/.*)?$/);
+    const validLangs = ["pt", "en", "es", "fr", "de", "it", "nl", "pl", "ru", "uk", "tr", "ar", "hi", "id", "ja", "ko", "zh", "vi"];
+    if (match && validLangs.includes(match[1])) {
+      return { lang: match[1], dir: match[1] === "ar" ? "rtl" : "ltr" };
+    }
+    return { lang: "pt", dir: "ltr" };
+  };
+  
+  const { lang, dir } = getLangAndDir();
+  
   return (
-    <html lang="pt-BR">
+    <html lang={lang === "pt" ? "pt-BR" : lang} dir={dir}>
       <head>
         <HeadContent />
       </head>

@@ -108,13 +108,13 @@ export const tools: Tool[] = [
   },
   {
     slug: "baixar-video-tiktok",
-    name: "Baixar vídeo do TikTok",
-    summary: "Baixe vídeos públicos do TikTok que sejam seus ou autorizados.",
+    name: "Baixar vídeo do TikTok sem marca d'água",
+    summary: "Baixe vídeos públicos do TikTok sem marca d'água que sejam seus ou autorizados.",
     category: "produtividade",
     icon: Video,
     status: "live",
     featured: true,
-    keywords: ["tiktok", "baixar", "vídeo", "download"],
+    keywords: ["tiktok", "baixar", "vídeo", "download", "sem marca d'água", "watermark"],
   },
   {
     slug: "baixar-video-instagram",

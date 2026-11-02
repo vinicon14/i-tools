@@ -5,7 +5,7 @@ import { pageUrl } from "./seo";
 describe("individual public tool URLs", () => {
   it("uses the requested public domain for every tool's own address", () => {
     for (const tool of tools) {
-      expect(pageUrl(`/${tool.slug}`)).toBe(`https://jeito-facil-ferramentas-livres.lovable.app/${tool.slug}`);
+      expect(pageUrl(`/${tool.slug}`)).toBe(`https://i-tools.shop/${tool.slug}`);
     }
   });
   it("rejects other origins and fragments", () => {

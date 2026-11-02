@@ -33,7 +33,7 @@ function Index() {
       <section aria-labelledby="hero-title" className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-24">
           <p className="eyebrow flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Primeiras ferramentas já no ar
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Ferramentas disponíveis
           </p>
           <h1 id="hero-title" className="mt-6 max-w-4xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl">
             Ferramentas inteligentes para <em className="text-primary">simplificar</em> seu dia.
@@ -52,7 +52,7 @@ function Index() {
 
       {/* Featured */}
       <section aria-labelledby="destaques" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <SectionHeading index="01" eyebrow="Destaques" id="destaques" title={<>As primeiras da fila. <span className="text-muted-foreground">Lançadas uma de cada vez.</span></>} />
+        <SectionHeading index="01" eyebrow="Destaques" id="destaques" title={<>Prontas para o seu dia. <span className="text-muted-foreground">Escolha o que precisa.</span></>} />
         <ToolGrid tools={featuredTools()} />
       </section>
 
@@ -74,7 +74,7 @@ function Index() {
                   <span className="text-lg font-medium sm:text-xl">{c.name}</span>
                   <span className="hidden text-sm text-muted-foreground sm:block">{c.description}</span>
                   <span className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
-                    {count} planejada{count !== 1 && "s"}
+                    {count} ferramenta{count !== 1 && "s"}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden />
                   </span>
                 </Link>

@@ -17,6 +17,7 @@ import { Route as BaixarVideoYoutubeRouteImport } from './routes/baixar-video-yo
 import { Route as ComprimirImagemRouteImport } from './routes/comprimir-imagem'
 import { Route as ContadorDePalavrasRouteImport } from './routes/contador-de-palavras'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CronometroRouteImport } from './routes/cronometro'
 import { Route as JsonRouteImport } from './routes/json'
 import { Route as MeuCepRouteImport } from './routes/meu-cep'
 import { Route as MeuIpRouteImport } from './routes/meu-ip'
@@ -71,6 +72,11 @@ const ContadorDePalavrasRoute = ContadorDePalavrasRouteImport.update({
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CronometroRoute = CronometroRouteImport.update({
+  id: '/cronometro',
+  path: '/cronometro',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JsonRoute = JsonRouteImport.update({
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/comprimir-imagem': typeof ComprimirImagemRoute
   '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
   '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/comprimir-imagem': typeof ComprimirImagemRoute
   '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
   '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -209,6 +217,7 @@ export interface FileRoutesById {
   '/comprimir-imagem': typeof ComprimirImagemRoute
   '/contador-de-palavras': typeof ContadorDePalavrasRoute
   '/contato': typeof ContatoRoute
+  '/cronometro': typeof CronometroRoute
   '/json': typeof JsonRoute
   '/meu-cep': typeof MeuCepRoute
   '/meu-ip': typeof MeuIpRoute
@@ -236,6 +245,7 @@ export interface FileRouteTypes {
     | '/comprimir-imagem'
     | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
     | '/json'
     | '/meu-cep'
     | '/meu-ip'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/comprimir-imagem'
     | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
     | '/json'
     | '/meu-cep'
     | '/meu-ip'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/comprimir-imagem'
     | '/contador-de-palavras'
     | '/contato'
+    | '/cronometro'
     | '/json'
     | '/meu-cep'
     | '/meu-ip'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   ComprimirImagemRoute: typeof ComprimirImagemRoute
   ContadorDePalavrasRoute: typeof ContadorDePalavrasRoute
   ContatoRoute: typeof ContatoRoute
+  CronometroRoute: typeof CronometroRoute
   JsonRoute: typeof JsonRoute
   MeuCepRoute: typeof MeuCepRoute
   MeuIpRoute: typeof MeuIpRoute
@@ -385,6 +398,13 @@ declare module '@tanstack/react-router' {
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cronometro': {
+      id: '/cronometro'
+      path: '/cronometro'
+      fullPath: '/cronometro'
+      preLoaderRoute: typeof CronometroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/json': {
@@ -504,6 +524,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComprimirImagemRoute: ComprimirImagemRoute,
   ContadorDePalavrasRoute: ContadorDePalavrasRoute,
   ContatoRoute: ContatoRoute,
+  CronometroRoute: CronometroRoute,
   JsonRoute: JsonRoute,
   MeuCepRoute: MeuCepRoute,
   MeuIpRoute: MeuIpRoute,

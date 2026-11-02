@@ -7,6 +7,7 @@ import { ToolLayout, toolHead, panel } from "@/components/site/ToolLayout";
 import { textStats } from "@/lib/everyday-tools";
 
 export const Route = createFileRoute("/contador-de-palavras")({
+  staticData: { sitemap: true },
   head: () => toolHead("contador-de-palavras", "Contador de palavras e caracteres grátis — i-Tools", "Conte palavras, caracteres com e sem espaços, parágrafos e tempo de leitura em tempo real. Grátis e sem enviar seu texto."),
   component: WordCounterPage,
 });

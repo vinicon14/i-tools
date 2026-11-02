@@ -6,6 +6,7 @@ import { ToolGrid } from "@/components/site/ToolCard";
 import { getCategory, getTool, toolsByCategory } from "@/lib/catalog";
 
 export const Route = createFileRoute("/$tool")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const tool = getTool(params.tool);
     if (!tool) throw notFound();
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/$tool")({
       `${tool.name} grátis online (em breve) — i-Tools`,
       `${tool.summary} Em preparação no i-Tools: gratuito, sem cadastro e direto no navegador.`,
       `/${tool.slug}`,
-      "article",
+      "website",
     );
   },
   component: ToolPage,
@@ -34,8 +35,10 @@ export const Route = createFileRoute("/$tool")({
 
 function ToolPage() {
   const { slug } = Route.useLoaderData();
-  const tool = getTool(slug)!;
-  const category = getCategory(tool.category)!;
+  const tool = getTool(slug);
+  if (!tool) return null;
+  const category = getCategory(tool.category);
+  if (!category) return null;
   const Icon = tool.icon;
   const related = toolsByCategory(category.slug).filter((t) => t.slug !== slug);
 

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ProsePage, pageMeta } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/privacidade")({
+  staticData: { sitemap: true },
   head: () => pageMeta("Política de privacidade — i-Tools", "Como o i-Tools trata dados, cookies e publicidade.", "/privacidade"),
   component: () => (
     <ProsePage title="Política de privacidade" intro="Versão preliminar — será revisada antes do lançamento da primeira ferramenta.">

@@ -5,6 +5,7 @@ import { useEffect, useId, useState } from "react";
 import { btnPrimary, btnSecondary, panel, ToolLayout, toolHead } from "@/components/site/ToolLayout";
 
 export const Route = createFileRoute("/qr")({
+  staticData: { sitemap: true },
   head: () => toolHead("qr", "Gerador de QR Code grátis a partir de link — i-Tools",
     "Crie um QR Code a partir de qualquer URL e baixe em PNG ou SVG. Grátis, sem cadastro e feito no seu navegador."),
   component: QrPage,

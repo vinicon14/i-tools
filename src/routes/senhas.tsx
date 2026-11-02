@@ -7,6 +7,7 @@ import { ToolLayout, toolHead, panel } from "@/components/site/ToolLayout";
 import { generatePassword, type PasswordGroup } from "@/lib/everyday-tools";
 
 export const Route = createFileRoute("/senhas")({
+  staticData: { sitemap: true },
   head: () => toolHead("senhas", "Gerador de senhas fortes grátis — i-Tools", "Gere senhas aleatórias de 8 a 128 caracteres com letras, números e símbolos. Grátis, sem cadastro e sem enviar sua senha."),
   component: PasswordPage,
 });

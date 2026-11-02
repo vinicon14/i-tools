@@ -7,5 +7,5 @@
 - [x] SEO por ferramenta (título, descrição, OG, dados estruturados, FAQ)
 - [x] Estrutura da Monetag pronta
 - [ ] Ativar Monetag — aguardando código da tag (src + zone)
-- [ ] Sitemap.xml — aguardando domínio definitivo
+- [x] Páginas individuais indexáveis e sitemap.xml — 15 ferramentas e 26 URLs públicas verificadas
 - [ ] Google Analytics / Search Console — aguardando IDs

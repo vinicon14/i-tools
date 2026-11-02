@@ -7,6 +7,7 @@ import { ToolLayout, toolHead, panel } from "@/components/site/ToolLayout";
 import { formatJson } from "@/lib/everyday-tools";
 
 export const Route = createFileRoute("/json")({
+  staticData: { sitemap: true },
   head: () => toolHead("json", "Formatador e validador JSON grátis — i-Tools", "Valide, formate, compacte e baixe seu JSON no navegador. Escolha indentação de 2 ou 4 espaços. Grátis e sem cadastro."),
   component: JsonPage,
 });

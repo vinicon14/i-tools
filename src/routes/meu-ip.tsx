@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { btnSecondary, panel, ToolLayout, toolHead } from "@/components/site/ToolLayout";
 
 export const Route = createFileRoute("/meu-ip")({
+  staticData: { sitemap: true },
   head: () => toolHead("meu-ip", "Qual é meu IP? Veja seu IP público agora — i-Tools",
     "Descubra o endereço IP público da sua conexão (IPv4 e IPv6) em um clique. Grátis e sem cadastro."),
   component: IpPage,

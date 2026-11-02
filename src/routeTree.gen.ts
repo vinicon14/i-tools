@@ -23,6 +23,7 @@ import { Route as PorcentagemRouteImport } from './routes/porcentagem'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as QrRouteImport } from './routes/qr'
 import { Route as SenhasRouteImport } from './routes/senhas'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
@@ -97,6 +98,11 @@ const SenhasRoute = SenhasRouteImport.update({
   path: '/senhas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
   '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
   '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/privacidade': typeof PrivacidadeRoute
   '/qr': typeof QrRoute
   '/senhas': typeof SenhasRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/qr'
     | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/qr'
     | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/qr'
     | '/senhas'
+    | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   PrivacidadeRoute: typeof PrivacidadeRoute
   QrRoute: typeof QrRoute
   SenhasRoute: typeof SenhasRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
@@ -351,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SenhasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre': {
       id: '/sobre'
       path: '/sobre'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadeRoute: PrivacidadeRoute,
   QrRoute: QrRoute,
   SenhasRoute: SenhasRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,

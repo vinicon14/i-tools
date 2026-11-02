@@ -1,4 +1,5 @@
 # Roadmap
+
 - [x] Páginas de YouTube, TikTok e Instagram com SEO e validação de links
 - [ ] Downloads reais de YouTube, TikTok e Instagram — aguardando serviço externo compatível e credenciais; possíveis custos
 - [x] Landing do i-Tools

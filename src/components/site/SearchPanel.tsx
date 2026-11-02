@@ -15,8 +15,12 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
   return (
     <div>
       <form role="search" onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor={id} className="sr-only">Buscar ferramentas</label>
-        <div className={`flex items-center gap-3 rounded-md border border-input bg-card px-4 shadow-sm transition-colors focus-within:border-foreground ${size === "lg" ? "h-14" : "h-12"}`}>
+        <label htmlFor={id} className="sr-only">
+          Buscar ferramentas
+        </label>
+        <div
+          className={`flex items-center gap-3 rounded-md border border-input bg-card px-4 shadow-sm transition-colors focus-within:border-foreground ${size === "lg" ? "h-14" : "h-12"}`}
+        >
           <Search className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
           <input
             id={id}
@@ -37,11 +41,17 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
               <ul>
                 {results.map((t) => (
                   <li key={t.slug} className="border-b border-border last:border-0">
-                    <Link to="/$tool" params={{ tool: t.slug }} onClick={onNavigate}
-                      className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-muted focus-visible:bg-muted">
+                    <Link
+                      to="/$tool"
+                      params={{ tool: t.slug }}
+                      onClick={onNavigate}
+                      className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-muted focus-visible:bg-muted"
+                    >
                       <span>
                         <span className="block text-sm font-medium text-foreground">{t.name}</span>
-                        <span className="block text-xs text-muted-foreground">{getCategory(t.category)?.name}</span>
+                        <span className="block text-xs text-muted-foreground">
+                          {getCategory(t.category)?.name}
+                        </span>
                       </span>
                       <StatusBadge status={t.status} />
                     </Link>
@@ -49,7 +59,9 @@ export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
                 ))}
               </ul>
             ) : (
-              <p className="px-4 py-3 text-sm text-muted-foreground">Nenhuma ferramenta encontrada para “{query}”.</p>
+              <p className="px-4 py-3 text-sm text-muted-foreground">
+                Nenhuma ferramenta encontrada para “{query}”.
+              </p>
             )}
             <p className="border-t border-border bg-muted px-4 py-2 text-xs text-muted-foreground">
               Ferramentas marcadas "Em breve" ainda estão em preparação.

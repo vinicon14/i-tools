@@ -6,7 +6,9 @@ export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
-      <main id="conteudo" className="flex-1">{children}</main>
+      <main id="conteudo" className="flex-1">
+        {children}
+      </main>
       <SiteFooter />
     </div>
   );
@@ -23,22 +25,46 @@ export function AdSlot({ label = "Publicidade" }: { label?: string }) {
   );
 }
 
-export function SectionHeading({ index, eyebrow, title, id }: { index: string; eyebrow: string; title: ReactNode; id: string }) {
+export function SectionHeading({
+  index,
+  eyebrow,
+  title,
+  id,
+}: {
+  index: string;
+  eyebrow: string;
+  title: ReactNode;
+  id: string;
+}) {
   return (
     <div className="mb-10 grid gap-3 border-t border-foreground pt-4 md:grid-cols-[180px_1fr]">
-      <p className="eyebrow">{index} — {eyebrow}</p>
-      <h2 id={id} className="text-3xl leading-tight sm:text-4xl">{title}</h2>
+      <p className="eyebrow">
+        {index} — {eyebrow}
+      </p>
+      <h2 id={id} className="text-3xl leading-tight sm:text-4xl">
+        {title}
+      </h2>
     </div>
   );
 }
 
-export function ProsePage({ title, intro, children }: { title: string; intro: string; children: ReactNode }) {
+export function ProsePage({
+  title,
+  intro,
+  children,
+}: {
+  title: string;
+  intro: string;
+  children: ReactNode;
+}) {
   return (
     <PageShell>
       <article className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
         <h1 className="text-4xl sm:text-5xl">{title}</h1>
         <p className="mt-4 text-lg text-muted-foreground">{intro}</p>
-        <div className="mt-10 space-y-6 text-[15px] leading-relaxed [&_h2]:mt-10 [&_h2]:font-sans [&_h2]:text-lg [&_h2]:font-semibold">{children}</div>
+        <div className="mt-10 space-y-6 text-[15px] leading-relaxed [&_h2]:mt-10 [&_h2]:font-sans [&_h2]:text-lg [&_h2]:font-semibold">
+          {children}
+        </div>
       </article>
     </PageShell>
   );

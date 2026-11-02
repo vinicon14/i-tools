@@ -1,7 +1,7 @@
 # Roadmap
 - [x] Implementar e testar senhas, contador de palavras, JSON e porcentagem
 - [x] Páginas de YouTube, TikTok e Instagram com SEO e validação de links
-- [ ] Downloads reais de YouTube, TikTok e Instagram — FastSaver conectado; verificar arquivos reais por plataforma
+- [x] Downloads reais de YouTube, TikTok e Instagram — FastSaver conectado; três arquivos MP4 baixados e verificados
 - [x] Landing do i-Tools
 - [x] Ferramentas no ar: QR Code, Meu IP, Meu CEP
 - [x] SEO por ferramenta (título, descrição, OG, dados estruturados, FAQ)

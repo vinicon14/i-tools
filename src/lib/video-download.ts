@@ -19,6 +19,7 @@ export function allowedMediaUrl(value: string): boolean {
     if (url.protocol !== "https:" || url.username || url.password || url.port) return false;
     const host = url.hostname.toLowerCase();
     if (host === "api.fastsaver.io") return url.pathname === "/v1/tunnel";
+    if (host === "drogon.fastsaver.io") return url.pathname === "/dl";
     return ["cdninstagram.com", "fbcdn.net", "tiktokcdn.com", "tiktokcdn-us.com", "tiktokcdn-eu.com", "byteoversea.com", "ibyteimg.com", "ibytedtos.com"].some((domain) => host.endsWith(`.${domain}`));
   } catch { return false; }
 }

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre o i-Tools — Ferramentas online gratuitas"
+  description="Conheça o i-Tools: ferramentas práticas, gratuitas e sem complicação para o seu dia a dia."
+  canonical="/sobre"
+>
+  <article class="page-content">
+    <div class="container">
+      <h1 class="page-title">Sobre o i-Tools</h1>
+      
+      <div class="prose">
+        <p class="lead">
+          O i-Tools nasceu da ideia de reunir ferramentas úteis do dia a dia em um só lugar — sem cadastro, sem assinatura e sem complicação.
+        </p>
+
+        <h2>Por que o i-Tools existe</h2>
+        <p>
+          Muitas vezes precisamos de uma ferramenta simples: gerar um QR Code, comprimir uma imagem, converter um PDF. E acabamos caindo em sites cheios de anúncios invasivos, pop-ups e cadastros obrigatórios.
+        </p>
+        <p>
+          O i-Tools quer ser diferente. Aqui cada ferramenta tem uma página, faz uma coisa bem feita e não atrapalha o que você veio fazer.
+        </p>
+
+        <h2>Como funciona</h2>
+        <p>
+          Tudo o que você vê é gratuito. O projeto é sustentado por anúncios discretos, posicionados para não atrapalhar. Não há plano premium, recurso bloqueado ou limite de uso.
+        </p>
+        <p>
+          Sempre que possível, as ferramentas processam seus arquivos direto no navegador — ou seja, nada sai do seu dispositivo. Quando isso não é possível (como em ferramentas que precisam de processamento externo), deixamos isso claro.
+        </p>
+
+        <h2>Quem mantém</h2>
+        <p>
+          O i-Tools é mantido por Vinicius Marques, desenvolvedor e designer. Se quiser conversar, enviar sugestões ou relatar problemas, use a <a href="/contato">página de contato</a>.
+        </p>
+
+        <h2>O que vem por aí</h2>
+        <p>
+          O i-Tools está em desenvolvimento ativo. Novas ferramentas são lançadas com cuidado, testadas e acompanhadas antes de partir para a próxima.
+        </p>
+        <p>
+          Se você tem sugestões de ferramentas que gostaria de ver, entre em contato. Seu feedback ajuda a definir o que vem a seguir.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding-block: var(--space-16);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-12);
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .lead {
+    font-size: var(--text-lg);
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--space-12);
+  }
+
+  .prose h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-2xl);
+  }
+
+  .prose p {
+    margin-bottom: var(--space-6);
+    line-height: var(--leading-relaxed);
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

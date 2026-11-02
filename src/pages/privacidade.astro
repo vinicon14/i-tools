@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Política de Privacidade — i-Tools"
+  description="Como o i-Tools coleta, usa e protege seus dados."
+  canonical="/privacidade"
+>
+  <article class="page-content">
+    <div class="container">
+      <h1 class="page-title">Política de Privacidade</h1>
+      
+      <div class="prose">
+        <p class="lead">
+          Última atualização: 1º de novembro de 2026
+        </p>
+
+        <h2>Dados que coletamos</h2>
+        <p>
+          O i-Tools não exige cadastro e não coleta dados pessoais diretamente. Ao usar as ferramentas, algumas informações técnicas podem ser coletadas automaticamente:
+        </p>
+        <ul>
+          <li>Endereço IP (para estatísticas de uso e segurança)</li>
+          <li>Tipo de navegador e dispositivo</li>
+          <li>Páginas visitadas e tempo de navegação</li>
+        </ul>
+
+        <h2>Processamento de arquivos</h2>
+        <p>
+          Sempre que possível, as ferramentas processam seus arquivos diretamente no seu navegador. Isso significa que imagens, PDFs e outros arquivos não saem do seu dispositivo.
+        </p>
+        <p>
+          Em ferramentas que exigem processamento externo (como algumas conversões ou downloads), os arquivos são processados em servidores seguros e não são armazenados após o processamento.
+        </p>
+
+        <h2>Cookies e anúncios</h2>
+        <p>
+          O i-Tools usa cookies para medir o desempenho do site e exibir anúncios relevantes. Você pode desabilitar cookies nas configurações do seu navegador, mas isso pode afetar a experiência de uso.
+        </p>
+        <p>
+          Os anúncios exibidos no site são fornecidos por parceiros terceiros e podem usar cookies para personalização. Consulte as políticas de privacidade dos fornecedores de anúncios para mais detalhes.
+        </p>
+
+        <h2>Compartilhamento de dados</h2>
+        <p>
+          Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros, exceto:
+        </p>
+        <ul>
+          <li>Quando exigido por lei</li>
+          <li>Para proteger nossos direitos e segurança</li>
+          <li>Com fornecedores de serviços essenciais (hospedagem, análise)</li>
+        </ul>
+
+        <h2>Seus direitos</h2>
+        <p>
+          De acordo com a LGPD (Lei Geral de Proteção de Dados), você tem direito a:
+        </p>
+        <ul>
+          <li>Saber quais dados coletamos sobre você</li>
+          <li>Solicitar a exclusão dos seus dados</li>
+          <li>Revogar consentimentos</li>
+        </ul>
+        <p>
+          Para exercer seus direitos, entre em contato através da <a href="/contato">página de contato</a>.
+        </p>
+
+        <h2>Alterações nesta política</h2>
+        <p>
+          Esta política pode ser atualizada periodicamente. Mudanças significativas serão comunicadas no site.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding-block: var(--space-16);
+  }
+
+  .page-title {
+    margin-bottom: var(--space-12);
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .lead {
+    font-size: var(--text-sm);
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--space-12);
+  }
+
+  .prose h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-2xl);
+  }
+
+  .prose p,
+  .prose li {
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-relaxed);
+  }
+
+  .prose ul {
+    margin-left: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

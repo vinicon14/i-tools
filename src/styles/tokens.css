@@ -1,0 +1,96 @@
+/**
+ * Design tokens i-Tools — direção "Bancada"
+ * Paleta, tipografia, espaçamento, raios
+ */
+
+/* === Fontes === */
+/* TODO: Adicionar arquivos de fonte
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/fonts/bricolage-grotesque-vf.woff2') format('woff2-variations');
+  font-weight: 600 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-vf.woff2') format('woff2-variations');
+  font-weight: 400 600;
+  font-display: swap;
+}
+*/
+
+/* === Cores === */
+:root {
+  /* Neutros */
+  --color-papel: #F6F7F4;
+  --color-branco: #FFFFFF;
+  --color-grafite: #1C2321;
+  --color-ardosia: #56605C;
+  --color-linha: #C9CEC7;
+
+  /* Cores de ação */
+  --color-petroleo: #0F5C6E;
+  --color-sinal: #F2C230;
+  --color-alerta: #B3261E;
+
+  /* Tokens semânticos */
+  --color-fundo: var(--color-papel);
+  --color-superficie: var(--color-branco);
+  --color-texto: var(--color-grafite);
+  --color-texto-secundario: var(--color-ardosia);
+  --color-borda: var(--color-ardosia);
+  --color-divisoria: var(--color-linha);
+  --color-link: var(--color-petroleo);
+  --color-foco: var(--color-petroleo);
+  --color-destaque: var(--color-sinal);
+  --color-erro: var(--color-alerta);
+
+  /* Tipografia */
+  --font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-texto: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Escala tipográfica (base 16px, razão 1.25) */
+  --text-xs: 0.8rem;     /* 12.8px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.25rem;    /* 20px */
+  --text-xl: 1.563rem;   /* 25px */
+  --text-2xl: 1.953rem;  /* 31px */
+  --text-3xl: 2.441rem;  /* 39px */
+  --text-4xl: 3.052rem;  /* 49px */
+  --text-5xl: 3.815rem;  /* 61px */
+
+  /* Line heights */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Espaçamento (base 4px) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-24: 6rem;     /* 96px */
+
+  /* Raios */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* Transições */
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Grid */
+  --grid-gutter: 1.5rem; /* 24px */
+  --grid-max-width: 75rem; /* 1200px */
+
+  /* Estados */
+  --hover-bg: #ECEEE9;
+}

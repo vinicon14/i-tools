@@ -19,3 +19,4 @@
 - Local everyday tools keep calculation and transformation logic in a browser-safe, tested module; process text and passwords only in the browser to avoid transmitting user input.
 - Public page URLs are centralized in `src/lib/seo.ts`; canonical, Open Graph and sitemap addresses share that origin to prevent conflicting search identities.
 - Every route declares `staticData.sitemap`; the router-derived sitemap includes public static pages and all catalog tool/category URLs without duplicate entries or fabricated modification dates.
+- The shared `Logo` renders the approved logo asset in all site headers and footers; the root favicon is derived from that same asset so browser identity stays consistent.

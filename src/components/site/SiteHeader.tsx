@@ -3,6 +3,7 @@ import { Menu, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 import { categories } from "@/lib/catalog";
 import { SearchPanel } from "./SearchPanel";
 import { Logo } from "./Logo";
@@ -24,14 +25,14 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm animate-fade-in">
+    <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
       <a
         href="#conteudo"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-foreground focus:px-3 focus:py-2 focus:text-background"
       >
         Pular para o conteúdo
       </a>
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-8 px-4 sm:px-6">
         <Logo />
         <nav aria-label="Categorias" className="hidden flex-1 lg:block">
           <ul className="flex items-center gap-1">
@@ -40,7 +41,7 @@ export function SiteHeader() {
                 <Link
                   to="/categorias/$categoria"
                   params={{ categoria: c.slug }}
-                  className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   activeProps={{ className: "text-foreground" }}
                 >
                   {c.name.split(" ")[0]}
@@ -50,10 +51,11 @@ export function SiteHeader() {
           </ul>
         </nav>
         <div className="ml-auto flex items-center gap-2">
-          <button
+          <Button
+            variant="ghost"
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="flex h-9 items-center gap-2 rounded-md border border-border bg-card px-3 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            className="h-10 gap-2 px-3 text-muted-foreground hover:bg-muted hover:text-foreground"
             aria-label="Buscar ferramentas"
           >
             <Search className="h-4 w-4" aria-hidden />
@@ -61,16 +63,18 @@ export function SiteHeader() {
             <kbd className="hidden rounded border border-border px-1.5 font-mono text-[11px] sm:inline">
               /
             </kbd>
-          </button>
+          </Button>
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 type="button"
-                className="grid h-9 w-9 place-items-center rounded-md border border-border lg:hidden"
+                className="h-10 w-10 hover:bg-muted hover:text-foreground lg:hidden"
                 aria-label="Abrir menu"
               >
                 <Menu className="h-4 w-4" aria-hidden />
-              </button>
+              </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80 bg-background">
               <SheetTitle className="eyebrow">Categorias</SheetTitle>
@@ -119,7 +123,7 @@ export function SiteHeader() {
         <DialogContent className="top-[15%] translate-y-0 border-border bg-background p-4 sm:max-w-xl">
           <DialogTitle className="sr-only">Buscar ferramentas</DialogTitle>
           <DialogDescription className="sr-only">
-            Digite para filtrar as ferramentas planejadas.
+            Encontre uma ferramenta do i-Tools.
           </DialogDescription>
           <SearchPanel autoFocus onNavigate={() => setSearchOpen(false)} />
         </DialogContent>

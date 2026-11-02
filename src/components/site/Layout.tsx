@@ -1,11 +1,29 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { pageUrl } from "@/lib/seo";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 
 export function PageShell({ children }: { children: ReactNode }) {
+  const shell = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!shell.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.setAttribute("data-reveal-state", "visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.08 });
+    shell.current.querySelectorAll("[data-reveal]").forEach((element) => {
+      if (element.getBoundingClientRect().top > window.innerHeight) {
+        element.setAttribute("data-reveal-state", "pending");
+      }
+      observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
   return (
-    <div className="flex min-h-screen flex-col">
+    <div ref={shell} className="flex min-h-screen flex-col">
       <SiteHeader />
       <main id="conteudo" className="flex-1">
         {children}
@@ -19,7 +37,7 @@ export function PageShell({ children }: { children: ReactNode }) {
 export function AdSlot({ label = "Publicidade" }: { label?: string }) {
   return (
     <aside aria-label={label} className="mx-auto max-w-6xl px-4 sm:px-6">
-      <div className="flex h-24 items-center justify-center rounded-md border border-dashed border-border font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+      <div className="flex h-24 items-center justify-center border-y border-border bg-muted/40 font-mono text-[10px] uppercase text-muted-foreground">
         {label}
       </div>
     </aside>
@@ -38,7 +56,7 @@ export function SectionHeading({
   id: string;
 }) {
   return (
-    <div className="mb-10 grid gap-3 border-t border-foreground pt-4 md:grid-cols-[180px_1fr] animate-fade-in">
+    <div data-reveal className="mb-8 grid gap-3 md:grid-cols-[180px_1fr] md:items-start">
       <p className="eyebrow">
         {index} — {eyebrow}
       </p>

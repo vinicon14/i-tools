@@ -9,6 +9,7 @@ import {
   ToolLayout,
   toolHead,
 } from "@/components/site/ToolLayout";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 export const Route = createFileRoute("/qr")({
   staticData: { sitemap: true },
@@ -38,6 +39,7 @@ const faq = [
 ];
 
 function QrPage() {
+  useAnalytics('qr');
   const id = useId();
   const [url, setUrl] = useState("https://");
   const [dataUrl, setDataUrl] = useState("");

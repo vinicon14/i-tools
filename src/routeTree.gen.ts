@@ -27,6 +27,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
+import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +119,11 @@ const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   path: '/categorias/$categoria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicVideoFileRoute = ApiPublicVideoFileRouteImport.update({
+  id: '/api/public/video-file',
+  path: '/api/public/video-file',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
+  '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   id:
     | '__root__'
     | '/'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/categorias/$categoria'
+    | '/api/public/video-file'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
+  ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriasCategoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/video-file': {
+      id: '/api/public/video-file'
+      path: '/api/public/video-file'
+      fullPath: '/api/public/video-file'
+      preLoaderRoute: typeof ApiPublicVideoFileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -414,6 +434,7 @@ const rootRouteChildren: RootRouteChildren = {
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
+  ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

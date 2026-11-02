@@ -4,7 +4,6 @@
 
 import { createServerFn } from '@tanstack/react-start';
 import { supabaseAdmin } from '@/integrations/supabase/client.server';
-import { createHash } from 'crypto';
 
 // Get daily salt for IP hashing (rotates daily for privacy)
 function getDailySalt(): string {
@@ -12,10 +11,19 @@ function getDailySalt(): string {
   return `i-tools-salt-${date}-${process.env.ANALYTICS_SALT || 'default-salt'}`;
 }
 
-// Hash visitor IP for anonymization
-function hashVisitorIdentifier(ip: string): string {
-  const salt = getDailySalt();
-  return createHash('sha256').update(`${ip}${salt}`).digest('hex');
+// Hash visitor IP for anonymization using Web Crypto API
+async function hashVisitorIdentifier(ip: string): Promise<string> {
+  try {
+    const salt = getDailySalt();
+    const encoder = new TextEncoder();
+    const data = encoder.encode(`${ip}${salt}`);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (err) {
+    console.error('[Analytics] Hash failed:', err);
+    return 'unknown';
+  }
 }
 
 // Extract IP from request (Cloudflare headers first)

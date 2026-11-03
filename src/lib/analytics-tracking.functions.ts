@@ -1,6 +1,6 @@
 // Browser-side analytics tracking (LGPD-compliant, fail-safe)
 import { createServerFn } from '@tanstack/react-start';
-import { getSupabaseAdmin } from '@/integrations/supabase/client.server';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 function getDailySalt(): string {
   const date = new Date().toISOString().split('T')[0];
@@ -37,15 +37,12 @@ function detectUACategory(ua: string): string {
   return 'desktop';
 }
 
-export const trackToolUsage = createServerFn({ method: 'POST' }).handler(async ({
-  data,
-  request
-}: {
-  data: { toolSlug: string; language?: string };
-  request: Request;
-}) => {
+export const trackToolUsage = createServerFn({ method: 'POST' }).inputValidator((data: { toolSlug: string; language?: string | undefined }) => data).handler(async ({ data }) => {
+  const { getRequest } = await import('@tanstack/react-start/server');
+  const request = getRequest();
   try {
-    const supabase = getSupabaseAdmin();
+    const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const supabase: SupabaseClient | null = getSupabaseAdmin();
     if (!supabase) return { success: true, reason: 'disabled' };
 
     const ip = request.headers.get('cf-connecting-ip') || 
@@ -73,6 +70,7 @@ export const trackToolUsage = createServerFn({ method: 'POST' }).handler(async (
   }
 });
 
-export const isAnalyticsEnabled = createServerFn({ method: 'GET' }).handler(() => {
+export const isAnalyticsEnabled = createServerFn({ method: 'GET' }).handler(async () => {
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
   return !!getSupabaseAdmin();
 });

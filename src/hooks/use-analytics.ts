@@ -5,7 +5,7 @@ import { trackToolUsage } from '@/lib/analytics-tracking.functions';
 export function useAnalytics(toolSlug: string, language?: string) {
   useEffect(() => {
     // Fire-and-forget: never blocks render
-    trackToolUsage({ toolSlug, language }).catch(() => {
+    trackToolUsage({ data: { toolSlug, language } }).catch(() => {
       // Silently ignore all errors
     });
   }, [toolSlug, language]);

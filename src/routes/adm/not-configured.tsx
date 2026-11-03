@@ -2,7 +2,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { AlertCircle } from 'lucide-react';
 
-export const Route = createFileRoute('/adm/not-configured')({});
+export const Route = createFileRoute('/adm/not-configured')({
+  staticData: { sitemap: false },
+  component: AdminNotConfigured,
+  head: () => ({ meta: [{ title: 'Configuração | Administração i-Tools' }, { name: 'description', content: 'Área restrita de administração do i-Tools.' }, { name: 'robots', content: 'noindex, nofollow' }, { property: 'og:title', content: 'Configuração | i-Tools' }, { property: 'og:description', content: 'Área restrita de administração do i-Tools.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }] }),
+});
 
 export default function AdminNotConfigured() {
   return (
@@ -19,24 +23,7 @@ export default function AdminNotConfigured() {
                 The admin panel requires configuration before it can be used.
               </p>
               
-              <div className="bg-gray-950 rounded border border-gray-800 p-4 space-y-4">
-                <div>
-                  <h2 className="text-sm font-semibold text-white mb-2">Required Environment Variables:</h2>
-                  <ul className="text-sm text-gray-400 space-y-1 font-mono">
-                    <li>• ADMIN_PASSWORD_HASH</li>
-                    <li>• SUPABASE_URL</li>
-                    <li>• SUPABASE_SERVICE_ROLE_KEY</li>
-                    <li>• ANALYTICS_SALT (optional, for visitor hashing)</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h2 className="text-sm font-semibold text-white mb-2">Generate Password Hash:</h2>
-                  <code className="block text-xs text-gray-300 bg-gray-900 p-2 rounded">
-                    node scripts/hash-password.js "your-secure-password"
-                  </code>
-                </div>
-              </div>
+<p>O acesso administrativo precisa ser configurado pelo responsável pelo site.</p>
             </div>
           </div>
         </div>

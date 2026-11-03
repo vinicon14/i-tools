@@ -6,6 +6,10 @@ import { tools } from '@/lib/catalog';
 import { Settings, ToggleLeft, ToggleRight } from 'lucide-react';
 
 export const Route = createFileRoute('/adm/tools')({
+  staticData: { sitemap: false },
+  component: AdminTools,
+  head: () => ({ meta: [{ title: 'Ferramentas | Administração i-Tools' }, { name: 'description', content: 'Área restrita de administração do i-Tools.' }, { name: 'robots', content: 'noindex, nofollow' }, { property: 'og:title', content: 'Ferramentas | i-Tools' }, { property: 'og:description', content: 'Área restrita de administração do i-Tools.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }] }),
+
   beforeLoad: async () => {
     const { verifyAdminSession } = await import('@/lib/admin-auth.functions');
     const session = await verifyAdminSession();
@@ -49,7 +53,7 @@ export default function AdminTools() {
 
     try {
       const { updateToolConfig } = await import('@/lib/admin-analytics.functions');
-      await updateToolConfig({ slug, enabled: newState });
+      await updateToolConfig({ data: { slug, enabled: newState } });
     } catch (err) {
       console.error('Failed to update tool:', err);
       setToolsConfig(prev => ({ ...prev, [slug]: currentState }));
@@ -58,7 +62,7 @@ export default function AdminTools() {
 
   const filteredTools = toolList.filter(tool =>
     tool.slug.toLowerCase().includes(search.toLowerCase()) ||
-    tool.title.toLowerCase().includes(search.toLowerCase())
+    tool.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -86,7 +90,7 @@ export default function AdminTools() {
               <div key={tool.slug} className="bg-gray-900 border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-white">{tool.title}</h3>
+                    <h3 className="text-sm font-semibold text-white">{tool.name}</h3>
                     <p className="text-xs text-gray-500 font-mono">/{tool.slug}</p>
                   </div>
                   <button
@@ -102,7 +106,7 @@ export default function AdminTools() {
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-gray-400 line-clamp-2 mb-2">{tool.description}</p>
+                <p className="text-xs text-gray-400 line-clamp-2 mb-2">{tool.summary}</p>
                 <div className="text-xs">
                   {isEnabled ? (
                     <span className="text-green-400">● Enabled</span>

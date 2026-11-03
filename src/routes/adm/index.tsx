@@ -37,6 +37,7 @@ export default function AdminLogin() {
       const result = await adminLogin({ data: { username, password } });
       if (!result.success) { setError(result.error); return; }
       setPassword('');
+      await router.invalidate();
       await router.navigate({ to: '/adm/dashboard' });
     } catch { setError('Não foi possível entrar. Tente novamente.'); }
     finally { setLoading(false); }

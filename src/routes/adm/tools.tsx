@@ -69,8 +69,8 @@ export default function AdminTools() {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1">Tools Management</h1>
-          <p className="text-gray-400 text-sm">{toolList.length} tools available</p>
+          <h1 className="text-2xl font-bold text-white mb-1">Gerenciamento de Ferramentas</h1>
+          <p className="text-gray-400 text-sm">{toolList.length} ferramentas disponíveis</p>
         </div>
 
         <div>

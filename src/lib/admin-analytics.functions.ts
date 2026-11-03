@@ -19,6 +19,18 @@ interface CountryStats {
   visits: number;
 }
 
+// Data de início do tracking após migração
+const TRACKING_START_DATE = '2024-01-01T00:00:00.000Z';
+
+function toSaoPauloTime(date: Date): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Sao_Paulo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date);
+}
+
 export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidator((data: DateRange) => data).handler(async ({ data: filters }) => {
   await requireAdminSession();
   const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
@@ -29,7 +41,8 @@ export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidat
     .from('analytics_events')
     .select('*')
     .gte('created_at', filters.startDate)
-    .lte('created_at', filters.endDate);
+    .lte('created_at', filters.endDate)
+    .neq('user_agent_category', 'bot');
 
   if (error || !data) return { enabled: true, stats: null };
 
@@ -37,15 +50,28 @@ export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidat
   const uniqueVisitors = new Set(data.map(e => e.visitor_hash)).size;
   
   const toolCounts: Record<string, number> = {};
+  const toolVisitors: Record<string, Set<string>> = {};
+  
   for (const event of data) {
     const slug = String(event.tool_slug);
     toolCounts[slug] = (toolCounts[slug] ?? 0) + 1;
+    
+    if (!toolVisitors[slug]) {
+      toolVisitors[slug] = new Set();
+    }
+    toolVisitors[slug].add(event.visitor_hash);
   }
 
   const topTools: ToolStats[] = Object.entries(toolCounts)
-    .map(([toolSlug, visits]) => ({ toolSlug, visits, uniqueVisitors: 0 }))
+    .map(([toolSlug, visits]) => ({ 
+      toolSlug, 
+      visits, 
+      uniqueVisitors: toolVisitors[toolSlug]?.size || 0 
+    }))
     .sort((a, b) => b.visits - a.visits)
     .slice(0, 10);
+
+  const trackingStartDate = toSaoPauloTime(new Date(TRACKING_START_DATE));
 
   return {
     enabled: true,
@@ -53,7 +79,8 @@ export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidat
       totalVisits,
       uniqueVisitors,
       topTools,
-      dateRange: filters
+      dateRange: filters,
+      trackingStartDate
     }
   };
 });
@@ -69,6 +96,7 @@ export const getCountryStats = createServerFn({ method: 'POST' }).inputValidator
     .select('country_code')
     .gte('created_at', filters.startDate)
     .lte('created_at', filters.endDate)
+    .neq('user_agent_category', 'bot')
     .not('country_code', 'is', null);
 
   if (!data) return { enabled: true, countries: [] };
@@ -98,7 +126,8 @@ export const getToolDetails = createServerFn({ method: 'POST' }).inputValidator(
     .select('*')
     .eq('tool_slug', data.toolSlug)
     .gte('created_at', data.startDate)
-    .lte('created_at', data.endDate);
+    .lte('created_at', data.endDate)
+    .neq('user_agent_category', 'bot');
 
   if (!events) return { enabled: true, tool: null };
 
@@ -139,6 +168,7 @@ export const exportAnalyticsCSV = createServerFn({ method: 'POST' }).inputValida
     .select('*')
     .gte('created_at', filters.startDate)
     .lte('created_at', filters.endDate)
+    .neq('user_agent_category', 'bot')
     .order('created_at', { ascending: false })
     .limit(10000);
 

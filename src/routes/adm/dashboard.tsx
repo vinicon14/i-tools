@@ -87,7 +87,7 @@ export default function AdminDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white mb-1">Painel administrativo</h1>
-            <p className="text-gray-400 text-sm">Last 30 days overview</p>
+            <p className="text-gray-400 text-sm">Últimos 30 dias • Timezone: America/Sao_Paulo</p>
           </div>
           <button
             onClick={exportCSV}
@@ -95,44 +95,59 @@ export default function AdminDashboard() {
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Download className="w-4 h-4" />
-            {exporting ? 'Exporting...' : 'Export CSV'}
+            {exporting ? 'Exportando...' : 'Exportar CSV'}
           </button>
+        </div>
+
+        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
+          <p className="text-sm text-blue-300">
+            <strong>Sobre as métricas:</strong> Visualizações de página registradas pelo i-Tools desde {stats.stats?.trackingStartDate || 'o início'}. 
+            Visitantes únicos são identificados por hash diário (LGPD). Bots são automaticamente filtrados. 
+            Rotas administrativas (/adm) não são contabilizadas.
+          </p>
+          <p className="text-xs text-blue-400 mt-2">
+            <strong>Nota:</strong> O Lovable mede acessos de forma diferente (logs de servidor/hospedagem), 
+            então alguma diferença entre os números é esperada. O tracking do i-Tools começou após a migração.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
             <div className="flex items-center gap-3 mb-2">
               <Eye className="w-5 h-5 text-blue-400" />
-              <span className="text-sm text-gray-400">Total Visits</span>
+              <span className="text-sm text-gray-400">Visualizações de Página</span>
             </div>
             <div className="text-3xl font-bold text-white">
               {stats.stats?.totalVisits?.toLocaleString() || 0}
             </div>
+            <p className="text-xs text-gray-500 mt-1">Total de pageviews registrados</p>
           </div>
 
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
             <div className="flex items-center gap-3 mb-2">
               <Users className="w-5 h-5 text-purple-400" />
-              <span className="text-sm text-gray-400">Unique Visitors</span>
+              <span className="text-sm text-gray-400">Visitantes Únicos</span>
             </div>
             <div className="text-3xl font-bold text-white">
               {stats.stats?.uniqueVisitors?.toLocaleString() || 0}
             </div>
+            <p className="text-xs text-gray-500 mt-1">Hash diário (sem IP completo)</p>
           </div>
 
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
             <div className="flex items-center gap-3 mb-2">
               <BarChart3 className="w-5 h-5 text-green-400" />
-              <span className="text-sm text-gray-400">Tools Used</span>
+              <span className="text-sm text-gray-400">Ferramentas Usadas</span>
             </div>
             <div className="text-3xl font-bold text-white">
               {stats.stats?.topTools?.length || 0}
             </div>
+            <p className="text-xs text-gray-500 mt-1">Ferramentas com tráfego</p>
           </div>
         </div>
 
         <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-white mb-4">Top Tools</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">Ferramentas Mais Acessadas</h2>
           <div className="space-y-3">
             {stats.stats?.topTools?.map((tool: any, i: number) => (
               <div key={tool.toolSlug} className="flex items-center justify-between">
@@ -140,7 +155,10 @@ export default function AdminDashboard() {
                   <span className="text-sm text-gray-500 font-mono w-6">{i + 1}.</span>
                   <span className="text-sm text-white">{tool.toolSlug}</span>
                 </div>
-                <span className="text-sm text-gray-400">{tool.visits.toLocaleString()} visits</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-gray-400">{tool.visits.toLocaleString()} pageviews</span>
+                  <span className="text-xs text-gray-500">{tool.uniqueVisitors.toLocaleString()} únicos</span>
+                </div>
               </div>
             ))}
           </div>

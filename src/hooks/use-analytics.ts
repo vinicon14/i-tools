@@ -4,6 +4,11 @@ import { trackToolUsage } from '@/lib/analytics-tracking.functions';
 
 export function useAnalytics(toolSlug: string, language?: string) {
   useEffect(() => {
+    // Skip tracking for admin routes
+    if (window.location.pathname.startsWith('/adm')) {
+      return;
+    }
+    
     // Fire-and-forget: never blocks render
     trackToolUsage({ data: { toolSlug, language } }).catch(() => {
       // Silently ignore all errors

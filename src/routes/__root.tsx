@@ -132,12 +132,14 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const isAdminRoute = router.state.location.pathname.startsWith('/adm');
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
-      <MonetagLoader />
+      {!isAdminRoute && <MonetagLoader />}
     </QueryClientProvider>
   );
 }

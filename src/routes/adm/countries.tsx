@@ -62,8 +62,14 @@ export default function AdminCountries() {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1">Geography</h1>
-          <p className="text-gray-400 text-sm">Visitors by country (last 30 days)</p>
+          <h1 className="text-2xl font-bold text-white mb-1">Geografia</h1>
+          <p className="text-gray-400 text-sm">Visitantes por país (últimos 30 dias) • Timezone: America/Sao_Paulo</p>
+        </div>
+
+        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
+          <p className="text-sm text-blue-300">
+            Dados baseados em pageviews registrados (excluindo bots e rotas administrativas).
+          </p>
         </div>
 
         <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
@@ -75,7 +81,7 @@ export default function AdminCountries() {
                   <span className="text-sm text-white font-medium">{country.countryCode}</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-gray-400">{country.visits.toLocaleString()} visits</span>
+                  <span className="text-sm text-gray-400">{country.visits.toLocaleString()} pageviews</span>
                   <div className="w-24 bg-gray-800 rounded-full h-2">
                     <div 
                       className="bg-blue-500 h-2 rounded-full"

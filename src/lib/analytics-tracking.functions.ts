@@ -45,12 +45,26 @@ export const trackToolUsage = createServerFn({ method: 'POST' }).inputValidator(
     const supabase: SupabaseClient | null = getSupabaseAdmin();
     if (!supabase) return { success: true, reason: 'disabled' };
 
+    const url = new URL(request.url);
+    
+    // Skip tracking for admin routes (server-side check)
+    if (url.pathname.startsWith('/adm')) {
+      return { success: true, reason: 'admin_route_skipped' };
+    }
+
     const ip = request.headers.get('cf-connecting-ip') || 
                request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
                'unknown';
     const countryCode = request.headers.get('cf-ipcountry') || null;
     const referrer = request.headers.get('referer');
     const ua = request.headers.get('user-agent') || '';
+
+    const uaCategory = detectUACategory(ua);
+    
+    // Skip bot traffic
+    if (uaCategory === 'bot') {
+      return { success: true, reason: 'bot_skipped' };
+    }
 
     const visitorHash = await hashVisitorIP(ip);
 
@@ -60,7 +74,7 @@ export const trackToolUsage = createServerFn({ method: 'POST' }).inputValidator(
       country_code: countryCode,
       language: data.language || null,
       referrer_domain: extractDomain(referrer),
-      user_agent_category: detectUACategory(ua)
+      user_agent_category: uaCategory
     });
 
     return { success: true };

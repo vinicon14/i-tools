@@ -24,6 +24,13 @@ export function MonetagLoader() {
     inPageScript.setAttribute("data-monetag", "inpage");
     inPageScript.textContent = `(function(s){s.dataset.zone='12178396',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`;
     document.body.appendChild(inPageScript);
+
+    // 4) Register service worker for push notifications (only if not on admin routes)
+    if ('serviceWorker' in navigator && !window.location.pathname.startsWith('/adm')) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {
+        // Silently ignore registration errors
+      });
+    }
   }, []);
   return null;
 }

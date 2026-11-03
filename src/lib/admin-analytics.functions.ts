@@ -36,10 +36,11 @@ export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidat
   const totalVisits = data.length;
   const uniqueVisitors = new Set(data.map(e => e.visitor_hash)).size;
   
-  const toolCounts = data.reduce((acc, e) => {
-    acc[e.tool_slug] = (acc[e.tool_slug] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const toolCounts: Record<string, number> = {};
+  for (const event of data) {
+    const slug = String(event.tool_slug);
+    toolCounts[slug] = (toolCounts[slug] ?? 0) + 1;
+  }
 
   const topTools: ToolStats[] = Object.entries(toolCounts)
     .map(([toolSlug, visits]) => ({ toolSlug, visits, uniqueVisitors: 0 }))

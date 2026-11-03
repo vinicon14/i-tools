@@ -50,7 +50,7 @@ export type Translations = {
   };
 };
 
-export const translations: Record<LanguageCode, Translations> = {
+export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
   pt: {
     site: {
       name: "i-Tools",

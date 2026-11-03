@@ -22,8 +22,8 @@ export interface MonetagRevenueRow {
   impressions: number;
   clicks: number;
   revenue: number; // in currency units (not cents)
-  cpm?: number;
-  rpm?: number;
+  cpm?: number | undefined;
+  rpm?: number | undefined;
   currency?: string;
 }
 

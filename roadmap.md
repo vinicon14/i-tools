@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Configurar usuário solicitado e senha protegida para /adm; verificar login e bloqueio sem sessão
+- [x] Configurar usuário solicitado e senha protegida para /adm — login, permanência após recarregar e bloqueio de sessão falsa verificados; não publicado
 
 - [ ] Refinar visual do portal e páginas das ferramentas — preservar tipografia, melhorar cores e organização, incluir animações discretas sem emojis; verificar no celular e computador
 - [ ] Animar o fundo branco com linhas sutis, sem prejudicar a leitura

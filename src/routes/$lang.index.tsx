@@ -77,7 +77,8 @@ function LocalizedHomePage() {
             return (
               <Link
                 key={category.slug}
-                to={`/${lang}/categorias/${category.slug}`}
+                to="/$lang/categorias/$categoria"
+                params={{ lang, categoria: category.slug }}
                 className="group rounded-lg border border-border bg-card p-6 transition-colors hover:border-foreground"
               >
                 <div className="mb-4 grid h-12 w-12 place-items-center rounded-lg bg-muted">

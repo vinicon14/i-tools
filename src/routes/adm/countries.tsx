@@ -5,6 +5,10 @@ import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Globe } from 'lucide-react';
 
 export const Route = createFileRoute('/adm/countries')({
+  staticData: { sitemap: false },
+  component: AdminCountries,
+  head: () => ({ meta: [{ title: 'Visitantes por país | Administração i-Tools' }, { name: 'description', content: 'Área restrita de administração do i-Tools.' }, { name: 'robots', content: 'noindex, nofollow' }, { property: 'og:title', content: 'Visitantes por país | i-Tools' }, { property: 'og:description', content: 'Área restrita de administração do i-Tools.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }] }),
+
   beforeLoad: async () => {
     const { verifyAdminSession } = await import('@/lib/admin-auth.functions');
     const session = await verifyAdminSession();
@@ -28,7 +32,7 @@ export default function AdminCountries() {
     setLoading(true);
     try {
       const { getCountryStats } = await import('@/lib/admin-analytics.functions');
-      const result = await getCountryStats(dateRange);
+      const result = await getCountryStats({ data: dateRange });
       setStats(result);
     } catch (err) {
       console.error('Failed to load country stats:', err);

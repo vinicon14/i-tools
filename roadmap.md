@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Configurar usuário solicitado e senha protegida para /adm; verificar login e bloqueio sem sessão
+
 - [ ] Refinar visual do portal e páginas das ferramentas — preservar tipografia, melhorar cores e organização, incluir animações discretas sem emojis; verificar no celular e computador
 - [ ] Animar o fundo branco com linhas sutis, sem prejudicar a leitura
 - [x] Concluir compressor, redimensionador, conversor PDF, paletas e cronômetro/timer — downloads reais, timer, 26 testes e SEO verificados; páginas em i-tools.shop prontas para publicação

@@ -932,7 +932,7 @@ export function LocalizedVideoDownloader({
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href={result.downloadUrl}
+                    href={result.files[0]?.url}
                     download
                     className="inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
                   >
@@ -940,7 +940,7 @@ export function LocalizedVideoDownloader({
                     {texts.download}
                   </a>
                   <a
-                    href={result.originalUrl}
+                    href={url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-md border border-green-600 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-50 dark:text-green-100 dark:hover:bg-green-950/40"

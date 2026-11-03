@@ -5,6 +5,10 @@ import { AdminLayout } from '@/components/admin/AdminLayout';
 import { BarChart3, Users, Eye, Download } from 'lucide-react';
 
 export const Route = createFileRoute('/adm/dashboard')({
+  staticData: { sitemap: false },
+  component: AdminDashboard,
+  head: () => ({ meta: [{ title: 'Visão geral | Administração i-Tools' }, { name: 'description', content: 'Área restrita de administração do i-Tools.' }, { name: 'robots', content: 'noindex, nofollow' }, { property: 'og:title', content: 'Visão geral | i-Tools' }, { property: 'og:description', content: 'Área restrita de administração do i-Tools.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }] }),
+
   beforeLoad: async () => {
     const { verifyAdminSession } = await import('@/lib/admin-auth.functions');
     const session = await verifyAdminSession();
@@ -31,7 +35,7 @@ export default function AdminDashboard() {
     setLoading(true);
     try {
       const { getDashboardStats } = await import('@/lib/admin-analytics.functions');
-      const result = await getDashboardStats(dateRange);
+      const result = await getDashboardStats({ data: dateRange });
       setStats(result);
     } catch (err) {
       console.error('Failed to load stats:', err);
@@ -43,7 +47,7 @@ export default function AdminDashboard() {
     setExporting(true);
     try {
       const { exportAnalyticsCSV } = await import('@/lib/admin-analytics.functions');
-      const csv = await exportAnalyticsCSV(dateRange);
+      const csv = await exportAnalyticsCSV({ data: dateRange });
       if (csv) {
         const blob = new Blob([csv], { type: 'text/csv' });
         const url = URL.createObjectURL(blob);
@@ -71,7 +75,7 @@ export default function AdminDashboard() {
     return (
       <AdminLayout>
         <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 text-amber-400">
-          Analytics not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to enable.
+          Estatísticas ainda não configuradas.
         </div>
       </AdminLayout>
     );
@@ -82,7 +86,7 @@ export default function AdminDashboard() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white mb-1">Dashboard</h1>
+            <h1 className="text-2xl font-bold text-white mb-1">Painel administrativo</h1>
             <p className="text-gray-400 text-sm">Last 30 days overview</p>
           </div>
           <button

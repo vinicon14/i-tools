@@ -105,8 +105,8 @@ export function ToolLayout({
   children: ReactNode;
   faq: Faq[];
   lang?: string;
-  toolName?: string;
-  categoryName?: string;
+  toolName?: string | undefined;
+  categoryName?: string | undefined;
   translations?: {
     home: string;
     faq: string;
@@ -133,12 +133,13 @@ export function ToolLayout({
     <PageShell>
       <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 md:pt-12">
         <nav aria-label={lang === "pt" || !lang ? "Trilha de navegação" : "Breadcrumb"} className="font-mono text-xs text-muted-foreground">
-          <Link to={lang && lang !== "pt" ? `/${lang}` : "/"} className="hover:text-foreground">
+          <Link to={lang && lang !== "pt" ? "/$lang" : "/"} params={lang && lang !== "pt" ? { lang } : {}} className="hover:text-foreground">
             {t.home}
           </Link>{" "}
           /{" "}
           <Link
-            to={lang && lang !== "pt" ? `/${lang}/categorias/${category.slug}` : `/categorias/${category.slug}`}
+            to={lang && lang !== "pt" ? "/$lang/categorias/$categoria" : "/categorias/$categoria"}
+            params={lang && lang !== "pt" ? { lang, categoria: category.slug } : { categoria: category.slug }}
             className="hover:text-foreground"
           >
             {displayCategoryName}

@@ -109,7 +109,7 @@ export function SiteHeader() {
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
                   <li>
                     <Link
-                      to={t.lang === "pt" ? "/sobre" : `/${t.lang}/sobre`}
+                      to="/sobre"
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >
@@ -118,7 +118,7 @@ export function SiteHeader() {
                   </li>
                   <li>
                     <Link
-                      to={t.lang === "pt" ? "/contato" : `/${t.lang}/contato`}
+                      to="/contato"
                       onClick={() => setMenuOpen(false)}
                       className="hover:text-foreground"
                     >

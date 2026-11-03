@@ -1,6 +1,7 @@
 // Admin analytics aggregation (server functions)
 import { createServerFn } from '@tanstack/react-start';
-import { getSupabaseAdmin } from '@/integrations/supabase/client.server';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { requireAdminSession } from './admin-session.server';
 
 interface DateRange {
   startDate: string;
@@ -18,8 +19,10 @@ interface CountryStats {
   visits: number;
 }
 
-export const getDashboardStats = createServerFn({ method: 'POST' }).handler(async ({ data: filters }: { data: DateRange }) => {
-  const supabase = getSupabaseAdmin();
+export const getDashboardStats = createServerFn({ method: 'POST' }).inputValidator((data: DateRange) => data).handler(async ({ data: filters }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { enabled: false };
 
   const { data, error } = await supabase
@@ -54,8 +57,10 @@ export const getDashboardStats = createServerFn({ method: 'POST' }).handler(asyn
   };
 });
 
-export const getCountryStats = createServerFn({ method: 'POST' }).handler(async ({ data: filters }: { data: DateRange }) => {
-  const supabase = getSupabaseAdmin();
+export const getCountryStats = createServerFn({ method: 'POST' }).inputValidator((data: DateRange) => data).handler(async ({ data: filters }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { enabled: false };
 
   const { data } = await supabase
@@ -81,8 +86,10 @@ export const getCountryStats = createServerFn({ method: 'POST' }).handler(async 
   return { enabled: true, countries };
 });
 
-export const getToolDetails = createServerFn({ method: 'POST' }).handler(async ({ data }: { data: { toolSlug: string } & DateRange }) => {
-  const supabase = getSupabaseAdmin();
+export const getToolDetails = createServerFn({ method: 'POST' }).inputValidator((data: { toolSlug: string } & DateRange) => data).handler(async ({ data }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { enabled: false };
 
   const { data: events } = await supabase
@@ -104,8 +111,10 @@ export const getToolDetails = createServerFn({ method: 'POST' }).handler(async (
   };
 });
 
-export const getMonetagMetrics = createServerFn({ method: 'POST' }).handler(async ({ data: filters }: { data: DateRange }) => {
-  const supabase = getSupabaseAdmin();
+export const getMonetagMetrics = createServerFn({ method: 'POST' }).inputValidator((data: DateRange) => data).handler(async ({ data: filters }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { enabled: false };
 
   const { data } = await supabase
@@ -118,8 +127,10 @@ export const getMonetagMetrics = createServerFn({ method: 'POST' }).handler(asyn
   return { enabled: true, metrics: data || [] };
 });
 
-export const exportAnalyticsCSV = createServerFn({ method: 'POST' }).handler(async ({ data: filters }: { data: DateRange }) => {
-  const supabase = getSupabaseAdmin();
+export const exportAnalyticsCSV = createServerFn({ method: 'POST' }).inputValidator((data: DateRange) => data).handler(async ({ data: filters }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return null;
 
   const { data } = await supabase
@@ -143,7 +154,9 @@ export const exportAnalyticsCSV = createServerFn({ method: 'POST' }).handler(asy
 });
 
 export const getToolsConfig = createServerFn({ method: 'GET' }).handler(async () => {
-  const supabase = getSupabaseAdmin();
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { enabled: false, tools: [] };
 
   const { data } = await supabase
@@ -154,8 +167,10 @@ export const getToolsConfig = createServerFn({ method: 'GET' }).handler(async ()
   return { enabled: true, tools: data || [] };
 });
 
-export const updateToolConfig = createServerFn({ method: 'POST' }).handler(async ({ data }: { data: { slug: string; enabled: boolean } }) => {
-  const supabase = getSupabaseAdmin();
+export const updateToolConfig = createServerFn({ method: 'POST' }).inputValidator((data: { slug: string; enabled: boolean }) => data).handler(async ({ data }) => {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const supabase: SupabaseClient | null = getSupabaseAdmin();
   if (!supabase) return { success: false };
 
   const { error } = await supabase

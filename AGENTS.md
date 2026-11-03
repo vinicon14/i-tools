@@ -25,3 +25,5 @@
 - Every route declares `staticData.sitemap`; the router-derived sitemap includes public static pages and all catalog tool/category URLs without duplicate entries or fabricated modification dates.
 - The shared `Logo` renders the approved logo asset in all site headers and footers; the root favicon is derived from that same asset so browser identity stays consistent.
 - Category accents are shared semantic tokens via `site/tool-appearance.ts`; reveal motion is managed by PageShell and always respects reduced-motion preferences.
+
+- Admin credentials are server-only secrets; admin pages and RPC functions validate the same encrypted HttpOnly session before privileged operations. Analytics schema integration remains optional until its tables are deployed.

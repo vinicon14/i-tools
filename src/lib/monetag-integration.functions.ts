@@ -3,16 +3,19 @@
 // This module attempts API integration and provides CSV import fallback
 
 import { createServerFn } from '@tanstack/react-start';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { requireAdminSession } from './admin-session.server';
+
+async function adminClient(): Promise<SupabaseClient> {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const client = getSupabaseAdmin();
+  if (!client) throw new Error('Estatísticas ainda não configuradas.');
+  return client;
+}
 import { getSessionFromCookie } from './admin-session.server';
 
-async function requireAdminAuth(request: Request): Promise<void> {
-  const cookieHeader = request.headers.get('cookie');
-  const session = getSessionFromCookie(cookieHeader);
-  if (!session) {
-    throw new Response('Unauthorized', { status: 401 });
-  }
-}
+
 
 export interface MonetagRevenueRow {
   date: string; // YYYY-MM-DD
@@ -33,8 +36,8 @@ export interface MonetagRevenueRow {
  * This function is a placeholder for future API integration if Monetag releases one.
  * For now, use CSV import via importMonetagCSV().
  */
-export const fetchMonetagAPI = createServerFn('POST', async ({ startDate, endDate }: { startDate: string; endDate: string }, { request }) => {
-  await requireAdminAuth(request);
+export const fetchMonetagAPI = createServerFn({ method: 'POST' }).inputValidator((data: { startDate: string; endDate: string }) => data).handler(async ({ data: { startDate, endDate } }) => {
+  await requireAdminSession();
 
   const apiToken = process.env['MONETAG_API_TOKEN'];
 
@@ -121,8 +124,8 @@ export const fetchMonetagAPI = createServerFn('POST', async ({ startDate, endDat
  * Date,Impressions,Clicks,Revenue,CPM,RPM
  * 2024-01-01,12345,678,12.34,1.00,10.00
  */
-export const importMonetagCSV = createServerFn('POST', async ({ csvContent }: { csvContent: string }, { request }) => {
-  await requireAdminAuth(request);
+export const importMonetagCSV = createServerFn({ method: 'POST' }).inputValidator((data: { csvContent: string }) => data).handler(async ({ data: { csvContent } }) => {
+  await requireAdminSession();
 
   try {
     const lines = csvContent.trim().split('\n');
@@ -130,12 +133,12 @@ export const importMonetagCSV = createServerFn('POST', async ({ csvContent }: { 
       return { success: false, error: 'Arquivo CSV vazio ou inválido' };
     }
 
-    const header = lines[0].toLowerCase();
+    const header = (lines[0] ?? '').toLowerCase();
     const rows: MonetagRevenueRow[] = [];
 
     // Parse CSV rows
     for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
+      const line = (lines[i] ?? '').trim();
       if (!line) continue;
 
       const values = line.split(',').map((v) => v.trim().replace(/"/g, ''));
@@ -154,10 +157,10 @@ export const importMonetagCSV = createServerFn('POST', async ({ csvContent }: { 
       }
 
       const row: MonetagRevenueRow = {
-        date: values[dateIdx],
-        impressions: parseInt(values[impressionsIdx]) || 0,
-        clicks: parseInt(values[clicksIdx]) || 0,
-        revenue: parseFloat(values[revenueIdx]) || 0,
+        date: (values[dateIdx] ?? ''),
+        impressions: parseInt((values[impressionsIdx] ?? '')) || 0,
+        clicks: parseInt((values[clicksIdx] ?? '')) || 0,
+        revenue: parseFloat((values[revenueIdx] ?? '')) || 0,
         cpm: values[cpmIdx] ? parseFloat(values[cpmIdx]) : undefined,
         rpm: values[rpmIdx] ? parseFloat(values[rpmIdx]) : undefined,
         currency: 'USD', // Default, adjust if CSV includes currency column
@@ -201,6 +204,7 @@ export const importMonetagCSV = createServerFn('POST', async ({ csvContent }: { 
 
 // Save Monetag data to database
 async function saveMonetagData(data: MonetagRevenueRow, source: 'api' | 'csv_import'): Promise<boolean> {
+  const supabaseAdmin = await adminClient();
   try {
     // Convert revenue to cents for storage
     const revenueCents = Math.round(data.revenue * 100);
@@ -239,8 +243,8 @@ async function saveMonetagData(data: MonetagRevenueRow, source: 'api' | 'csv_imp
 }
 
 // Get Monetag summary statistics
-export const getMonetagSummary = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const getMonetagSummary = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const today = new Date().toISOString().split('T')[0];
   const thisMonthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0];
@@ -287,8 +291,8 @@ export const getMonetagSummary = createServerFn('GET', async (_, { request }) =>
 });
 
 // Test Monetag API connection
-export const testMonetagAPI = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const testMonetagAPI = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const apiToken = process.env['MONETAG_API_TOKEN'];
 

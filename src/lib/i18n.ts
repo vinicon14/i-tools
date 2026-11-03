@@ -43,7 +43,7 @@ export function getPathWithLang(path: string, lang: LanguageCode): string {
 
 export function extractLangFromPath(path: string): { lang: LanguageCode; cleanPath: string } {
   const match = path.match(/^\/([a-z]{2})(\/.*)?$/);
-  if (match && isValidLanguage(match[1])) {
+  if (match?.[1] && isValidLanguage(match[1])) {
     return { lang: match[1], cleanPath: match[2] || "/" };
   }
   return { lang: DEFAULT_LANGUAGE, cleanPath: path };

@@ -39,22 +39,22 @@ export function SiteFooter() {
           <h2 className="eyebrow">i-Tools</h2>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link to={t.lang === "pt" ? "/sobre" : `/${t.lang}/sobre`} className="text-muted-foreground hover:text-foreground">
+              <Link to="/sobre" className="text-muted-foreground hover:text-foreground">
                 {t.nav.about}
               </Link>
             </li>
             <li>
-              <Link to={t.lang === "pt" ? "/contato" : `/${t.lang}/contato`} className="text-muted-foreground hover:text-foreground">
+              <Link to="/contato" className="text-muted-foreground hover:text-foreground">
                 {t.nav.contact}
               </Link>
             </li>
             <li>
-              <Link to={t.lang === "pt" ? "/privacidade" : `/${t.lang}/privacidade`} className="text-muted-foreground hover:text-foreground">
+              <Link to="/privacidade" className="text-muted-foreground hover:text-foreground">
                 {t.nav.privacy}
               </Link>
             </li>
             <li>
-              <Link to={t.lang === "pt" ? "/termos" : `/${t.lang}/termos`} className="text-muted-foreground hover:text-foreground">
+              <Link to="/termos" className="text-muted-foreground hover:text-foreground">
                 {t.nav.terms}
               </Link>
             </li>

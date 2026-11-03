@@ -1,24 +1,28 @@
 // Server functions for performance monitoring and uptime tracking
 import { createServerFn } from '@tanstack/react-start';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { requireAdminSession } from './admin-session.server';
+
+async function adminClient(): Promise<SupabaseClient> {
+  await requireAdminSession();
+  const { getSupabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const client = getSupabaseAdmin();
+  if (!client) throw new Error('Estatísticas ainda não configuradas.');
+  return client;
+}
 import { getSessionFromCookie } from './admin-session.server';
 
-async function requireAdminAuth(request: Request): Promise<void> {
-  const cookieHeader = request.headers.get('cookie');
-  const session = getSessionFromCookie(cookieHeader);
-  if (!session) {
-    throw new Response('Unauthorized', { status: 401 });
-  }
-}
+
 
 // Track performance metric (called by instrumented functions)
-export const trackPerformance = createServerFn('POST', async (data: {
+export const trackPerformance = createServerFn({ method: 'POST' }).inputValidator((data: {
   metricType: 'server_function' | 'api_call' | 'integration';
   functionName: string;
   durationMs: number;
   status: 'success' | 'error' | 'timeout';
   errorMessage?: string;
-}) => {
+}) => data).handler(async ({ data }) => {
+  const supabaseAdmin = await adminClient();
   try {
     await supabaseAdmin.from('performance_metrics').insert({
       metric_type: data.metricType,
@@ -35,13 +39,14 @@ export const trackPerformance = createServerFn('POST', async (data: {
 });
 
 // Record uptime check
-export const recordUptimeCheck = createServerFn('POST', async (data: {
+export const recordUptimeCheck = createServerFn({ method: 'POST' }).inputValidator((data: {
   checkType: 'heartbeat' | 'health_endpoint' | 'integration';
   endpoint?: string;
   status: 'up' | 'down' | 'degraded';
   responseTimeMs?: number;
   errorMessage?: string;
-}) => {
+}) => data).handler(async ({ data }) => {
+  const supabaseAdmin = await adminClient();
   try {
     await supabaseAdmin.from('uptime_checks').insert({
       check_type: data.checkType,
@@ -58,13 +63,14 @@ export const recordUptimeCheck = createServerFn('POST', async (data: {
 });
 
 // Create admin alert
-export const createAdminAlert = createServerFn('POST', async (data: {
+export const createAdminAlert = createServerFn({ method: 'POST' }).inputValidator((data: {
   alertType: 'error_spike' | 'integration_failure' | 'uptime_down' | 'performance_degradation';
   severity: 'low' | 'medium' | 'high' | 'critical';
   title: string;
   message: string;
   metadata?: Record<string, unknown>;
-}) => {
+}) => data).handler(async ({ data }) => {
+  const supabaseAdmin = await adminClient();
   try {
     await supabaseAdmin.from('admin_alerts').insert({
       alert_type: data.alertType,
@@ -82,8 +88,8 @@ export const createAdminAlert = createServerFn('POST', async (data: {
 });
 
 // Get performance metrics summary
-export const getPerformanceMetrics = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const getPerformanceMetrics = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
@@ -102,7 +108,8 @@ export const getPerformanceMetrics = createServerFn('GET', async (_, { request }
     if (!byFunction.has(key)) {
       byFunction.set(key, { total: 0, count: 0, errors: 0 });
     }
-    const stats = byFunction.get(key)!;
+    const stats = byFunction.get(key);
+    if (!stats) return;
     stats.total += metric.duration_ms;
     stats.count++;
     if (metric.status === 'error') stats.errors++;
@@ -125,8 +132,8 @@ export const getPerformanceMetrics = createServerFn('GET', async (_, { request }
 });
 
 // Get uptime statistics
-export const getUptimeStats = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const getUptimeStats = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
@@ -152,8 +159,8 @@ export const getUptimeStats = createServerFn('GET', async (_, { request }) => {
 });
 
 // Get admin alerts
-export const getAdminAlerts = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const getAdminAlerts = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const { data } = await supabaseAdmin
     .from('admin_alerts')
@@ -166,8 +173,8 @@ export const getAdminAlerts = createServerFn('GET', async (_, { request }) => {
 });
 
 // Resolve admin alert
-export const resolveAlert = createServerFn('POST', async (alertId: string, { request }) => {
-  await requireAdminAuth(request);
+export const resolveAlert = createServerFn({ method: 'POST' }).inputValidator((data: string) => data).handler(async ({ data: alertId }) => {
+  const supabaseAdmin = await adminClient();
 
   const { error } = await supabaseAdmin
     .from('admin_alerts')
@@ -185,8 +192,8 @@ export const resolveAlert = createServerFn('POST', async (alertId: string, { req
 });
 
 // Check for error spikes and create alerts
-export const checkErrorSpikes = createServerFn('GET', async (_, { request }) => {
-  await requireAdminAuth(request);
+export const checkErrorSpikes = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabaseAdmin = await adminClient();
 
   const last10Minutes = new Date(Date.now() - 10 * 60 * 1000).toISOString();
   const last1Hour = new Date(Date.now() - 60 * 60 * 1000).toISOString();
@@ -207,13 +214,13 @@ export const checkErrorSpikes = createServerFn('GET', async (_, { request }) => 
 
   // If recent count is 3x the average, create alert
   if (recentCount > hourlyAvg * 3 && recentCount > 10) {
-    await createAdminAlert({
+    await createAdminAlert({ data: {
       alertType: 'error_spike',
       severity: 'high',
       title: 'Pico de Erros Detectado',
       message: `${recentCount} erros nos últimos 10 minutos (média: ${Math.round(hourlyAvg)})`,
       metadata: { recentCount, hourlyAvg },
-    });
+    } });
 
     return {
       spikeDetected: true,

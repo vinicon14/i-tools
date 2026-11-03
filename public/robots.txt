@@ -1,16 +1,21 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /social/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /social/
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /social/
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /social/
 
 User-agent: *
 Allow: /
+Disallow: /social/
 
 Sitemap: https://i-tools.shop/sitemap.xml

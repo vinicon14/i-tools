@@ -40,6 +40,7 @@ import { Route as AdmDashboardRouteImport } from './routes/adm/dashboard'
 import { Route as AdmLogoutRouteImport } from './routes/adm/logout'
 import { Route as AdmMonetagRouteImport } from './routes/adm/monetag'
 import { Route as AdmNotConfiguredRouteImport } from './routes/adm/not-configured'
+import { Route as AdmSeoRouteImport } from './routes/adm/seo'
 import { Route as AdmToolsRouteImport } from './routes/adm/tools'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
 import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
@@ -200,6 +201,11 @@ const AdmNotConfiguredRoute = AdmNotConfiguredRouteImport.update({
   path: '/adm/not-configured',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdmSeoRoute = AdmSeoRouteImport.update({
+  id: '/adm/seo',
+  path: '/adm/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdmToolsRoute = AdmToolsRouteImport.update({
   id: '/adm/tools',
   path: '/adm/tools',
@@ -251,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/adm/logout': typeof AdmLogoutRoute
   '/adm/monetag': typeof AdmMonetagRoute
   '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
@@ -288,6 +295,7 @@ export interface FileRoutesByTo {
   '/adm/logout': typeof AdmLogoutRoute
   '/adm/monetag': typeof AdmMonetagRoute
   '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang': typeof LangIndexRoute
@@ -326,6 +334,7 @@ export interface FileRoutesById {
   '/adm/logout': typeof AdmLogoutRoute
   '/adm/monetag': typeof AdmMonetagRoute
   '/adm/not-configured': typeof AdmNotConfiguredRoute
+  '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
@@ -365,6 +374,7 @@ export interface FileRouteTypes {
     | '/adm/logout'
     | '/adm/monetag'
     | '/adm/not-configured'
+    | '/adm/seo'
     | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang/'
@@ -402,6 +412,7 @@ export interface FileRouteTypes {
     | '/adm/logout'
     | '/adm/monetag'
     | '/adm/not-configured'
+    | '/adm/seo'
     | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang'
@@ -439,6 +450,7 @@ export interface FileRouteTypes {
     | '/adm/logout'
     | '/adm/monetag'
     | '/adm/not-configured'
+    | '/adm/seo'
     | '/adm/tools'
     | '/categorias/$categoria'
     | '/$lang/'
@@ -477,6 +489,7 @@ export interface RootRouteChildren {
   AdmLogoutRoute: typeof AdmLogoutRoute
   AdmMonetagRoute: typeof AdmMonetagRoute
   AdmNotConfiguredRoute: typeof AdmNotConfiguredRoute
+  AdmSeoRoute: typeof AdmSeoRoute
   AdmToolsRoute: typeof AdmToolsRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
   LangIndexRoute: typeof LangIndexRoute
@@ -704,6 +717,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmNotConfiguredRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/adm/seo': {
+      id: '/adm/seo'
+      path: '/adm/seo'
+      fullPath: '/adm/seo'
+      preLoaderRoute: typeof AdmSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/adm/tools': {
       id: '/adm/tools'
       path: '/adm/tools'
@@ -765,6 +785,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdmLogoutRoute: AdmLogoutRoute,
   AdmMonetagRoute: AdmMonetagRoute,
   AdmNotConfiguredRoute: AdmNotConfiguredRoute,
+  AdmSeoRoute: AdmSeoRoute,
   AdmToolsRoute: AdmToolsRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
   LangIndexRoute: LangIndexRoute,

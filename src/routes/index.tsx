@@ -5,14 +5,14 @@ import { SearchPanel } from "@/components/site/SearchPanel";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog";
 import { categoryAppearance } from "@/components/site/tool-appearance";
-import { getHrefLangLinks } from "@/lib/seo";
+import { getSeoLinks } from "@/lib/seo";
 
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => {
-    const hrefLangLinks = getHrefLangLinks("/");
+    const hrefLangLinks = getSeoLinks("/");
     return {
       ...pageMeta(title, SITE.description, "/", "website", "pt"),
       links: hrefLangLinks,

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Gerar títulos, descrições e textos SEO por IA em /adm/seo — acesso restrito, geração real, edição e download verificados; canônicos restaurados na home, ferramentas e categorias, incluindo idiomas; 12 testes passaram
+
 - [x] Configurar usuário solicitado e senha protegida para /adm — login, permanência após recarregar e bloqueio de sessão falsa verificados; não publicado
 
 - [ ] Refinar visual do portal e páginas das ferramentas — preservar tipografia, melhorar cores e organização, incluir animações discretas sem emojis; verificar no celular e computador

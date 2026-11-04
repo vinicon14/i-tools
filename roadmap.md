@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Adicionar geração de títulos, descrições e textos SEO por IA no painel administrativo; validar acesso restrito e geração real
+
 - [x] Configurar usuário solicitado e senha protegida para /adm — login, permanência após recarregar e bloqueio de sessão falsa verificados; não publicado
 
 - [ ] Refinar visual do portal e páginas das ferramentas — preservar tipografia, melhorar cores e organização, incluir animações discretas sem emojis; verificar no celular e computador

@@ -16,9 +16,16 @@ export function toolHead(slug: string, title: string, description: string, faq?:
   const tool = getTool(slug);
   if (!tool) throw new Error(`Unknown tool: ${slug}`);
   const category = getCategory(tool.category);
-  const t = lang ? getTranslations(lang) : getTranslations("pt");
+  const currentLang = lang || "pt";
+  const t = getTranslations(currentLang);
   const path = `/${slug}`;
-  const fullUrl = pageUrl(path, lang);
+  const fullUrl = pageUrl(path, currentLang);
+  
+  const localeMap: Record<LanguageCode, string> = {
+    pt: "pt-BR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE", it: "it-IT",
+    nl: "nl-NL", pl: "pl-PL", ru: "ru-RU", uk: "uk-UA", tr: "tr-TR", ar: "ar-AR",
+    hi: "hi-IN", id: "id-ID", ja: "ja-JP", ko: "ko-KR", zh: "zh-CN", vi: "vi-VN",
+  };
   
   const categoryTranslation = category ? t.categories[category.slug as keyof typeof t.categories] : undefined;
   const categoryName = categoryTranslation?.name || category?.name;
@@ -29,20 +36,21 @@ export function toolHead(slug: string, title: string, description: string, faq?:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", lang) },
+      { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", currentLang) },
       ...(category
         ? [
             {
               "@type": "ListItem",
               position: 2,
               name: categoryName,
-              item: pageUrl(`/categorias/${category.slug}`, lang),
+              item: pageUrl(`/categorias/${category.slug}`, currentLang),
             },
           ]
         : []),
       { "@type": "ListItem", position: category ? 3 : 2, name: toolName, item: fullUrl },
     ],
   };
+  
   const faqSchema = faq && faq.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -59,22 +67,22 @@ export function toolHead(slug: string, title: string, description: string, faq?:
   const hrefLangLinks = getHrefLangLinks(path);
   
   return {
-    ...pageMeta(title, description, path, "website", lang),
+    ...pageMeta(title, description, path, "website", currentLang),
     links: hrefLangLinks,
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "WebApplication",
+          "@type": "SoftwareApplication",
           name: toolName,
           url: fullUrl,
           description,
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",
-          inLanguage: lang === "pt" ? "pt-BR" : lang || "pt-BR",
+          inLanguage: localeMap[currentLang] || "pt-BR",
           isAccessibleForFree: true,
-          offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           publisher: { "@type": "Organization", name: SITE.name },
         }),
       },

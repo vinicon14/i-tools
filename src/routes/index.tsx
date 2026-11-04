@@ -23,8 +23,17 @@ export const Route = createFileRoute("/")({
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: SITE.name,
+            url: "https://i-tools.shop",
             inLanguage: "pt-BR",
             description: SITE.description,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: "https://i-tools.shop/?q={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
           }),
         },
       ],

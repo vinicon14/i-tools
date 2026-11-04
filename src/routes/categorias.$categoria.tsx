@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { getCategory, toolsByCategory } from "@/lib/catalog";
-import { getHrefLangLinks, pageUrl } from "@/lib/seo";
+import { getSeoLinks, pageUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/categorias/$categoria")({
   staticData: { sitemap: true },
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/categorias/$categoria")({
       };
     
     const path = `/categorias/${c.slug}`;
-    const hrefLangLinks = getHrefLangLinks(path);
+    const hrefLangLinks = getSeoLinks(path);
     
     return {
       ...pageMeta(

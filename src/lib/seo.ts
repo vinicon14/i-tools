@@ -11,13 +11,13 @@ export function pageUrl(path: string, lang?: LanguageCode): string {
   return new URL(finalPath, SITE_ORIGIN).href;
 }
 
-export function getHrefLangLinks(path: string): Array<{ rel: string; hreflang: string; href: string }> {
-  const links: Array<{ rel: string; hreflang: string; href: string }> = [];
+export function getHrefLangLinks(path: string): Array<{ rel: string; hrefLang: string; href: string }> {
+  const links: Array<{ rel: string; hrefLang: string; href: string }> = [];
   
   // Add x-default (pointing to default language - Portuguese at root)
   links.push({
     rel: "alternate",
-    hreflang: "x-default",
+    hrefLang: "x-default",
     href: pageUrl(path, DEFAULT_LANGUAGE),
   });
   
@@ -25,7 +25,7 @@ export function getHrefLangLinks(path: string): Array<{ rel: string; hreflang: s
   for (const language of LANGUAGES) {
     links.push({
       rel: "alternate",
-      hreflang: language.code === "pt" ? "pt-BR" : language.code,
+      hrefLang: language.code === "pt" ? "pt-BR" : language.code,
       href: pageUrl(path, language.code),
     });
   }

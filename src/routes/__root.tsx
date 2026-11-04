@@ -109,7 +109,7 @@ function RootShell({ children }: { children: ReactNode }) {
   const getLangAndDir = () => {
     const match = location.pathname.match(/^\/([a-z]{2})(\/.*)?$/);
     const validLangs = ["pt", "en", "es", "fr", "de", "it", "nl", "pl", "ru", "uk", "tr", "ar", "hi", "id", "ja", "ko", "zh", "vi"];
-    if (match && validLangs.includes(match[1])) {
+    if (match?.[1] && validLangs.includes(match[1])) {
       return { lang: match[1], dir: match[1] === "ar" ? "rtl" : "ltr" };
     }
     return { lang: "pt", dir: "ltr" };

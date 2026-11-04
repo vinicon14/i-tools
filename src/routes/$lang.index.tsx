@@ -5,7 +5,7 @@ import { tools, categories, featuredTools } from "@/lib/catalog";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { Link } from "@tanstack/react-router";
-import { getHrefLangLinks } from "@/lib/seo";
+import { getSeoLinks } from "@/lib/seo";
 
 export const Route = createFileRoute("/$lang/")({
   staticData: { sitemap: true },
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
     const lang = params.lang as LanguageCode;
     const t = getTranslations(lang);
-    const hrefLangLinks = getHrefLangLinks("/");
+    const hrefLangLinks = getSeoLinks("/", lang);
     
     return {
       ...pageMeta(

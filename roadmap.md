@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Adicionar geração de títulos, descrições e textos SEO por IA no painel administrativo; validar acesso restrito e geração real
+- [x] Gerar títulos, descrições e textos SEO por IA em /adm/seo — acesso restrito, geração real, edição e download verificados; canônicos restaurados na home, ferramentas e categorias, incluindo idiomas; 12 testes passaram
 
 - [x] Configurar usuário solicitado e senha protegida para /adm — login, permanência após recarregar e bloqueio de sessão falsa verificados; não publicado
 

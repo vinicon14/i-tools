@@ -16,7 +16,7 @@ describe("individual public tool URLs", () => {
   it("preserves one self-referencing canonical with language alternates", () => {
     for (const path of ['/', '/qr', '/categorias/imagens']) {
       expect(getSeoLinks(path).filter(link => link.rel === 'canonical')).toEqual([{ rel: 'canonical', href: `https://i-tools.shop${path}` }]);
-      expect(getSeoLinks(path, 'en').filter(link => link.rel === 'canonical')).toEqual([{ rel: 'canonical', href: `https://i-tools.shop/en${path === '/' ? '' : path}` }]);
+      expect(getSeoLinks(path, 'en').filter(link => link.rel === 'canonical')).toEqual([{ rel: 'canonical', href: `https://i-tools.shop/en${path}` }]);
     }
   });
 });

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { pageUrl, getHrefLangLinks } from "@/lib/seo";
+import { pageUrl, getSeoLinks } from "@/lib/seo";
 import { getCategory, getTool, SITE, toolsByCategory } from "@/lib/catalog";
 import { AdSlot, PageShell, pageMeta } from "./Layout";
 import { StatusBadge } from "./StatusBadge";
@@ -56,7 +56,7 @@ export function toolHead(slug: string, title: string, description: string, faq?:
     })),
   } : null;
   
-  const hrefLangLinks = getHrefLangLinks(path);
+  const hrefLangLinks = getSeoLinks(path, lang);
   
   return {
     ...pageMeta(title, description, path, "website", lang),

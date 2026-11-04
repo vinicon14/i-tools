@@ -32,3 +32,8 @@ export function getHrefLangLinks(path: string): Array<{ rel: string; hreflang: s
   
   return links;
 }
+
+/** Preserve canonical identity when a leaf adds language alternates. */
+export function getSeoLinks(path: string, lang: LanguageCode = DEFAULT_LANGUAGE) {
+  return [{ rel: 'canonical', href: pageUrl(path, lang) }, ...getHrefLangLinks(path)];
+}

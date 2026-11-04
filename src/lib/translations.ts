@@ -6,6 +6,7 @@ export type Translations = {
     name: string;
     tagline: string;
     description: string;
+    titleTemplate: string;
   };
   categories: {
     arquivos: { name: string; description: string };
@@ -56,6 +57,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Ferramentas inteligentes para simplificar seu dia.",
       description: "Ferramentas online gratuitas para arquivos, imagens, texto, cálculos e desenvolvimento. Direto no navegador, sem cadastro e sem instalação.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -178,6 +180,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Smart tools to simplify your day.",
       description: "Free online tools for files, images, text, calculations, and development. Right in your browser, no signup, no installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -300,6 +303,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Herramientas inteligentes para simplificar tu día.",
       description: "Herramientas en línea gratuitas para archivos, imágenes, texto, cálculos y desarrollo. Directo en tu navegador, sin registro y sin instalación.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -422,6 +426,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Des outils intelligents pour simplifier votre journée.",
       description: "Outils en ligne gratuits pour les fichiers, images, texte, calculs et développement. Directement dans votre navigateur, sans inscription et sans installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -544,6 +549,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Intelligente Werkzeuge zur Vereinfachung Ihres Tages.",
       description: "Kostenlose Online-Tools für Dateien, Bilder, Text, Berechnungen und Entwicklung. Direkt in Ihrem Browser, ohne Anmeldung und ohne Installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -666,31 +672,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Strumenti intelligenti per semplificare la tua giornata.",
       description: "Strumenti online gratuiti per file, immagini, testo, calcoli e sviluppo. Direttamente nel tuo browser, senza registrazione e senza installazione.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "File e Documenti",
         description: "Convertire, unire e organizzare PDF e altri file.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Immagini e Design",
         description: "Comprimere, ridimensionare e convertire immagini.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Testo e Scrittura",
         description: "Contare, formattare e trasformare testo.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Calcolatrici",
         description: "Percentuali, date, finanze e unità.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Produttività",
         description: "Codici QR, liste e utilità quotidiane.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Sviluppatori",
         description: "Formattatori, generatori e convertitori tecnici.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -788,31 +801,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Slimme tools om je dag te vereenvoudigen.",
       description: "Gratis online tools voor bestanden, afbeeldingen, tekst, berekeningen en ontwikkeling. Direct in je browser, zonder registratie en zonder installatie.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Bestanden en Documenten",
         description: "PDF's en andere bestanden converteren, samenvoegen en organiseren.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Afbeeldingen en Design",
         description: "Afbeeldingen comprimeren, schalen en converteren.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Tekst en Schrijven",
         description: "Tekst tellen, formatteren en transformeren.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Rekenmachines",
         description: "Percentages, datums, financiën en eenheden.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Productiviteit",
         description: "QR-codes, lijsten en dagelijkse hulpmiddelen.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Ontwikkelaars",
         description: "Formatters, generatoren en technische converters.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -910,31 +930,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Inteligentne narzędzia upraszczające Twój dzień.",
       description: "Darmowe narzędzia online do plików, obrazów, tekstu, obliczeń i rozwoju. Bezpośrednio w przeglądarce, bez rejestracji i bez instalacji.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Pliki i Dokumenty",
         description: "Konwertuj, łącz i organizuj pliki PDF i inne pliki.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Obrazy i Design",
         description: "Kompresuj, skaluj i konwertuj obrazy.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Tekst i Pisanie",
         description: "Licz, formatuj i przekształcaj tekst.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Kalkulatory",
         description: "Procenty, daty, finanse i jednostki.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Produktywność",
         description: "Kody QR, listy i codzienne narzędzia.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Programiści",
         description: "Formatery, generatory i konwertery techniczne.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1032,31 +1059,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Умные инструменты для упрощения вашего дня.",
       description: "Бесплатные онлайн-инструменты для файлов, изображений, текста, расчетов и разработки. Прямо в браузере, без регистрации и без установки.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Файлы и Документы",
         description: "Конвертировать, объединять и организовывать PDF и другие файлы.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Изображения и Дизайн",
         description: "Сжимать, масштабировать и конвертировать изображения.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Текст и Письмо",
         description: "Подсчитывать, форматировать и преобразовывать текст.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Калькуляторы",
         description: "Проценты, даты, финансы и единицы измерения.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Продуктивность",
         description: "QR-коды, списки и повседневные утилиты.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Разработчики",
         description: "Форматеры, генераторы и технические конвертеры.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1154,31 +1188,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Розумні інструменти для спрощення вашого дня.",
       description: "Безкоштовні онлайн-інструменти для файлів, зображень, тексту, розрахунків та розробки. Прямо в браузері, без реєстрації та без встановлення.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Файли та Документи",
         description: "Конвертувати, об'єднувати та організовувати PDF та інші файли.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Зображення та Дизайн",
         description: "Стискати, масштабувати та конвертувати зображення.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Текст та Письмо",
         description: "Підраховувати, форматувати та перетворювати текст.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Калькулятори",
         description: "Відсотки, дати, фінанси та одиниці виміру.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Продуктивність",
         description: "QR-коди, списки та щоденні утиліти.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Розробники",
         description: "Форматери, генератори та технічні конвертери.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1276,31 +1317,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Gününüzü basitleştiren akıllı araçlar.",
       description: "Dosyalar, resimler, metin, hesaplamalar ve geliştirme için ücretsiz çevrimiçi araçlar. Tarayıcınızda doğrudan, kayıt yok, kurulum yok.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Dosyalar ve Belgeler",
         description: "PDF'leri ve diğer dosyaları dönüştürün, birleştirin ve düzenleyin.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Resimler ve Tasarım",
         description: "Resimleri sıkıştırın, ölçeklendirin ve dönüştürün.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Metin ve Yazma",
         description: "Metni sayın, biçimlendirin ve dönüştürün.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Hesap Makineleri",
         description: "Yüzdeler, tarihler, finans ve birimler.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Üretkenlik",
         description: "QR Kodları, listeler ve günlük araçlar.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Geliştiriciler",
         description: "Biçimlendiriciler, üreteçler ve teknik dönüştürücüler.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1398,31 +1446,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "أدوات ذكية لتبسيط يومك.",
       description: "أدوات مجانية عبر الإنترنت للملفات والصور والنصوص والحسابات والتطوير. مباشرة في متصفحك، بدون تسجيل وبدون تثبيت.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "الملفات والمستندات",
         description: "تحويل ودمج وتنظيم ملفات PDF وغيرها من الملفات.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "الصور والتصميم",
         description: "ضغط وتغيير حجم وتحويل الصور.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "النص والكتابة",
         description: "عد وتنسيق وتحويل النصوص.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "الآلات الحاسبة",
         description: "النسب المئوية والتواريخ والتمويل والوحدات.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "الإنتاجية",
         description: "رموز QR والقوائم والأدوات اليومية.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "المطورون",
         description: "المنسقون والمولدون والمحولون التقنيون.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1520,31 +1575,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "आपके दिन को सरल बनाने के लिए स्मार्ट उपकरण।",
       description: "फ़ाइलों, छवियों, टेक्स्ट, गणना और विकास के लिए मुफ्त ऑनलाइन उपकरण। सीधे आपके ब्राउज़र में, बिना साइनअप और बिना इंस्टॉलेशन।",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "फ़ाइलें और दस्तावेज़",
         description: "PDF और अन्य फ़ाइलों को परिवर्तित, विलय और व्यवस्थित करें।",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "छवियाँ और डिज़ाइन",
         description: "छवियों को संपीड़ित, पुनः आकार और परिवर्तित करें।",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "टेक्स्ट और लेखन",
         description: "टेक्स्ट की गणना, स्वरूपण और रूपांतरण करें।",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "कैलकुलेटर",
         description: "प्रतिशत, तारीखें, वित्त और इकाइयाँ।",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "उत्पादकता",
         description: "QR कोड, सूचियाँ और दैनिक उपयोगिताएँ।",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "डेवलपर्स",
         description: "फॉर्मेटर्स, जेनरेटर्स और तकनीकी कन्वर्टर्स।",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1642,31 +1704,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Alat pintar untuk menyederhanakan hari Anda.",
       description: "Alat online gratis untuk file, gambar, teks, perhitungan, dan pengembangan. Langsung di browser Anda, tanpa pendaftaran dan tanpa instalasi.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "File dan Dokumen",
         description: "Konversi, gabungkan, dan atur PDF dan file lainnya.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Gambar dan Desain",
         description: "Kompres, ubah ukuran, dan konversi gambar.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Teks dan Penulisan",
         description: "Hitung, format, dan transformasi teks.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Kalkulator",
         description: "Persentase, tanggal, keuangan, dan unit.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Produktivitas",
         description: "Kode QR, daftar, dan utilitas sehari-hari.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Pengembang",
         description: "Formatter, generator, dan konverter teknis.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1764,31 +1833,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "あなたの一日をシンプルにするスマートツール。",
       description: "ファイル、画像、テキスト、計算、開発のための無料オンラインツール。ブラウザで直接、サインアップ不要、インストール不要。",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "ファイルと文書",
         description: "PDFやその他のファイルを変換、結合、整理します。",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "画像とデザイン",
         description: "画像を圧縮、リサイズ、変換します。",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "テキストと執筆",
         description: "テキストをカウント、フォーマット、変換します。",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "電卓",
         description: "パーセンテージ、日付、財務、単位。",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "生産性",
         description: "QRコード、リスト、日常のユーティリティ。",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "開発者",
         description: "フォーマッター、ジェネレーター、技術的コンバーター。",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -1886,31 +1962,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "하루를 단순화하는 스마트 도구.",
       description: "파일, 이미지, 텍스트, 계산 및 개발을 위한 무료 온라인 도구. 브라우저에서 바로, 가입 없음, 설치 없음.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "파일 및 문서",
         description: "PDF 및 기타 파일을 변환, 병합 및 정리합니다.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "이미지 및 디자인",
         description: "이미지를 압축, 크기 조정 및 변환합니다.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "텍스트 및 글쓰기",
         description: "텍스트를 계산, 서식 지정 및 변환합니다.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "계산기",
         description: "백분율, 날짜, 재무 및 단위.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "생산성",
         description: "QR 코드, 목록 및 일상 유틸리티.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "개발자",
         description: "포매터, 생성기 및 기술 변환기.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -2008,31 +2091,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "智能工具，简化您的一天。",
       description: "用于文件、图像、文本、计算和开发的免费在线工具。直接在您的浏览器中，无需注册，无需安装。",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "文件和文档",
         description: "转换、合并和整理PDF及其他文件。",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "图像和设计",
         description: "压缩、调整大小和转换图像。",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "文本和写作",
         description: "计数、格式化和转换文本。",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "计算器",
         description: "百分比、日期、财务和单位。",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "生产力",
         description: "二维码、列表和日常实用工具。",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "开发者",
         description: "格式化器、生成器和技术转换器。",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {
@@ -2130,31 +2220,38 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Công cụ thông minh để đơn giản hóa ngày của bạn.",
       description: "Công cụ trực tuyến miễn phí cho tệp, hình ảnh, văn bản, tính toán và phát triển. Ngay trong trình duyệt của bạn, không cần đăng ký và không cần cài đặt.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
         name: "Tệp và Tài liệu",
         description: "Chuyển đổi, hợp nhất và sắp xếp PDF và các tệp khác.",
+      titleTemplate: "%s — i-Tools",
       },
       imagens: {
         name: "Hình ảnh và Thiết kế",
         description: "Nén, thay đổi kích thước và chuyển đổi hình ảnh.",
+      titleTemplate: "%s — i-Tools",
       },
       texto: {
         name: "Văn bản và Viết",
         description: "Đếm, định dạng và chuyển đổi văn bản.",
+      titleTemplate: "%s — i-Tools",
       },
       calculadoras: {
         name: "Máy tính",
         description: "Phần trăm, ngày tháng, tài chính và đơn vị.",
+      titleTemplate: "%s — i-Tools",
       },
       produtividade: {
         name: "Năng suất",
         description: "Mã QR, danh sách và tiện ích hàng ngày.",
+      titleTemplate: "%s — i-Tools",
       },
       desenvolvedores: {
         name: "Nhà phát triển",
         description: "Trình định dạng, trình tạo và bộ chuyển đổi kỹ thuật.",
+      titleTemplate: "%s — i-Tools",
       },
     },
     tools: {

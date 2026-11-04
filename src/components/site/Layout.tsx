@@ -98,7 +98,30 @@ export function ProsePage({
 
 export const pageMeta = (title: string, description: string, path: string, type = "website", lang?: LanguageCode) => {
   const currentLang = lang || "pt";
-  const locale = currentLang === "pt" ? "pt_BR" : currentLang === "en" ? "en_US" : `${currentLang}_${currentLang.toUpperCase()}`;
+  
+  // Map language codes to proper og:locale values
+  const localeMap: Record<LanguageCode, string> = {
+    pt: "pt_BR",
+    en: "en_US",
+    es: "es_ES",
+    fr: "fr_FR",
+    de: "de_DE",
+    it: "it_IT",
+    nl: "nl_NL",
+    pl: "pl_PL",
+    ru: "ru_RU",
+    uk: "uk_UA",
+    tr: "tr_TR",
+    ar: "ar_AR",
+    hi: "hi_IN",
+    id: "id_ID",
+    ja: "ja_JP",
+    ko: "ko_KR",
+    zh: "zh_CN",
+    vi: "vi_VN",
+  };
+  
+  const locale = localeMap[currentLang] || "pt_BR";
   const canonicalUrl = pageUrl(path, currentLang);
   
   return {
@@ -113,6 +136,8 @@ export const pageMeta = (title: string, description: string, path: string, type 
       { property: "og:image", content: pageUrl("/og-image.png") },
       { property: "og:locale", content: locale },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
       { name: "twitter:image", content: pageUrl("/og-image.png") },
     ],
     links: [{ rel: "canonical", href: canonicalUrl }],

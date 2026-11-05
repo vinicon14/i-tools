@@ -5,6 +5,8 @@ import { getTranslations } from "@/lib/translations";
 import { toolHead, ToolLayout } from "@/components/site/ToolLayout";
 import { LocalizedVideoDownloader } from "@/components/site/LocalizedVideoDownloader";
 import { PageShell } from "@/components/site/Layout";
+import { pageMeta } from "@/components/site/Layout";
+import { getPageLanguages, getSeoLinks } from "@/lib/seo";
 
 export const Route = createFileRoute("/$lang/$tool")({
   staticData: { sitemap: true },
@@ -26,6 +28,14 @@ export const Route = createFileRoute("/$lang/$tool")({
     const toolTranslation = t.tools[params.tool as keyof typeof t.tools];
     if (!toolTranslation) throw notFound();
     
+    if (!getPageLanguages(`/${params.tool}`).includes(lang)) {
+      const head = pageMeta(`${toolTranslation.name} — i-Tools`, toolTranslation.summary, `/${params.tool}`, "website", lang);
+      return {
+        ...head,
+        meta: head.meta.map(meta => "name" in meta && meta.name === "robots" ? { name: "robots", content: "noindex, follow" } : meta),
+        links: getSeoLinks(`/${params.tool}`, lang),
+      };
+    }
     return toolHead(
       params.tool,
       `${toolTranslation.name} — i-Tools`,

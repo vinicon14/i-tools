@@ -26,7 +26,7 @@ export const Route = createFileRoute("/qr")({
 const faq = [
   {
     q: "O QR Code expira?",
-    a: "Não. O código aponta diretamente para o link que você digitou e funciona para sempre.",
+    a: "O QR Code estático não tem prazo de expiração. Ele continua apontando para o link informado, mas o site de destino precisa permanecer disponível.",
   },
   {
     q: "Meus links são enviados para algum servidor?",

@@ -18,6 +18,10 @@ export function toolHead(slug: string, title: string, description: string, faq?:
   const category = getCategory(tool.category);
   const t = lang ? getTranslations(lang) : getTranslations("pt");
   const path = `/${slug}`;
+  if ((!lang || lang === "pt") && tool.seo) {
+    title = tool.seo.title;
+    description = tool.seo.description;
+  }
   const fullUrl = pageUrl(path, lang);
   
   const categoryTranslation = category ? t.categories[category.slug as keyof typeof t.categories] : undefined;
@@ -67,6 +71,7 @@ export function toolHead(slug: string, title: string, description: string, faq?:
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
+          "@id": `${fullUrl}#application`,
           name: toolName,
           url: fullUrl,
           description,
@@ -76,6 +81,7 @@ export function toolHead(slug: string, title: string, description: string, faq?:
           isAccessibleForFree: true,
           offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
           publisher: { "@type": "Organization", name: SITE.name },
+          ...(categoryName ? { about: categoryName } : {}),
         }),
       },
       {
@@ -158,6 +164,13 @@ export function ToolLayout({
       <div className="mt-16">
         <AdSlot />
       </div>
+      {(!lang || lang === "pt") && tool.seo && (
+        <section aria-labelledby="sobre-ferramenta" className="mx-auto max-w-3xl px-4 pt-16 sm:px-6">
+          <h2 id="sobre-ferramenta" className="text-3xl">Sobre {displayToolName}</h2>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">{tool.seo.context}</p>
+        </section>
+      )}
+      {faq.length > 0 && (
       <section data-reveal aria-labelledby="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h2 id="faq" className="text-3xl">
           {t.faq}
@@ -171,6 +184,7 @@ export function ToolLayout({
           ))}
         </dl>
       </section>
+      )}
       {related.length > 0 && (
         <section data-reveal aria-labelledby="relacionadas" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
           <h2 id="relacionadas" className="mb-8 text-3xl">

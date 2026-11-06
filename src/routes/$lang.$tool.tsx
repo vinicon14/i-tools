@@ -4,9 +4,11 @@ import { isValidLanguage, type LanguageCode } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
 import { toolHead, ToolLayout } from "@/components/site/ToolLayout";
 import { LocalizedVideoDownloader } from "@/components/site/LocalizedVideoDownloader";
+import { LocalizedQrGenerator } from "@/components/site/LocalizedQrGenerator";
 import { PageShell } from "@/components/site/Layout";
 import { pageMeta } from "@/components/site/Layout";
 import { getPageLanguages, getSeoLinks } from "@/lib/seo";
+import { getQrTranslations } from "@/lib/qr-translations";
 
 export const Route = createFileRoute("/$lang/$tool")({
   staticData: { sitemap: true },
@@ -36,11 +38,12 @@ export const Route = createFileRoute("/$lang/$tool")({
         links: getSeoLinks(`/${params.tool}`, lang),
       };
     }
+    const faq = params.tool === "qr" ? getQrTranslations(lang).faq : [];
     return toolHead(
       params.tool,
       `${toolTranslation.name} — i-Tools`,
       toolTranslation.summary,
-      [],
+      faq,
       lang,
     );
   },
@@ -87,6 +90,10 @@ function LocalizedToolPage() {
   if (toolSlug === "baixar-video-youtube" || toolSlug === "baixar-video-tiktok" || toolSlug === "baixar-video-instagram") {
     const platform = toolSlug === "baixar-video-youtube" ? "youtube" : toolSlug === "baixar-video-tiktok" ? "tiktok" : "instagram";
     return <LocalizedVideoDownloader platform={platform} lang={lang as LanguageCode} />;
+  }
+
+  if (toolSlug === "qr") {
+    return <LocalizedQrGenerator lang={lang as LanguageCode} />;
   }
   
   // For all other tools, show the actual tool interface

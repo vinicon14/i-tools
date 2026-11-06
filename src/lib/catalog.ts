@@ -48,6 +48,8 @@ export type Tool = {
   featured?: boolean;
   keywords: string[];
   seo?: { title: string; description: string; context: string };
+  /** True when every supported language has equivalent, usable page content. */
+  localized?: boolean;
 };
 
 export const SITE = {
@@ -99,6 +101,7 @@ export const categories: Category[] = [
 export const tools: Tool[] = [
   {
     slug: "baixar-video-youtube",
+    localized: true,
     seo: {
       title: "Baixar vídeo do YouTube e Shorts online — i-Tools",
       description: "Baixe vídeos e Shorts públicos do YouTube que sejam seus ou autorizados. Escolha a qualidade disponível, sem cadastro e sem instalar programas.",
@@ -114,6 +117,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "baixar-video-tiktok",
+    localized: true,
     seo: {
       title: "Baixar vídeo do TikTok sem marca d'água — i-Tools",
       description: "Baixe vídeos públicos do TikTok seus ou autorizados, sem marca d'água quando disponível. Download online gratuito, sem cadastro ou instalação.",
@@ -129,6 +133,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "baixar-video-instagram",
+    localized: true,
     seo: {
       title: "Baixar vídeo do Instagram e Reels online — i-Tools",
       description: "Baixe Reels e vídeos públicos do Instagram que sejam seus ou autorizados. Download gratuito pelo navegador, sem cadastro e sem instalar aplicativos.",
@@ -144,6 +149,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "qr",
+    localized: true,
     seo: {
       title: "Gerador de QR Code grátis: link para PNG e SVG — i-Tools",
       description: "Crie QR Code de um link e baixe em PNG ou SVG para impressão e uso digital. Gerador gratuito no navegador, sem cadastro e sem enviar sua URL.",
@@ -247,6 +253,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "meu-cep",
+    localized: true,
     seo: {
       title: "Buscar CEP por endereço ou localização — i-Tools",
       description: "Consulte um CEP, busque o código postal por endereço brasileiro ou encontre uma estimativa pela localização. Consulta gratuita, sem cadastro.",

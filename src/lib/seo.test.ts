@@ -75,11 +75,30 @@ describe("multilingual SEO locales", () => {
     expect(links.filter((link) => link.rel === "alternate")).toHaveLength(19);
   });
 
+  it("advertises QR in every language with equivalent catalog content", () => {
+    const languages = LANGUAGES.map((language) => language.code);
+    expect(getPageLanguages("/qr")).toEqual(languages);
+    expect(getPageLanguages("/meu-cep")).toEqual(languages);
+    expect(getHrefLangLinks("/qr")).toContainEqual({
+      rel: "alternate",
+      hrefLang: "en-US",
+      href: "https://i-tools.shop/en/qr",
+    });
+    expect(getHrefLangLinks("/qr").filter((link) => link.rel === "alternate")).toHaveLength(19);
+  });
+
   it("does not advertise translations for pages without equivalent content", () => {
-    expect(getPageLanguages("/qr")).toEqual(["pt"]);
+    expect(getPageLanguages("/json")).toEqual(["pt"]);
     expect(getPageLanguages("/sobre")).toEqual(["pt"]);
-    const qrLinks = getHrefLangLinks("/qr");
-    expect(qrLinks.map((link) => link.hrefLang)).toEqual(["x-default", "pt-BR"]);
+    const jsonLinks = getHrefLangLinks("/json");
+    expect(jsonLinks.map((link) => link.hrefLang)).toEqual(["x-default", "pt-BR"]);
+  });
+
+  it("follows catalog.localized for tool language alternates", () => {
+    for (const tool of tools) {
+      const expected = tool.localized ? LANGUAGES.map((language) => language.code) : ["pt"];
+      expect(getPageLanguages(`/${tool.slug}`)).toEqual(expected);
+    }
   });
 
   it("builds WebSite JSON-LD with SearchAction per language", () => {

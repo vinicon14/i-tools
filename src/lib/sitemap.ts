@@ -1,4 +1,7 @@
 import type { AnyRoute, AnyRouter, ParsedLocation } from "@tanstack/react-router";
+import { categories, tools } from "./catalog";
+import { DEFAULT_LANGUAGE, getPathWithLang } from "./i18n";
+import { getHtmlLang, getPageLanguages, pageUrl } from "./seo";
 
 declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
@@ -52,6 +55,7 @@ export function sitemapPathForLocation(
 export interface SitemapEntry {
   path: string;
   lastmod?: string;
+  alternates?: Array<{ hreflang: string; href: string }>;
 }
 
 function isSafeSitemapPath(pathname: string): boolean {
@@ -62,6 +66,42 @@ function isSafeSitemapPath(pathname: string): boolean {
   } catch {
     return false;
   }
+}
+
+export function sitemapEntriesForPath(basePath: string): SitemapEntry[] {
+  const languages = getPageLanguages(basePath);
+  const alternates = [
+    ...languages.map((code) => ({
+      hreflang: getHtmlLang(code),
+      href: pageUrl(basePath, code),
+    })),
+    {
+      hreflang: "x-default",
+      href: pageUrl(basePath, DEFAULT_LANGUAGE),
+    },
+  ];
+  return languages.map((lang) => ({
+    path: getPathWithLang(basePath, lang),
+    alternates,
+  }));
+}
+
+export function collectPublicSitemapEntries(options: {
+  staticPaths: string[];
+  includeTools: boolean;
+  includeCategories: boolean;
+}): SitemapEntry[] {
+  const entries: SitemapEntry[] = [];
+  for (const path of options.staticPaths) entries.push(...sitemapEntriesForPath(path));
+  if (options.includeTools) {
+    for (const tool of tools) entries.push(...sitemapEntriesForPath(`/${tool.slug}`));
+  }
+  if (options.includeCategories) {
+    for (const category of categories) {
+      entries.push(...sitemapEntriesForPath(`/categorias/${category.slug}`));
+    }
+  }
+  return entries;
 }
 
 export function sitemapXML(baseURL: string, entries: SitemapEntry[]): string {
@@ -87,14 +127,26 @@ export function sitemapXML(baseURL: string, entries: SitemapEntry[]): string {
     value.replace(/[&<>"']/g, (character) => entities[character] ?? character);
   const seen = new Set<string>();
   const urls: string[] = [];
+  const hasAlternates = entries.some((entry) => entry.alternates?.length);
   for (const entry of entries) {
     if (!isSafeSitemapPath(entry.path)) throw new Error("Invalid sitemap path");
     const url = new URL(entry.path, origin);
     if (seen.has(url.href)) continue;
     seen.add(url.href);
+    const alternatesXml = entry.alternates
+      ? entry.alternates
+          .map(
+            (alt) =>
+              `<xhtml:link rel="alternate" hreflang="${escape(alt.hreflang)}" href="${escape(alt.href)}" />`,
+          )
+          .join("")
+      : "";
     urls.push(
-      `<url><loc>${escape(url.href)}</loc>${entry.lastmod ? `<lastmod>${escape(entry.lastmod)}</lastmod>` : ""}</url>`,
+      `<url><loc>${escape(url.href)}</loc>${entry.lastmod ? `<lastmod>${escape(entry.lastmod)}</lastmod>` : ""}${alternatesXml}</url>`,
     );
   }
-  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}</urlset>`;
+  const xmlns = hasAlternates
+    ? 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"'
+    : 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+  return `<?xml version="1.0" encoding="UTF-8"?><urlset ${xmlns}>${urls.join("")}</urlset>`;
 }

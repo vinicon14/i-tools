@@ -4,10 +4,10 @@ import { useId, useState } from "react";
 import { searchTools, getCategory } from "@/lib/catalog";
 import { StatusBadge } from "./StatusBadge";
 
-type Props = { autoFocus?: boolean; onNavigate?: () => void; size?: "lg" | "md" };
+type Props = { autoFocus?: boolean; onNavigate?: () => void; size?: "lg" | "md"; initialQuery?: string };
 
-export function SearchPanel({ autoFocus, onNavigate, size = "md" }: Props) {
-  const [query, setQuery] = useState("");
+export function SearchPanel({ autoFocus, onNavigate, size = "md", initialQuery = "" }: Props) {
+  const [query, setQuery] = useState(initialQuery);
   const id = useId();
   const results = searchTools(query);
   const hasQuery = query.trim().length > 0;

@@ -1,11 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
 import { categories, tools } from "@/lib/catalog";
-import { SITE_ORIGIN, pageUrl } from "@/lib/seo";
-import { LANGUAGES, type LanguageCode } from "@/lib/i18n";
+import { SITE_ORIGIN, getHtmlLang, getPageLanguages, pageUrl } from "@/lib/seo";
+import { DEFAULT_LANGUAGE, getPathWithLang } from "@/lib/i18n";
 import {
   isSitemapRouteIncluded,
-  sitemapPathForLocation,
   sitemapStaticPaths,
   type SitemapEntry,
 } from "@/lib/sitemap";
@@ -72,57 +71,36 @@ export const Route = createFileRoute("/sitemap.xml")({
         const baseEntries: string[] = sitemapStaticPaths(router);
         const entries: SitemapEntryWithAlternates[] = [];
         
-        // Add static pages for all languages
-        for (const basePath of baseEntries) {
-          for (const lang of LANGUAGES) {
-            const localizedPath = lang.code === "pt" ? basePath : `/${lang.code}${basePath}`;
-            const alternates = LANGUAGES.map((l) => ({
-              hreflang: l.code === "pt" ? "pt-BR" : l.code,
-              href: pageUrl(basePath, l.code),
-            }));
-            alternates.push({
+        const addLocalizedEntries = (basePath: string) => {
+          const languages = getPageLanguages(basePath);
+          const alternates = [
+            ...languages.map((code) => ({
+              hreflang: getHtmlLang(code),
+              href: pageUrl(basePath, code),
+            })),
+            {
               hreflang: "x-default",
-              href: pageUrl(basePath, "pt"),
-            });
-            entries.push({ path: localizedPath, alternates });
+              href: pageUrl(basePath, DEFAULT_LANGUAGE),
+            },
+          ];
+          for (const lang of languages) {
+            entries.push({ path: getPathWithLang(basePath, lang), alternates });
           }
+        };
+
+        for (const basePath of baseEntries) {
+          addLocalizedEntries(basePath);
         }
-        
-        // Add tool pages for all languages
+
         if (isSitemapRouteIncluded(router.routesById["/$tool"])) {
           for (const tool of tools) {
-            const basePath = `/${tool.slug}`;
-            for (const lang of LANGUAGES) {
-              const localizedPath = lang.code === "pt" ? basePath : `/${lang.code}${basePath}`;
-              const alternates = LANGUAGES.map((l) => ({
-                hreflang: l.code === "pt" ? "pt-BR" : l.code,
-                href: pageUrl(basePath, l.code),
-              }));
-              alternates.push({
-                hreflang: "x-default",
-                href: pageUrl(basePath, "pt"),
-              });
-              entries.push({ path: localizedPath, alternates });
-            }
+            addLocalizedEntries(`/${tool.slug}`);
           }
         }
-        
-        // Add category pages for all languages
+
         if (isSitemapRouteIncluded(router.routesById["/categorias/$categoria"])) {
           for (const category of categories) {
-            const basePath = `/categorias/${category.slug}`;
-            for (const lang of LANGUAGES) {
-              const localizedPath = lang.code === "pt" ? basePath : `/${lang.code}${basePath}`;
-              const alternates = LANGUAGES.map((l) => ({
-                hreflang: l.code === "pt" ? "pt-BR" : l.code,
-                href: pageUrl(basePath, l.code),
-              }));
-              alternates.push({
-                hreflang: "x-default",
-                href: pageUrl(basePath, "pt"),
-              });
-              entries.push({ path: localizedPath, alternates });
-            }
+            addLocalizedEntries(`/categorias/${category.slug}`);
           }
         }
         

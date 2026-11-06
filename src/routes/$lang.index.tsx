@@ -5,7 +5,7 @@ import { tools, categories, featuredTools } from "@/lib/catalog";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { Link } from "@tanstack/react-router";
-import { getSeoLinks } from "@/lib/seo";
+import { getSeoLinks, websiteJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/$lang/")({
   staticData: { sitemap: true },
@@ -31,13 +31,7 @@ export const Route = createFileRoute("/$lang/")({
       scripts: [
         {
           type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: t.site.name,
-            description: t.site.description,
-            inLanguage: lang === "pt" ? "pt-BR" : lang,
-          }),
+          children: JSON.stringify(websiteJsonLd(lang, t.site.name, t.site.description)),
         },
       ],
     };

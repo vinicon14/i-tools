@@ -39,6 +39,14 @@ describe("catalog", () => {
   it("QR tool lives at /qr", () => {
     expect(getTool("qr")?.name).toBe("Gerador de QR Code");
   });
+  it("marks tools with equivalent localized pages", () => {
+    expect(getTool("qr")?.localized).toBe(true);
+    expect(getTool("meu-cep")?.localized).toBe(true);
+    for (const slug of ["baixar-video-youtube", "baixar-video-tiktok", "baixar-video-instagram"]) {
+      expect(getTool(slug)?.localized).toBe(true);
+    }
+    expect(getTool("json")?.localized).toBeFalsy();
+  });
   it("marks video downloads live after real files were verified", () => {
     for (const slug of ["baixar-video-youtube", "baixar-video-tiktok", "baixar-video-instagram"])
       expect(getTool(slug)?.status).toBe("live");

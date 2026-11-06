@@ -63,11 +63,12 @@ export function getOgLocaleAlternates(path: string, lang: LanguageCode): string[
 
 /** Advertise translations only where the page offers equivalent, usable content. */
 export function getPageLanguages(path: string): LanguageCode[] {
-  const slug = path.slice(1);
-  const localizedTool = ["meu-cep", "baixar-video-youtube", "baixar-video-tiktok", "baixar-video-instagram"].includes(slug);
-  const localizedCategory = path.startsWith("/categorias/") && Boolean(getCategory(path.slice(12)));
-  return path === "/" || localizedCategory || (getTool(slug) && localizedTool)
-    ? LANGUAGES.map(language => language.code)
+  const categoryPrefix = "/categorias/";
+  const localizedCategory =
+    path.startsWith(categoryPrefix) && Boolean(getCategory(path.slice(categoryPrefix.length)));
+  const localizedTool = Boolean(getTool(path.slice(1))?.localized);
+  return path === "/" || localizedCategory || localizedTool
+    ? LANGUAGES.map((language) => language.code)
     : [DEFAULT_LANGUAGE];
 }
 

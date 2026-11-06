@@ -5,7 +5,7 @@ import { tools, categories, featuredTools } from "@/lib/catalog";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { Link } from "@tanstack/react-router";
-import { getHrefLangLinks } from "@/lib/seo";
+import { getSeoLinks, websiteJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/$lang/")({
   staticData: { sitemap: true },
@@ -17,13 +17,7 @@ export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
     const lang = params.lang as LanguageCode;
     const t = getTranslations(lang);
-    const hrefLangLinks = getHrefLangLinks("/");
-    
-    const localeMap: Record<LanguageCode, string> = {
-      pt: "pt-BR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE", it: "it-IT",
-      nl: "nl-NL", pl: "pl-PL", ru: "ru-RU", uk: "uk-UA", tr: "tr-TR", ar: "ar-AR",
-      hi: "hi-IN", id: "id-ID", ja: "ja-JP", ko: "ko-KR", zh: "zh-CN", vi: "vi-VN",
-    };
+    const hrefLangLinks = getSeoLinks("/", lang);
     
     return {
       ...pageMeta(
@@ -37,22 +31,7 @@ export const Route = createFileRoute("/$lang/")({
       scripts: [
         {
           type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: t.site.name,
-            url: lang === "pt" ? "https://i-tools.shop" : `https://i-tools.shop/${lang}`,
-            description: t.site.description,
-            inLanguage: localeMap[lang] || lang,
-            potentialAction: {
-              "@type": "SearchAction",
-              target: {
-                "@type": "EntryPoint",
-                urlTemplate: `https://i-tools.shop/${lang === "pt" ? "" : lang + "/"}?q={search_term_string}`,
-              },
-              "query-input": "required name=search_term_string",
-            },
-          }),
+          children: JSON.stringify(websiteJsonLd(lang, t.site.name, t.site.description)),
         },
       ],
     };

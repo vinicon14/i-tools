@@ -27,3 +27,6 @@
 - Category accents are shared semantic tokens via `site/tool-appearance.ts`; reveal motion is managed by PageShell and always respects reduced-motion preferences.
 
 - Admin credentials are server-only secrets; admin pages and RPC functions validate the same encrypted HttpOnly session before privileged operations. Analytics schema integration remains optional until its tables are deployed.
+- Admin SEO generation uses the AI Gateway SDK inside a session-validated server function; validated editable drafts never overwrite public pages automatically, preventing unreviewed AI claims from being published.
+- Language alternate links must preserve the leaf's self-referencing canonical via getSeoLinks, so multilingual metadata never discards page identity.
+- Tool SEO titles, descriptions and explanatory context belong in the catalog and are consumed by ToolLayout; language alternates and sitemap entries advertise only equivalent usable pages, while translated placeholders remain noindex.

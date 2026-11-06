@@ -4,7 +4,7 @@ import { getTranslations } from "@/lib/translations";
 import { getCategory, toolsByCategory } from "@/lib/catalog";
 import { PageShell, pageMeta } from "@/components/site/Layout";
 import { ToolGrid } from "@/components/site/ToolCard";
-import { getHrefLangLinks } from "@/lib/seo";
+import { getSeoLinks, pageUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/$lang/categorias/$categoria")({
   staticData: { sitemap: true },
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/$lang/categorias/$categoria")({
     
     const categoryTranslation = t.categories[category.slug as keyof typeof t.categories];
     const path = `/categorias/${params.categoria}`;
-    const hrefLangLinks = getHrefLangLinks(path);
+    const hrefLangLinks = getSeoLinks(path, lang);
     
     return {
       ...pageMeta(
@@ -36,6 +36,19 @@ export const Route = createFileRoute("/$lang/categorias/$categoria")({
         lang,
       ),
       links: hrefLangLinks,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", lang) },
+              { "@type": "ListItem", position: 2, name: categoryTranslation.name, item: pageUrl(path, lang) },
+            ],
+          }),
+        },
+      ],
     };
   },
   component: LocalizedCategoryPage,

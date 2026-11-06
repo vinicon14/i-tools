@@ -5,36 +5,23 @@ import { SearchPanel } from "@/components/site/SearchPanel";
 import { ToolGrid } from "@/components/site/ToolCard";
 import { categories, featuredTools, SITE, toolsByCategory } from "@/lib/catalog";
 import { categoryAppearance } from "@/components/site/tool-appearance";
-import { getHrefLangLinks } from "@/lib/seo";
+import { getSeoLinks, websiteJsonLd } from "@/lib/seo";
 
 const title = "i-Tools — Ferramentas online gratuitas, direto no navegador";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
+  validateSearch: (search: Record<string, unknown>): { q?: string } =>
+    typeof search["q"] === "string" ? { q: search["q"] } : {},
   head: () => {
-    const hrefLangLinks = getHrefLangLinks("/");
+    const hrefLangLinks = getSeoLinks("/");
     return {
       ...pageMeta(title, SITE.description, "/", "website", "pt"),
       links: hrefLangLinks,
       scripts: [
         {
           type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: SITE.name,
-            url: "https://i-tools.shop",
-            inLanguage: "pt-BR",
-            description: SITE.description,
-            potentialAction: {
-              "@type": "SearchAction",
-              target: {
-                "@type": "EntryPoint",
-                urlTemplate: "https://i-tools.shop/?q={search_term_string}",
-              },
-              "query-input": "required name=search_term_string",
-            },
-          }),
+          children: JSON.stringify(websiteJsonLd("pt", SITE.name, SITE.description)),
         },
       ],
     };
@@ -66,6 +53,7 @@ const benefits = [
 ];
 
 function Index() {
+  const search = Route.useSearch();
   return (
     <PageShell>
       {/* Hero */}
@@ -87,7 +75,7 @@ function Index() {
             cálculos — gratuito e direto no navegador.
           </p>
           <div className="mt-7 max-w-2xl animate-fade-in-up">
-            <SearchPanel size="lg" />
+            <SearchPanel size="lg" initialQuery={search.q ?? ""} />
           </div>
           <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
             {["Grátis", "Sem cadastro", "No navegador"].map((label) => (

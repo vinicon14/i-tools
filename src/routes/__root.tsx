@@ -12,7 +12,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { MonetagLoader } from "../components/site/MonetagLoader";
+import { extractLangFromPath, getLanguageDir } from "../lib/i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { getHtmlLang } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -105,20 +107,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const location = router.state.location;
-  
-  const getLangAndDir = () => {
-    const match = location.pathname.match(/^\/([a-z]{2})(\/.*)?$/);
-    const validLangs = ["pt", "en", "es", "fr", "de", "it", "nl", "pl", "ru", "uk", "tr", "ar", "hi", "id", "ja", "ko", "zh", "vi"];
-    if (match?.[1] && validLangs.includes(match[1])) {
-      return { lang: match[1], dir: match[1] === "ar" ? "rtl" : "ltr" };
-    }
-    return { lang: "pt", dir: "ltr" };
-  };
-  
-  const { lang, dir } = getLangAndDir();
+  const { lang } = extractLangFromPath(location.pathname);
+  const dir = getLanguageDir(lang);
+  const htmlLang = getHtmlLang(lang);
   
   return (
-    <html lang={lang === "pt" ? "pt-BR" : lang} dir={dir}>
+    <html lang={htmlLang} dir={dir}>
       <head>
         <HeadContent />
       </head>

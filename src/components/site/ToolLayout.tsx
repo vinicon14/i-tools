@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { pageUrl, getSeoLinks } from "@/lib/seo";
+import { pageUrl, getSeoLinks, getHtmlLang } from "@/lib/seo";
 import { getCategory, getTool, SITE, toolsByCategory } from "@/lib/catalog";
 import { AdSlot, PageShell, pageMeta } from "./Layout";
 import { StatusBadge } from "./StatusBadge";
@@ -11,18 +11,19 @@ import { getTranslations } from "@/lib/translations";
 
 export type Faq = { q: string; a: string };
 
-/** Head for a live tool page: metadata + WebApplication structured data. */
+/** Head for a live tool page: metadata + SoftwareApplication structured data. */
 export function toolHead(slug: string, title: string, description: string, faq?: Faq[], lang?: LanguageCode) {
   const tool = getTool(slug);
   if (!tool) throw new Error(`Unknown tool: ${slug}`);
   const category = getCategory(tool.category);
-  const t = lang ? getTranslations(lang) : getTranslations("pt");
+  const currentLang = lang || "pt";
+  const t = getTranslations(currentLang);
   const path = `/${slug}`;
   if ((!lang || lang === "pt") && tool.seo) {
     title = tool.seo.title;
     description = tool.seo.description;
   }
-  const fullUrl = pageUrl(path, lang);
+  const fullUrl = pageUrl(path, currentLang);
   
   const categoryTranslation = category ? t.categories[category.slug as keyof typeof t.categories] : undefined;
   const categoryName = categoryTranslation?.name || category?.name;
@@ -33,14 +34,14 @@ export function toolHead(slug: string, title: string, description: string, faq?:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", lang) },
+      { "@type": "ListItem", position: 1, name: t.nav.home, item: pageUrl("/", currentLang) },
       ...(category
         ? [
             {
               "@type": "ListItem",
               position: 2,
               name: categoryName,
-              item: pageUrl(`/categorias/${category.slug}`, lang),
+              item: pageUrl(`/categorias/${category.slug}`, currentLang),
             },
           ]
         : []),
@@ -60,24 +61,24 @@ export function toolHead(slug: string, title: string, description: string, faq?:
     })),
   } : null;
   
-  const hrefLangLinks = getSeoLinks(path, lang);
+  const hrefLangLinks = getSeoLinks(path, currentLang);
   
   return {
-    ...pageMeta(title, description, path, "website", lang),
+    ...pageMeta(title, description, path, "website", currentLang),
     links: hrefLangLinks,
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "WebApplication",
+          "@type": "SoftwareApplication",
           "@id": `${fullUrl}#application`,
           name: toolName,
           url: fullUrl,
           description,
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",
-          inLanguage: lang === "pt" ? "pt-BR" : lang || "pt-BR",
+          inLanguage: getHtmlLang(currentLang),
           isAccessibleForFree: true,
           offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
           publisher: { "@type": "Organization", name: SITE.name },

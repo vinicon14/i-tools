@@ -6,6 +6,7 @@ export type Translations = {
     name: string;
     tagline: string;
     description: string;
+    titleTemplate: string;
   };
   categories: {
     arquivos: { name: string; description: string };
@@ -56,6 +57,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Ferramentas inteligentes para simplificar seu dia.",
       description: "Ferramentas online gratuitas para arquivos, imagens, texto, cálculos e desenvolvimento. Direto no navegador, sem cadastro e sem instalação.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -178,6 +180,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Smart tools to simplify your day.",
       description: "Free online tools for files, images, text, calculations, and development. Right in your browser, no signup, no installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -300,6 +303,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Herramientas inteligentes para simplificar tu día.",
       description: "Herramientas en línea gratuitas para archivos, imágenes, texto, cálculos y desarrollo. Directo en tu navegador, sin registro y sin instalación.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -422,6 +426,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Des outils intelligents pour simplifier votre journée.",
       description: "Outils en ligne gratuits pour les fichiers, images, texte, calculs et développement. Directement dans votre navigateur, sans inscription et sans installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -544,6 +549,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Intelligente Werkzeuge zur Vereinfachung Ihres Tages.",
       description: "Kostenlose Online-Tools für Dateien, Bilder, Text, Berechnungen und Entwicklung. Direkt in Ihrem Browser, ohne Anmeldung und ohne Installation.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -666,6 +672,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Strumenti intelligenti per semplificare la tua giornata.",
       description: "Strumenti online gratuiti per file, immagini, testo, calcoli e sviluppo. Direttamente nel tuo browser, senza registrazione e senza installazione.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -788,6 +795,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Slimme tools om je dag te vereenvoudigen.",
       description: "Gratis online tools voor bestanden, afbeeldingen, tekst, berekeningen en ontwikkeling. Direct in je browser, zonder registratie en zonder installatie.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -910,6 +918,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Inteligentne narzędzia upraszczające Twój dzień.",
       description: "Darmowe narzędzia online do plików, obrazów, tekstu, obliczeń i rozwoju. Bezpośrednio w przeglądarce, bez rejestracji i bez instalacji.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1032,6 +1041,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Умные инструменты для упрощения вашего дня.",
       description: "Бесплатные онлайн-инструменты для файлов, изображений, текста, расчетов и разработки. Прямо в браузере, без регистрации и без установки.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1154,6 +1164,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Розумні інструменти для спрощення вашого дня.",
       description: "Безкоштовні онлайн-інструменти для файлів, зображень, тексту, розрахунків та розробки. Прямо в браузері, без реєстрації та без встановлення.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1276,6 +1287,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Gününüzü basitleştiren akıllı araçlar.",
       description: "Dosyalar, resimler, metin, hesaplamalar ve geliştirme için ücretsiz çevrimiçi araçlar. Tarayıcınızda doğrudan, kayıt yok, kurulum yok.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1398,6 +1410,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "أدوات ذكية لتبسيط يومك.",
       description: "أدوات مجانية عبر الإنترنت للملفات والصور والنصوص والحسابات والتطوير. مباشرة في متصفحك، بدون تسجيل وبدون تثبيت.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1520,6 +1533,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "आपके दिन को सरल बनाने के लिए स्मार्ट उपकरण।",
       description: "फ़ाइलों, छवियों, टेक्स्ट, गणना और विकास के लिए मुफ्त ऑनलाइन उपकरण। सीधे आपके ब्राउज़र में, बिना साइनअप और बिना इंस्टॉलेशन।",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1642,6 +1656,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Alat pintar untuk menyederhanakan hari Anda.",
       description: "Alat online gratis untuk file, gambar, teks, perhitungan, dan pengembangan. Langsung di browser Anda, tanpa pendaftaran dan tanpa instalasi.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1764,6 +1779,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "あなたの一日をシンプルにするスマートツール。",
       description: "ファイル、画像、テキスト、計算、開発のための無料オンラインツール。ブラウザで直接、サインアップ不要、インストール不要。",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -1886,6 +1902,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "하루를 단순화하는 스마트 도구.",
       description: "파일, 이미지, 텍스트, 계산 및 개발을 위한 무료 온라인 도구. 브라우저에서 바로, 가입 없음, 설치 없음.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -2008,6 +2025,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "智能工具，简化您的一天。",
       description: "用于文件、图像、文本、计算和开发的免费在线工具。直接在您的浏览器中，无需注册，无需安装。",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {
@@ -2130,6 +2148,7 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
       name: "i-Tools",
       tagline: "Công cụ thông minh để đơn giản hóa ngày của bạn.",
       description: "Công cụ trực tuyến miễn phí cho tệp, hình ảnh, văn bản, tính toán và phát triển. Ngay trong trình duyệt của bạn, không cần đăng ký và không cần cài đặt.",
+      titleTemplate: "%s — i-Tools",
     },
     categories: {
       arquivos: {

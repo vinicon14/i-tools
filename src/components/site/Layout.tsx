@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
-import { pageUrl } from "@/lib/seo";
+import { getOgLocale, getOgLocaleAlternates, getSeoLinks, pageUrl } from "@/lib/seo";
 import { type LanguageCode } from "@/lib/i18n";
+import { getTranslations } from "@/lib/translations";
 import { useI18n } from "@/lib/use-i18n";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
@@ -96,23 +97,36 @@ export function ProsePage({
   );
 }
 
+function applyTitleTemplate(title: string, lang: LanguageCode): string {
+  if (title.includes("i-Tools")) return title;
+  return getTranslations(lang).site.titleTemplate.replace("%s", title);
+}
+
 export const pageMeta = (title: string, description: string, path: string, type = "website", lang?: LanguageCode) => {
   const currentLang = lang || "pt";
-  const locale = currentLang === "pt" ? "pt_BR" : currentLang === "en" ? "en_US" : `${currentLang}_${currentLang.toUpperCase()}`;
+  const brandedTitle = applyTitleTemplate(title, currentLang);
+  const locale = getOgLocale(currentLang);
   const canonicalUrl = pageUrl(path, currentLang);
-  
+  const imageUrl = pageUrl("/og-image.png");
+  const alternateLocales = getOgLocaleAlternates(path, currentLang);
+
   return {
     meta: [
-      { title },
+      { title: brandedTitle },
       { name: "description", content: description },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: title },
+      { property: "og:title", content: brandedTitle },
       { property: "og:description", content: description },
       { property: "og:type", content: type },
       { property: "og:url", content: canonicalUrl },
       { property: "og:locale", content: locale },
-      { name: "twitter:card", content: "summary" },
+      ...alternateLocales.map((content) => ({ property: "og:locale:alternate", content })),
+      { property: "og:image", content: imageUrl },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: brandedTitle },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: imageUrl },
     ],
-    links: [{ rel: "canonical", href: canonicalUrl }],
+    links: getSeoLinks(path, currentLang),
   };
 };

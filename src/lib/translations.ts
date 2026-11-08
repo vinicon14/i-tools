@@ -127,8 +127,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Veja o endereço IP público da sua conexão.",
       },
       "meu-cep": {
-        name: "Meu CEP pela localização",
-        summary: "Descubra o CEP de onde você está usando a localização do aparelho.",
+        name: "Consulta CEP e Endereço",
+        summary: "Busque CEP, descubra endereços ou encontre o código postal pela localização.",
       },
       "redimensionar-imagem": {
         name: "Redimensionador de imagens",
@@ -250,8 +250,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "See your connection's public IP address.",
       },
       "meu-cep": {
-        name: "My Postal Code by Location",
-        summary: "Discover your postal code using your device's location.",
+        name: "Postal Code and Address Lookup",
+        summary: "Search postal codes, find addresses, or discover the code by location.",
       },
       "redimensionar-imagem": {
         name: "Image Resizer",
@@ -373,8 +373,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Ve la dirección IP pública de tu conexión.",
       },
       "meu-cep": {
-        name: "Mi Código Postal por Ubicación",
-        summary: "Descubre tu código postal usando la ubicación de tu dispositivo.",
+        name: "Consulta Código Postal y Dirección",
+        summary: "Busca códigos postales, encuentra direcciones o descubre el código por ubicación.",
       },
       "redimensionar-imagem": {
         name: "Redimensionador de Imágenes",
@@ -496,8 +496,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Voyez l'adresse IP publique de votre connexion.",
       },
       "meu-cep": {
-        name: "Mon Code Postal par Localisation",
-        summary: "Découvrez votre code postal en utilisant la localisation de votre appareil.",
+        name: "Recherche Code Postal et Adresse",
+        summary: "Recherchez des codes postaux, trouvez des adresses ou découvrez le code par localisation.",
       },
       "redimensionar-imagem": {
         name: "Redimensionneur d'Images",
@@ -619,8 +619,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Sehen Sie die öffentliche IP-Adresse Ihrer Verbindung.",
       },
       "meu-cep": {
-        name: "Meine Postleitzahl nach Standort",
-        summary: "Entdecken Sie Ihre Postleitzahl über den Standort Ihres Geräts.",
+        name: "Postleitzahl- und Adresssuche",
+        summary: "Suchen Sie Postleitzahlen, finden Sie Adressen oder entdecken Sie den Code nach Standort.",
       },
       "redimensionar-imagem": {
         name: "Bildgrößenanpasser",
@@ -742,8 +742,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Visualizza l'indirizzo IP pubblico della tua connessione.",
       },
       "meu-cep": {
-        name: "Il mio Codice Postale per Posizione",
-        summary: "Scopri il tuo codice postale usando la posizione del tuo dispositivo.",
+        name: "Ricerca Codice Postale e Indirizzo",
+        summary: "Cerca codici postali, trova indirizzi o scopri il codice per posizione.",
       },
       "redimensionar-imagem": {
         name: "Ridimensionatore di Immagini",
@@ -865,8 +865,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Zie het openbare IP-adres van je verbinding.",
       },
       "meu-cep": {
-        name: "Mijn Postcode per Locatie",
-        summary: "Ontdek je postcode met de locatie van je apparaat.",
+        name: "Postcode en Adres Opzoeken",
+        summary: "Zoek postcodes, vind adressen of ontdek de code per locatie.",
       },
       "redimensionar-imagem": {
         name: "Afbeeldingsschaler",
@@ -988,8 +988,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Zobacz publiczny adres IP Twojego połączenia.",
       },
       "meu-cep": {
-        name: "Mój Kod Pocztowy według Lokalizacji",
-        summary: "Odkryj swój kod pocztowy używając lokalizacji urządzenia.",
+        name: "Wyszukiwanie Kodu Pocztowego i Adresu",
+        summary: "Szukaj kodów pocztowych, znajdź adresy lub odkryj kod według lokalizacji.",
       },
       "redimensionar-imagem": {
         name: "Zmiana Rozmiaru Obrazów",
@@ -1111,8 +1111,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Посмотрите публичный IP-адрес вашего соединения.",
       },
       "meu-cep": {
-        name: "Мой Почтовый Индекс по Местоположению",
-        summary: "Узнайте свой почтовый индекс, используя местоположение устройства.",
+        name: "Поиск Почтового Индекса и Адреса",
+        summary: "Ищите почтовые индексы, находите адреса или узнайте индекс по местоположению.",
       },
       "redimensionar-imagem": {
         name: "Масштабировщик Изображений",
@@ -1234,8 +1234,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Подивіться публічну IP-адресу вашого з'єднання.",
       },
       "meu-cep": {
-        name: "Мій Поштовий Індекс за Місцезнаходженням",
-        summary: "Дізнайтеся свій поштовий індекс, використовуючи місцезнаходження пристрою.",
+        name: "Пошук Поштового Індексу та Адреси",
+        summary: "Шукайте поштові індекси, знаходьте адреси або дізнайтеся індекс за місцезнаходженням.",
       },
       "redimensionar-imagem": {
         name: "Масштабувальник Зображень",
@@ -1357,8 +1357,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Bağlantınızın genel IP adresini görün.",
       },
       "meu-cep": {
-        name: "Konuma Göre Posta Kodum",
-        summary: "Cihazınızın konumunu kullanarak posta kodunuzu keşfedin.",
+        name: "Posta Kodu ve Adres Sorgulama",
+        summary: "Posta kodlarını arayın, adresleri bulun veya konuma göre kodu keşfedin.",
       },
       "redimensionar-imagem": {
         name: "Resim Yeniden Boyutlandırıcı",
@@ -1480,8 +1480,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "اطلع على عنوان IP العام لاتصالك.",
       },
       "meu-cep": {
-        name: "الرمز البريدي الخاص بي حسب الموقع",
-        summary: "اكتشف رمزك البريدي باستخدام موقع جهازك.",
+        name: "البحث عن الرمز البريدي والعنوان",
+        summary: "ابحث عن الرموز البريدية أو اعثر على العناوين أو اكتشف الرمز حسب الموقع.",
       },
       "redimensionar-imagem": {
         name: "مغير حجم الصور",
@@ -1603,8 +1603,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "अपने कनेक्शन का सार्वजनिक IP पता देखें।",
       },
       "meu-cep": {
-        name: "स्थान के अनुसार मेरा पोस्टल कोड",
-        summary: "अपने डिवाइस के स्थान का उपयोग करके अपना पोस्टल कोड खोजें।",
+        name: "पोस्टल कोड और पता खोज",
+        summary: "पोस्टल कोड खोजें, पते ढूंढें या स्थान के अनुसार कोड खोजें।",
       },
       "redimensionar-imagem": {
         name: "छवि रीसाइज़र",
@@ -1726,8 +1726,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Lihat alamat IP publik koneksi Anda.",
       },
       "meu-cep": {
-        name: "Kode Pos Saya Berdasarkan Lokasi",
-        summary: "Temukan kode pos Anda menggunakan lokasi perangkat Anda.",
+        name: "Pencarian Kode Pos dan Alamat",
+        summary: "Cari kode pos, temukan alamat, atau temukan kode berdasarkan lokasi.",
       },
       "redimensionar-imagem": {
         name: "Pengubah Ukuran Gambar",
@@ -1849,8 +1849,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "接続のパブリックIPアドレスを表示します。",
       },
       "meu-cep": {
-        name: "位置による私の郵便番号",
-        summary: "デバイスの位置を使用して郵便番号を発見します。",
+        name: "郵便番号と住所検索",
+        summary: "郵便番号を検索し、住所を見つけるか、位置で番号を発見します。",
       },
       "redimensionar-imagem": {
         name: "画像リサイザー",
@@ -1972,8 +1972,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "연결의 공개 IP 주소를 확인합니다.",
       },
       "meu-cep": {
-        name: "위치별 우편번호",
-        summary: "기기 위치를 사용하여 우편번호를 발견합니다.",
+        name: "우편번호 및 주소 검색",
+        summary: "우편번호를 검색하거나 주소를 찾거나 위치별로 번호를 발견합니다.",
       },
       "redimensionar-imagem": {
         name: "이미지 크기 조정기",
@@ -2095,8 +2095,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "查看您连接的公共IP地址。",
       },
       "meu-cep": {
-        name: "按位置查找邮政编码",
-        summary: "使用设备位置发现您的邮政编码。",
+        name: "邮政编码和地址查询",
+        summary: "搜索邮政编码、查找地址或按位置发现编码。",
       },
       "redimensionar-imagem": {
         name: "图像调整器",
@@ -2218,8 +2218,8 @@ export const translations: Record<LanguageCode, Omit<Translations, 'lang'>> = {
         summary: "Xem địa chỉ IP công khai của kết nối của bạn.",
       },
       "meu-cep": {
-        name: "Mã Bưu điện của tôi theo Vị trí",
-        summary: "Khám phá mã bưu điện của bạn bằng vị trí thiết bị của bạn.",
+        name: "Tra cứu Mã Bưu điện và Địa chỉ",
+        summary: "Tìm kiếm mã bưu điện, tìm địa chỉ hoặc khám phá mã theo vị trí.",
       },
       "redimensionar-imagem": {
         name: "Trình Thay đổi Kích thước Hình ảnh",

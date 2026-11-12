@@ -90,6 +90,7 @@ export function collectPublicSitemapEntries(options: {
   staticPaths: string[];
   includeTools: boolean;
   includeCategories: boolean;
+  blogPosts?: Array<{ path: string; lastmod?: string }>;
 }): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
   for (const path of options.staticPaths) entries.push(...sitemapEntriesForPath(path));
@@ -99,6 +100,11 @@ export function collectPublicSitemapEntries(options: {
   if (options.includeCategories) {
     for (const category of categories) {
       entries.push(...sitemapEntriesForPath(`/categorias/${category.slug}`));
+    }
+  }
+  if (options.blogPosts) {
+    for (const post of options.blogPosts) {
+      entries.push(post.lastmod ? { path: post.path, lastmod: post.lastmod } : { path: post.path });
     }
   }
   return entries;

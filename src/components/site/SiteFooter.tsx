@@ -44,6 +44,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link to="/blog" className="text-muted-foreground hover:text-foreground">
+                {t.nav.blog}
+              </Link>
+            </li>
+            <li>
               <Link to="/sobre" className="text-muted-foreground hover:text-foreground">
                 {t.nav.about}
               </Link>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
+import { listBlogPosts } from "@/lib/blog";
 import { SITE_ORIGIN } from "@/lib/seo";
 import {
   collectPublicSitemapEntries,
@@ -14,10 +15,12 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const router = await getRouterInstance();
+        const posts = listBlogPosts();
         const entries = collectPublicSitemapEntries({
           staticPaths: sitemapStaticPaths(router),
           includeTools: isSitemapRouteIncluded(router.routesById["/$tool"]),
           includeCategories: isSitemapRouteIncluded(router.routesById["/categorias/$categoria"]),
+          blogPosts: posts.map((post) => ({ path: post.path, lastmod: post.date })),
         });
         if (entries.length === 0) return new Response("No public pages included", { status: 404 });
         return new Response(sitemapXML(SITE_ORIGIN, entries), {

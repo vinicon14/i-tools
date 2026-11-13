@@ -41,3 +41,23 @@ describe("public tool sitemap", () => {
     expect(xml).not.toContain(`<loc>${SITE_ORIGIN}/en/sobre</loc>`);
   });
 });
+
+describe("blog sitemap entries", () => {
+  it("lists blog posts with lastmod and without invented language prefixes", () => {
+    const xml = sitemapXML(
+      SITE_ORIGIN,
+      collectPublicSitemapEntries({
+        staticPaths: ["/blog"],
+        includeTools: false,
+        includeCategories: false,
+        blogPosts: [
+          { path: "/blog/exemplo", lastmod: "2026-11-11" },
+        ],
+      }),
+    );
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/blog</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/blog/exemplo</loc>`);
+    expect(xml).toContain("<lastmod>2026-11-11</lastmod>");
+    expect(xml).not.toContain(`${SITE_ORIGIN}/en/blog`);
+  });
+});

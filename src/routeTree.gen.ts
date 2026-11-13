@@ -42,6 +42,9 @@ import { Route as AdmMonetagRouteImport } from './routes/adm/monetag'
 import { Route as AdmNotConfiguredRouteImport } from './routes/adm/not-configured'
 import { Route as AdmSeoRouteImport } from './routes/adm/seo'
 import { Route as AdmToolsRouteImport } from './routes/adm/tools'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as BlogRssDotxmlRouteImport } from './routes/blog.rss[.]xml'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
 import { Route as YamiIndexRouteImport } from './routes/yami/index'
 import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
@@ -212,6 +215,21 @@ const AdmToolsRoute = AdmToolsRouteImport.update({
   path: '/adm/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
+  id: '/blog/rss.xml',
+  path: '/blog/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   id: '/categorias/$categoria',
   path: '/categorias/$categoria',
@@ -265,9 +283,12 @@ export interface FileRoutesByFullPath {
   '/adm/not-configured': typeof AdmNotConfiguredRoute
   '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/adm/': typeof AdmIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/yami/': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
@@ -304,9 +325,12 @@ export interface FileRoutesByTo {
   '/adm/not-configured': typeof AdmNotConfiguredRoute
   '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang': typeof LangIndexRoute
   '/adm': typeof AdmIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/yami': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
@@ -344,9 +368,12 @@ export interface FileRoutesById {
   '/adm/not-configured': typeof AdmNotConfiguredRoute
   '/adm/seo': typeof AdmSeoRoute
   '/adm/tools': typeof AdmToolsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/adm/': typeof AdmIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/yami/': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
@@ -385,9 +412,12 @@ export interface FileRouteTypes {
     | '/adm/not-configured'
     | '/adm/seo'
     | '/adm/tools'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/categorias/$categoria'
     | '/$lang/'
     | '/adm/'
+    | '/blog/'
     | '/yami/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
@@ -424,9 +454,12 @@ export interface FileRouteTypes {
     | '/adm/not-configured'
     | '/adm/seo'
     | '/adm/tools'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/categorias/$categoria'
     | '/$lang'
     | '/adm'
+    | '/blog'
     | '/yami'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
@@ -463,9 +496,12 @@ export interface FileRouteTypes {
     | '/adm/not-configured'
     | '/adm/seo'
     | '/adm/tools'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/categorias/$categoria'
     | '/$lang/'
     | '/adm/'
+    | '/blog/'
     | '/yami/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
@@ -503,9 +539,12 @@ export interface RootRouteChildren {
   AdmNotConfiguredRoute: typeof AdmNotConfiguredRoute
   AdmSeoRoute: typeof AdmSeoRoute
   AdmToolsRoute: typeof AdmToolsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogRssDotxmlRoute: typeof BlogRssDotxmlRoute
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
   LangIndexRoute: typeof LangIndexRoute
   AdmIndexRoute: typeof AdmIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   YamiIndexRoute: typeof YamiIndexRoute
   LangCategoriasCategoriaRoute: typeof LangCategoriasCategoriaRoute
   ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
@@ -744,6 +783,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/rss.xml': {
+      id: '/blog/rss.xml'
+      path: '/blog/rss.xml'
+      fullPath: '/blog/rss.xml'
+      preLoaderRoute: typeof BlogRssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categorias/$categoria': {
       id: '/categorias/$categoria'
       path: '/categorias/$categoria'
@@ -807,9 +867,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdmNotConfiguredRoute: AdmNotConfiguredRoute,
   AdmSeoRoute: AdmSeoRoute,
   AdmToolsRoute: AdmToolsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogRssDotxmlRoute: BlogRssDotxmlRoute,
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
   LangIndexRoute: LangIndexRoute,
   AdmIndexRoute: AdmIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
   YamiIndexRoute: YamiIndexRoute,
   LangCategoriasCategoriaRoute: LangCategoriasCategoriaRoute,
   ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
@@ -817,3 +880,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

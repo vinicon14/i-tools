@@ -64,6 +64,13 @@ export function SiteHeader() {
           </ul>
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <Link
+            to="/blog"
+            className="hidden rounded-md px-2 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:inline"
+            activeProps={{ className: "text-foreground" }}
+          >
+            {t.nav.blog}
+          </Link>
           <LanguageSwitcher />
           <Button
             variant="ghost"
@@ -122,6 +129,15 @@ export function SiteHeader() {
                   })}
                 </ul>
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+                  <li>
+                    <Link
+                      to="/blog"
+                      onClick={() => setMenuOpen(false)}
+                      className="hover:text-foreground"
+                    >
+                      {t.nav.blog}
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to="/sobre"

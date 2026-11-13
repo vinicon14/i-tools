@@ -1,4 +1,5 @@
 import {
+  Bot,
   Braces,
   Calculator,
   FileText,
@@ -99,6 +100,23 @@ export const categories: Category[] = [
 ];
 
 export const tools: Tool[] = [
+  {
+    slug: "yami",
+    seo: {
+      title: "YAMI — seu agente de IA",
+      description:
+        "A YAMI é um assistente de IA que roda no seu Windows. Conversa, publica conteúdo com o Forage e pode ser usada de outro computador pelo navegador.",
+      context:
+        "Aplicativo para Windows 10 ou 11 de 64 bits, com pagamento único. O painel remoto espelha a interface do PC de casa; se o computador estiver desligado, o painel avisa.",
+    },
+    name: "YAMI — seu agente de IA",
+    summary: "Assistente de IA para Windows. Roda no seu PC, publica com o Forage e pode ser usada de outro computador pelo navegador.",
+    category: "produtividade",
+    icon: Bot,
+    status: "live",
+    featured: true,
+    keywords: ["yami", "ia", "assistente", "agente", "windows", "forage", "automação"],
+  },
   {
     slug: "baixar-video-youtube",
     localized: true,

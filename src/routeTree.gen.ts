@@ -43,6 +43,7 @@ import { Route as AdmNotConfiguredRouteImport } from './routes/adm/not-configure
 import { Route as AdmSeoRouteImport } from './routes/adm/seo'
 import { Route as AdmToolsRouteImport } from './routes/adm/tools'
 import { Route as CategoriasCategoriaRouteImport } from './routes/categorias.$categoria'
+import { Route as YamiIndexRouteImport } from './routes/yami/index'
 import { Route as LangCategoriasCategoriaRouteImport } from './routes/$lang.categorias.$categoria'
 import { Route as ApiPublicVideoFileRouteImport } from './routes/api/public/video-file'
 
@@ -216,6 +217,11 @@ const CategoriasCategoriaRoute = CategoriasCategoriaRouteImport.update({
   path: '/categorias/$categoria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const YamiIndexRoute = YamiIndexRouteImport.update({
+  id: '/yami/',
+  path: '/yami/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LangCategoriasCategoriaRoute = LangCategoriasCategoriaRouteImport.update({
   id: '/$lang/categorias/$categoria',
   path: '/$lang/categorias/$categoria',
@@ -262,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/adm/': typeof AdmIndexRoute
+  '/yami/': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -300,6 +307,7 @@ export interface FileRoutesByTo {
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang': typeof LangIndexRoute
   '/adm': typeof AdmIndexRoute
+  '/yami': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -339,6 +347,7 @@ export interface FileRoutesById {
   '/categorias/$categoria': typeof CategoriasCategoriaRoute
   '/$lang/': typeof LangIndexRoute
   '/adm/': typeof AdmIndexRoute
+  '/yami/': typeof YamiIndexRoute
   '/$lang/categorias/$categoria': typeof LangCategoriasCategoriaRoute
   '/api/public/video-file': typeof ApiPublicVideoFileRoute
 }
@@ -379,6 +388,7 @@ export interface FileRouteTypes {
     | '/categorias/$categoria'
     | '/$lang/'
     | '/adm/'
+    | '/yami/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesByTo: FileRoutesByTo
@@ -417,6 +427,7 @@ export interface FileRouteTypes {
     | '/categorias/$categoria'
     | '/$lang'
     | '/adm'
+    | '/yami'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   id:
@@ -455,6 +466,7 @@ export interface FileRouteTypes {
     | '/categorias/$categoria'
     | '/$lang/'
     | '/adm/'
+    | '/yami/'
     | '/$lang/categorias/$categoria'
     | '/api/public/video-file'
   fileRoutesById: FileRoutesById
@@ -494,6 +506,7 @@ export interface RootRouteChildren {
   CategoriasCategoriaRoute: typeof CategoriasCategoriaRoute
   LangIndexRoute: typeof LangIndexRoute
   AdmIndexRoute: typeof AdmIndexRoute
+  YamiIndexRoute: typeof YamiIndexRoute
   LangCategoriasCategoriaRoute: typeof LangCategoriasCategoriaRoute
   ApiPublicVideoFileRoute: typeof ApiPublicVideoFileRoute
 }
@@ -738,6 +751,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriasCategoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/yami/': {
+      id: '/yami/'
+      path: '/yami'
+      fullPath: '/yami/'
+      preLoaderRoute: typeof YamiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang/categorias/$categoria': {
       id: '/$lang/categorias/$categoria'
       path: '/$lang/categorias/$categoria'
@@ -790,19 +810,10 @@ const rootRouteChildren: RootRouteChildren = {
   CategoriasCategoriaRoute: CategoriasCategoriaRoute,
   LangIndexRoute: LangIndexRoute,
   AdmIndexRoute: AdmIndexRoute,
+  YamiIndexRoute: YamiIndexRoute,
   LangCategoriasCategoriaRoute: LangCategoriasCategoriaRoute,
   ApiPublicVideoFileRoute: ApiPublicVideoFileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -8,7 +8,7 @@ describe("catalog", () => {
   it("every tool belongs to an existing category", () => {
     for (const t of tools) expect(categories.some((c) => c.slug === t.category)).toBe(true);
   });
-  it("marks all fifteen implemented tools live", () => {
+  it("marks all sixteen implemented tools live", () => {
     expect(
       tools
         .filter((t) => t.status === "live")
@@ -30,6 +30,7 @@ describe("catalog", () => {
       "qr",
       "redimensionar-imagem",
       "senhas",
+      "yami",
     ]);
   });
   it("search ignores accents and returns matching tools", () => {

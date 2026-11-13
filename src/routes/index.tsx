@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { yamiHref } from "@/lib/yamiSite";
 import { ArrowRight, Check, Globe, MousePointerClick, PackageOpen, Wallet } from "lucide-react";
 import { AdSlot, PageShell, SectionHeading, pageMeta } from "@/components/site/Layout";
 import { SearchPanel } from "@/components/site/SearchPanel";
@@ -56,6 +57,40 @@ function Index() {
   const search = Route.useSearch();
   return (
     <PageShell>
+      {/* Ferramenta principal: YAMI */}
+      <section aria-labelledby="yami-destaque" className="border-b border-border bg-card">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-6 md:grid-cols-[1.4fr_auto] md:items-end md:py-10">
+          <div>
+            <p className="eyebrow flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              Ferramenta principal
+            </p>
+            <h2 id="yami-destaque" className="mt-3 max-w-2xl text-3xl leading-tight sm:text-4xl">
+              YAMI — seu agente de IA
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Assistente que roda no seu Windows, no seu computador. Cria e publica conteúdo
+              com o Forage, e pode ser usada de outro computador pelo navegador — enquanto o
+              programa continua no seu PC. Pagamento único, R$&nbsp;20,00.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              to="/yami"
+              className="border border-foreground bg-foreground px-4 py-2 text-sm text-background hover:bg-primary hover:border-primary hover:text-primary-foreground"
+            >
+              Conhecer a YAMI
+            </Link>
+            <a
+              href={yamiHref("/checkout", "home-comprar")}
+              className="border border-border px-4 py-2 text-sm hover:border-foreground"
+            >
+              Comprar
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Hero */}
       <section aria-labelledby="hero-title" className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 sm:px-6 md:pb-12 md:pt-14">

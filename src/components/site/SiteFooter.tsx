@@ -39,6 +39,11 @@ export function SiteFooter() {
           <h2 className="eyebrow">i-Tools</h2>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
+              <Link to="/yami" className="text-muted-foreground hover:text-foreground">
+                YAMI
+              </Link>
+            </li>
+            <li>
               <Link to="/sobre" className="text-muted-foreground hover:text-foreground">
                 {t.nav.about}
               </Link>

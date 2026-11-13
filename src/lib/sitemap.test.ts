@@ -10,7 +10,7 @@ describe("public tool sitemap", () => {
       SITE_ORIGIN,
       tools.flatMap((tool) => [{ path: `/${tool.slug}` }, { path: `/${tool.slug}` }]),
     );
-    expect(xml.match(/<loc>/g)).toHaveLength(15);
+    expect(xml.match(/<loc>/g)).toHaveLength(tools.length);
     for (const tool of tools) expect(xml).toContain(`<loc>${SITE_ORIGIN}/${tool.slug}</loc>`);
   });
   it("does not invent modification dates", () => {

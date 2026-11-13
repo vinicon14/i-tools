@@ -37,6 +37,12 @@ export function SiteHeader() {
       </a>
       <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-8 px-4 sm:px-6">
         <Logo />
+        <Link
+          to="/yami"
+          className="hidden rounded-md px-2 py-2 text-[13px] font-medium text-foreground sm:inline hover:text-primary"
+        >
+          YAMI
+        </Link>
         <nav aria-label={t.nav.categories} className="hidden flex-1 lg:block">
           <ul className="flex items-center gap-1">
             {categories.map((c) => {
@@ -87,6 +93,15 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-80 bg-background">
               <SheetTitle className="eyebrow">{t.nav.categories}</SheetTitle>
               <nav aria-label="Menu principal" className="mt-6">
+                <div className="mb-4">
+                  <Link
+                    to="/yami"
+                    onClick={() => setMenuOpen(false)}
+                    className="font-medium text-foreground hover:text-primary"
+                  >
+                    YAMI — seu agente de IA
+                  </Link>
+                </div>
                 <ul className="divide-y divide-border border-y border-border">
                   {categories.map((c, i) => {
                     const categoryTranslation = t.categories[c.slug as keyof typeof t.categories];
